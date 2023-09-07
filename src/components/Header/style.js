@@ -41,10 +41,12 @@ export const Container = styled.header`
       grid-area: buttons;
 
       display: flex;
-      gap: 2.1rem;
+      gap: 1.1rem;
 
-      > :first-child {
+      .firstButton {
         width: 9.3rem;
+
+        padding-left: 1.3rem;
         
         display: flex;
         align-items: center;

@@ -25,7 +25,7 @@ export function Header() {
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button>
+          <button className="firstButton">
             <p> Olá, <strong> nane </strong> </p>
             <FaChevronDown size={ 20 } />
           </button>
