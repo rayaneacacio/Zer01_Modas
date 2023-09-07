@@ -37,11 +37,8 @@ export const Container = styled.div`
   }
 
   span {
-    font-size: 1rem;
+    font-size: 0.8rem;
     grid-area: span_area;
-
-    width: 10.3rem;
-
     position: absolute;
     right: 0;
   }

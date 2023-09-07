@@ -32,7 +32,7 @@ export function Banner() {
         }
       </Swiper>
 
-      <Swiper className="swiper-nav" slidesPerView={ 3.4 }>
+      <Swiper className="swiper-nav" slidesPerView={ 2.7 }>
         <SwiperSlide>
           <button>
             <img src={ truckSVG } alt="" />

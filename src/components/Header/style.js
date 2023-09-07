@@ -25,6 +25,8 @@ export const Container = styled.header`
     width: 100%;
     height: 16rem;
 
+    padding: 1.5rem;
+
     display: grid;
     grid-template-areas: "logo buttons" "input input";
     align-items: center;
