@@ -19,6 +19,11 @@ export default createGlobalStyle`
     font-size: 1.5rem;
   }
 
+  h1, h2 {
+    font-family: ${({ theme }) => theme.FONTS.TITLE};
+    font-weight: 300;
+  }
+
   a {
     color: ${({ theme }) => theme.COLORS.BLACK};
     text-decoration: none;
@@ -44,6 +49,7 @@ export default createGlobalStyle`
   button {
     background: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
+    font-family: ${({ theme }) => theme.FONTS.DEFAULT};
   }
 
   button, a {

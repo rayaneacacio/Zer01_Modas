@@ -31,12 +31,12 @@ export function Header() {
           </button>
 
           <button>
-            <FiHeart size={ 20 } />
+            <FiHeart size={ 30 } />
             <span> 0 </span>
           </button>
 
           <button>
-            <RiShoppingBag2Line size={ 20 } />
+            <RiShoppingBag2Line size={ 30 } />
             <span> 0 </span>
           </button>
         </div>

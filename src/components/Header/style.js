@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.header`
   > :first-child {
+    font-size: 1.1rem;
+
     width: 100%;
     height: 3.3rem;
 
@@ -21,7 +23,7 @@ export const Container = styled.header`
     background: ${({ theme }) => theme.COLORS.BLACK};
 
     width: 100%;
-    height: 11rem;
+    height: 16rem;
 
     display: grid;
     grid-template-areas: "logo buttons" "input input";
@@ -30,7 +32,7 @@ export const Container = styled.header`
 
     > img {
       grid-area: logo;
-      width: 12rem;
+      width: 20rem;
     }
 
     .boxButtons {
@@ -60,8 +62,8 @@ export const Container = styled.header`
           border-radius: 50%;
 
           position: absolute;
-          right: 0;
-          top: 0.5rem;
+          right: -2px;
+          top: 0.9rem;
         }
       }
     }
