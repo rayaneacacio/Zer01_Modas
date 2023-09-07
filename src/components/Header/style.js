@@ -15,7 +15,7 @@ export const Container = styled.header`
 
     ul {
       display: flex;
-      gap: 3.9rem;
+      gap: 1.5rem;
     }
   }
 
