@@ -5,6 +5,7 @@ import gifModaÍntima from "../../assets/gif-moda-intima-secao-novidades.gif";
 import gifCamisetas from "../../assets/gif-camisetas-secao-novidades.gif";
 import gifTenis from "../../assets/gif-tenis-secao-novidades.gif";
 import gifJeans from "../../assets/gif-jeans-secao-novidades.gif";
+import imgRelogios from "../../assets/relogios-secao-confira-tambem.jpg";
 
 import { Header } from "../../components/Header";
 import { Nav } from "../../components/Nav";
@@ -13,6 +14,7 @@ import { Banner } from "../../components/Banner";
 import { Section } from "../../components/Section";
 import { PromotionalCard } from "../../components/Promotion-card";
 import { NoveltyCard } from "../../components/Novelty-card";
+import { ExtraCard } from "../../components/Extra-card";
 
 import { Container } from "./style";
 
@@ -46,6 +48,10 @@ export function Home() {
 
         <div className="section_extra">
           <Section title="CONFIRA TAMBÉM" />
+          <ExtraCard image={ imgRelogios } title="Relógios" />
+          <ExtraCard image={ imgRelogios } title="Fones de ouvido" />
+          <ExtraCard image={ imgRelogios } title="Smartwatch" />
+          <ExtraCard image={ imgRelogios } title="Acessorios de celular" />
         </div>
       </main>
       

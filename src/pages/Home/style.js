@@ -4,6 +4,8 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 
+  position: relative;
+
   .emptyBox {
     height: 19.3rem;
   }
@@ -68,6 +70,10 @@ export const Container = styled.div`
     .card5 {
       grid-area: card5;
     }
+  }
+
+  .section_extra {
+    height: 50rem;
   }
 
   .section_promotion, .section_novelty, .section_extra {
