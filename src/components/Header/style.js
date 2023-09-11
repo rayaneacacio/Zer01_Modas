@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
+  position: absolute;
+  top: 0;
+
   > :first-child {
     font-size: 1.1rem;
 

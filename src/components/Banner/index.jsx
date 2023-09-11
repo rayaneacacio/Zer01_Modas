@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import background from "../../assets/img background banner.png";
+import background from "../../assets/background-banner.png";
 import truckSVG from "../../assets/truck.svg";
 import ticketSVG from "../../assets/ticket.svg";
 import tagSVG from "../../assets/tag.svg";
