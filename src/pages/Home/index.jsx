@@ -15,6 +15,9 @@ import { Section } from "../../components/Section";
 import { PromotionalCard } from "../../components/Promotion-card";
 import { NoveltyCard } from "../../components/Novelty-card";
 import { ExtraCard } from "../../components/Extra-card";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+import { Footer } from "../../components/Footer";
 
 import { Container } from "./style";
 
@@ -53,8 +56,24 @@ export function Home() {
           <ExtraCard image={ imgRelogios } title="Smartwatch" />
           <ExtraCard image={ imgRelogios } title="Acessorios de celular" />
         </div>
+
+        <aside>
+          <span>
+            <p> GANHE R$15 </p>
+            <p> NA PRIMEIRA COMPRA! </p>
+          </span>
+
+          <p> Válido para compras acima de R$230. </p>
+
+          <Input title="Digite seu email aqui" />
+
+          <Button title="HOMEM" />
+          <Button title="MULHER" $background_color="WHITE" />
+        </aside>
+
+        <Footer />
       </main>
-      
+
     </Container>
   )
 }

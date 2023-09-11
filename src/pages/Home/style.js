@@ -73,10 +73,30 @@ export const Container = styled.div`
   }
 
   .section_extra {
-    height: 50rem;
+    /* height: 50rem; */
   }
 
   .section_promotion, .section_novelty, .section_extra {
     margin-bottom: 3rem;
+  }
+
+  aside {
+    background: ${({ theme }) => theme.COLORS.BLACK};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-weight: 300;
+
+    > span {
+      display: flex;
+      gap: 0.5rem;
+
+      font-size: 1.3rem;
+
+      :first-child {
+        color: ${({ theme }) => theme.COLORS.PURPLE};
+        font-weight: 500;
+      }
+    }
   }
 `;
