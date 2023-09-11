@@ -3,8 +3,9 @@ import { FiHeart } from "react-icons/fi";
 import { RiShoppingBag2Line } from "react-icons/ri";
 
 import Logo from "../../assets/logo.svg";
+import iconSearch from "../../assets/search-icon.svg";
 
-import { InputSearch } from "../InputSearch";
+import { Input } from "../Input";
 
 import { Container } from "./style";
 
@@ -41,7 +42,7 @@ export function Header() {
           </button>
         </div>
 
-        <InputSearch className="input" />
+        <Input className="input" title="O que vai querer hoje?" icon={ iconSearch } />
 
       </div>
 
