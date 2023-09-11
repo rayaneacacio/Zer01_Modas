@@ -19,6 +19,8 @@ export default createGlobalStyle`
     font-size: 1.5rem;
 
     overflow: hidden;
+
+    scroll-behavior: smooth;
   }
 
   h1, h2 {
