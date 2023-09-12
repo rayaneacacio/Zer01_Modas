@@ -12,7 +12,6 @@ export const Container = styled.button`
     background-position-y: initial;
 
     width: 23rem;
-    /* height: 28rem; */
     height: 26rem;
 
     position: relative;
@@ -63,6 +62,12 @@ export const Container = styled.button`
 
     span {
       font-size: 1.2rem;
+    }
+  }
+
+  @media(min-width: 700px) {
+    > main {
+      height: 30rem;
     }
   }
 `;

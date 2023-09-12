@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.footer`
+  background: ${({ theme }) => theme.COLORS.BLACK_22};
   color: ${({ theme }) => theme.COLORS.GRAY_500};
 
   height: 27.8rem;
@@ -34,7 +35,6 @@ export const Container = styled.footer`
   }
 
   > p {
-    background: ${({ theme }) => theme.COLORS.BLACK_22};
     font-size: 0.7rem;
     text-align: center;
     padding: 0.5rem;

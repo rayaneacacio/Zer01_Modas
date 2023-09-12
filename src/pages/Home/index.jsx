@@ -19,7 +19,7 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
-import { Container } from "./style";
+import { Container, Aside } from "./style";
 
 export function Home() {
   return (
@@ -51,13 +51,13 @@ export function Home() {
 
         <div className="section_extra">
           <Section title="CONFIRA TAMBÉM" />
-          <ExtraCard image={ imgRelogios } title="Relógios" />
-          <ExtraCard image={ imgRelogios } title="Fones de ouvido" />
-          <ExtraCard image={ imgRelogios } title="Smartwatch" />
-          <ExtraCard image={ imgRelogios } title="Acessorios de celular" />
+          <ExtraCard className="card1" image={ imgRelogios } title="Relógios" />
+          <ExtraCard className="card2" image={ imgRelogios } title="Fones de ouvido" />
+          <ExtraCard className="card3" image={ imgRelogios } title="Smartwatch" />
+          <ExtraCard className="card4" image={ imgRelogios } title="Acessorios de celular" />
         </div>
 
-        <aside>
+        <Aside>
           <span>
             <p> GANHE R$15 </p>
             <p> NA PRIMEIRA COMPRA! </p>
@@ -69,7 +69,7 @@ export function Home() {
 
           <Button className="aside-firstButton" title="HOMEM" $background_color={({ theme }) => theme.COLORS.WHITE} />
           <Button className="aside-lastButton" title="MULHER" $background_color={({ theme }) => theme.COLORS.WHITE} />
-        </aside>
+        </Aside>
 
         <Footer />
       </main>

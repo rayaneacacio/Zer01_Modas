@@ -40,7 +40,7 @@ export const Container = styled.div`
     column-gap: 2rem;
     row-gap: 3rem;
 
-    > :first-child {
+    > section {
       grid-area: title_section;
     }
 
@@ -73,52 +73,97 @@ export const Container = styled.div`
     margin-bottom: 3rem;
   }
 
-  aside {
-    background: ${({ theme }) => theme.COLORS.BLACK};
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-weight: 300;
+  @media(min-width: 700px) {
+    .section_promotion {
+      grid-template-areas:
+        "title_section title_section title_section"
+        "card1 card2 card3";
+    }
 
-    padding: 1.5rem;
-    margin: 2rem;
-    
-    display: grid;
-    grid-template-areas:
-        "title title none"
-        "subtitle subtitle none"
-        "input input input"
-        "none_ button1 button2";
-    row-gap: 0.7rem;
-    column-gap: 1rem;
+    .section_novelty {
+      grid-template-areas:
+        "title_section title_section title_section"
+        "main card2 card3"
+        "main card4 card5";
+      column-gap: 4.5rem;
+    }
 
-    > span {
-      font-size: 1.3rem;
+    .section_extra {
+      display: grid;
+      grid-template-areas:
+        "title_section title_section title_section title_section"
+        "card1 card2 card3 card4";
+      align-items: start;
+      row-gap: 5rem;
 
-      display: flex;
-      gap: 0.5rem;
-      grid-area: title;
+      > section {
+        grid-area: title_section;
+      }
 
-      :first-child {
-        color: ${({ theme }) => theme.COLORS.PURPLE};
-        font-weight: 500;
+      .card1 {
+        grid-area: card1;
+      }
+
+      .card2 {
+        grid-area: card2;
+      }
+
+      .card13 {
+        grid-area: card13;
+      }
+
+      .card4 {
+        grid-area: card4;
       }
     }
+  }
+`;
 
-    > p {
-      grid-area: subtitle;
-    }
+export const Aside = styled.aside`
+  background: ${({ theme }) => theme.COLORS.BLACK};
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  font-family: Montserrat;
+  font-size: 1rem;
+  font-weight: 300;
 
-    .aside-input {
-      grid-area: input;
-    }
+  padding: 1.5rem;
+  margin: 2rem;
+    
+  display: grid;
+  grid-template-areas:
+      "title title none"
+      "subtitle subtitle none"
+      "input input input"
+      "none_ button1 button2";
+  row-gap: 0.7rem;
+  column-gap: 1rem;
 
-    .aside-firstButton {
-      grid-area: button1;
-    }
+  > span {
+    font-size: 1.3rem;
 
-    .aside-lastButton {
-      grid-area: button2;
+    display: flex;
+    gap: 0.5rem;
+    grid-area: title;
+
+    :first-child {
+      color: ${({ theme }) => theme.COLORS.PURPLE};
+      font-weight: 500;
     }
+  }
+
+  > p {
+    grid-area: subtitle;
+  }
+
+  .aside-input {
+    grid-area: input;
+  }
+
+  .aside-firstButton {
+    grid-area: button1;
+  }
+
+  .aside-lastButton {
+    grid-area: button2;
   }
 `;

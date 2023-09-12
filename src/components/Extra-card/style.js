@@ -15,4 +15,21 @@ export const Container = styled.div`
     font-weight: 500;
     padding-top: 1rem;
   }
+
+  @media(min-width: 700px) {
+    width: 13rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    > img {
+      display: block;
+    }
+
+    > h2 {
+      text-align: center;
+    }
+  }
 `;
