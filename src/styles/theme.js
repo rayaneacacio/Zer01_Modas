@@ -10,7 +10,7 @@ export default {
 
     PURPLE: "#A332A5",
     
-    BLUE: "#04D483",
+    GREEN: "#04D483",
   },
 
   FONTS: {
