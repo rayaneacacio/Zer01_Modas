@@ -31,13 +31,6 @@ export const Container = styled.div`
 
   .section_novelty {
     display: grid;
-    /* grid-template-areas:
-      "title_section title_section title_section"
-      "main card2 card3"
-      "main card4 card5";
-    column-gap: 5rem;
-    row-gap: 3rem; */
-
     grid-template-areas:
         "title_section title_section title_section"
         "main main card2"
@@ -73,7 +66,7 @@ export const Container = styled.div`
   }
 
   .section_extra {
-    /* height: 50rem; */
+    padding: 2rem;
   }
 
   .section_promotion, .section_novelty, .section_extra {
@@ -87,16 +80,45 @@ export const Container = styled.div`
     font-size: 1rem;
     font-weight: 300;
 
+    padding: 1.5rem;
+    margin: 2rem;
+    
+    display: grid;
+    grid-template-areas:
+        "title title none"
+        "subtitle subtitle none"
+        "input input input"
+        "none_ button1 button2";
+    row-gap: 0.7rem;
+    column-gap: 1rem;
+
     > span {
+      font-size: 1.3rem;
+
       display: flex;
       gap: 0.5rem;
-
-      font-size: 1.3rem;
+      grid-area: title;
 
       :first-child {
         color: ${({ theme }) => theme.COLORS.PURPLE};
         font-weight: 500;
       }
+    }
+
+    > p {
+      grid-area: subtitle;
+    }
+
+    .aside-input {
+      grid-area: input;
+    }
+
+    .aside-firstButton {
+      grid-area: button1;
+    }
+
+    .aside-lastButton {
+      grid-area: button2;
     }
   }
 `;

@@ -65,10 +65,10 @@ export function Home() {
 
           <p> Válido para compras acima de R$230. </p>
 
-          <Input title="Digite seu email aqui" />
+          <Input className="aside-input" title="Digite seu email aqui" />
 
-          <Button title="HOMEM" />
-          <Button title="MULHER" $background_color="WHITE" />
+          <Button className="aside-firstButton" title="HOMEM" $background_color={({ theme }) => theme.COLORS.WHITE} />
+          <Button className="aside-lastButton" title="MULHER" $background_color={({ theme }) => theme.COLORS.WHITE} />
         </aside>
 
         <Footer />
