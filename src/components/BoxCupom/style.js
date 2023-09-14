@@ -42,4 +42,33 @@ export const Container = styled.div`
     position: absolute;
     right: 0;
   }
+
+  @media(min-width: 1000px) {
+    width: 92rem;
+
+    display: flex;
+    gap: 3.3rem;
+    justify-content: center;
+
+    h3 {
+      font-size: 2.3rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+    }
+
+    button {
+      font-size: 1.8rem;
+      width: 11.1rem;
+      height: 2.9rem;
+    }
+    
+    span {
+      position: relative; 
+      font-weight: bold; 
+      font-size: 1.2rem; 
+      padding-left: 4rem;
+    }
+  }
 `;

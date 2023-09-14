@@ -8,7 +8,7 @@ export function NoveltyCard({ $main_card, gif, title, subtitle, ...rest }) {
         <main>
           <h2> OFERTAS NOVAS </h2>
           <p> TODOS OS DIAS </p>
-          <span> ATÉ 80% OFF </span>
+          <span> ATÉ <strong> 80% OFF </strong> </span>
         </main>
         :
         <div>

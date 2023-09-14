@@ -15,4 +15,9 @@ export const Container = styled.section`
     width: 100%;
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY};
   }
+
+  @media(min-width: 1000px) {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
 `;

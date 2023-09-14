@@ -65,9 +65,45 @@ export const Container = styled.button`
     }
   }
 
-  @media(min-width: 700px) {
+  @media(min-width: 1000px) {
     > main {
-      height: 30rem;
+      width: 42rem;
+      height: 50rem;
+
+      h2 {
+        font-size: 1.7rem;
+        top: 9rem;
+        left: 1.2rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        top: 11rem;
+        left: 1rem;
+        letter-spacing: 0.6rem;
+      }
+
+      span {
+        font-size: 1.7rem;
+        top: 7rem;
+        right: 2rem;
+        padding: 1rem 1.5rem;
+      }
+    }
+
+    > div {
+      img {
+        width: 20rem;
+        height: 20rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      span {
+        font-size: 1.6rem;
+      }
     }
   }
 `;

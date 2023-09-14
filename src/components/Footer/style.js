@@ -4,6 +4,7 @@ export const Container = styled.footer`
   background: ${({ theme }) => theme.COLORS.BLACK_22};
   color: ${({ theme }) => theme.COLORS.GRAY_500};
 
+  width: 100%;
   height: 27.8rem;
 
   > div {
@@ -38,5 +39,25 @@ export const Container = styled.footer`
     font-size: 0.7rem;
     text-align: center;
     padding: 0.5rem;
+  }
+
+  @media(min-width: 1000px) {
+    > div {
+      font-size: 1.3rem;
+      height: 8rem;
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      > img {
+        width: 10rem;
+      }
+    }
+
+    > p {
+      font-size: 1.1rem;
+    }
   }
 `;

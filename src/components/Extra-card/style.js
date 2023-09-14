@@ -32,4 +32,11 @@ export const Container = styled.div`
       text-align: center;
     }
   }
+
+  @media(min-width: 1000px) {
+    > img {
+      width: 13rem;
+      height: 13rem;
+    }
+  }
 `;

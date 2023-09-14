@@ -41,4 +41,16 @@ export const Container = styled.div`
       width: 10rem;
     }
   }
+
+  @media(min-width: 1000px) {
+    .carrossel-imgs {
+      width: 98rem;
+      height: 25rem;
+    }
+
+    .swiper-pagination-bullet {
+      height: 1rem;
+      width: 1rem;
+    }
+  }
 `;

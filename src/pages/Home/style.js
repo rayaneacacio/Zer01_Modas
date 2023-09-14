@@ -117,6 +117,42 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media(min-width: 1000px) {
+    .emptyBox {
+      height: 13.3rem;
+    }
+
+    > main {
+      height: calc(100vh - 13.3rem);
+      overflow-x: hidden;
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section_promotion, .section_novelty, .section_extra {
+      margin-bottom: 10rem;
+    }
+
+    .section_promotion {
+      column-gap: 10rem;
+    }
+
+    .section_novelty {
+      align-items: start;
+    }
+
+    .section_extra {
+      justify-content: center;
+      column-gap: 13rem;
+    }
+
+    footer {
+      margin-top: 10rem;
+    }
+  }
 `;
 
 export const Aside = styled.aside`
@@ -165,5 +201,25 @@ export const Aside = styled.aside`
 
   .aside-lastButton {
     grid-area: button2;
+  }
+
+  @media(min-width: 1000px) {
+    width: 111rem;
+    grid-template-areas:
+      "title input button1 button2"
+      "subtitle input button1 button2";
+    grid-template-columns: 1fr 1fr;
+
+    > span {
+      font-size: 2rem;
+    }
+
+    > p {
+      font-size: 1.6rem;
+    }
+
+    .aside-input, .aside-firstButton, .aside-lastButton {
+      margin: 0.6rem 0;
+    }
   }
 `;

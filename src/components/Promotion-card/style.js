@@ -30,4 +30,20 @@ export const Container = styled.button`
       white-space: nowrap;
     }
   }
+
+  @media(min-width: 1000px) {
+    > img {
+      width: 24rem;
+      height: 37rem;
+    }
+
+    > div {
+      width: 24rem;
+      height: 12rem;
+
+      h2 {
+        font-size: 2.4rem;
+      }
+    }
+  }
 `;

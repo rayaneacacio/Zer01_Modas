@@ -84,11 +84,13 @@ export const Container = styled.header`
   
   @media(min-width: 1000px) {
     > :first-child {
+      font-size: 1.3rem;
       justify-content: center;
 
       ul {
         position: absolute;
         right: 11.1rem;
+        gap: 3.9rem;
       }
     }
 
@@ -96,6 +98,22 @@ export const Container = styled.header`
       height: 9.9rem;
 
       grid-template-columns: 1fr 52.1rem 1fr;
+      grid-template-areas: "logo input buttons";
+      justify-items: center;
+
+      > img {
+        width: 15.4rem;
+        height: 5.1rem;
+      }
+
+      .boxButtons {
+        gap: 5.1rem;
+
+        .firstButton {
+          font-size: 1.7rem;
+          width: 11.3rem;
+        }
+      }
     }
   }
 `;
