@@ -8,6 +8,7 @@ import Logo from "../../assets/logo.svg";
 import iconSearch from "../../assets/search-icon.svg";
 
 import { Input } from "../Input";
+import { NavMenu } from "../Nav-Menu";
 
 import { Container } from "./style";
 
@@ -15,14 +16,26 @@ export function Header() {
   const navigate = useNavigate();
   const route = useLocation();
 
-  function handleNavigate() {
-    if(route.pathname == "/") {
-      navigate("/menu");
-      return;
+  function handleMenu() {
+    if(window.innerWidth < 1000) {
+      if(route.pathname == "/") {
+        navigate("/menu");
+        return;
+      }
+
+      navigate("/");
     }
 
-    navigate("/");
+  }
 
+  function handleMenuDisplayBlock() {
+    const menu = document.querySelector(".firstButton aside");
+    menu.style.display = "flex";
+  }
+
+  function handleMenuDisplayNone() {
+    const menu = document.querySelector(".firstButton aside");
+    menu.style.display = "none";
   }
 
   return (
@@ -41,9 +54,10 @@ export function Header() {
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button className="firstButton" onClick={ handleNavigate } >
+          <button className="firstButton" onClick={ handleMenu } onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone } >
             <p> Olá, <strong> nane </strong> </p>
             <FaChevronDown size={ 20 } />
+            <NavMenu />
           </button>
 
           <button>
