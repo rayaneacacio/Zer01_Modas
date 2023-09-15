@@ -1,8 +1,12 @@
 import { Container } from "./style";
 
-export function Button({ title, $background_color, ...rest }) {
+export function Button({ icon, title, ...rest }) {
   return (
-    <Container $background_color={ $background_color } {...rest}>
+    <Container {...rest}>
+      {
+        icon &&
+        icon
+      }
       { title }
     </Container>
   )

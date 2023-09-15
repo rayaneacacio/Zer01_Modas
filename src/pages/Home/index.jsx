@@ -1,4 +1,4 @@
-import imgModaFeminina from "../../assets/moda-feminina-secao-promocional.png";
+;import imgModaFeminina from "../../assets/moda-feminina-secao-promocional.png";
 import imgModaMasculina from "../../assets/moda-masculina-secao-promocional.png";
 import imgModaInfantil from "../../assets/moda-infantil-secao-promocional.png";
 import gifModaÍntima from "../../assets/gif-moda-intima-secao-novidades.gif";
@@ -67,8 +67,8 @@ export function Home() {
 
           <Input className="aside-input" title="Digite seu email aqui" />
 
-          <Button className="aside-firstButton" title="HOMEM" $background_color={({ theme }) => theme.COLORS.WHITE} />
-          <Button className="aside-lastButton" title="MULHER" $background_color={({ theme }) => theme.COLORS.WHITE} />
+          <Button className="aside-firstButton" title="HOMEM" />
+          <Button className="aside-lastButton" title="MULHER" />
         </Aside>
 
         <Footer />

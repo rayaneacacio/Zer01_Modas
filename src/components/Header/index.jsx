@@ -1,3 +1,5 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { FaChevronDown } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { RiShoppingBag2Line } from "react-icons/ri";
@@ -10,8 +12,21 @@ import { Input } from "../Input";
 import { Container } from "./style";
 
 export function Header() {
+  const navigate = useNavigate();
+  const route = useLocation();
+
+  function handleNavigate() {
+    if(route.pathname == "/") {
+      navigate("/menu");
+      return;
+    }
+
+    navigate("/");
+
+  }
+
   return (
-    <Container>
+    <Container $pathname={ route.pathname }>
 
       <div>
         <p> Sua moda é feita aqui ;) </p>
@@ -26,7 +41,7 @@ export function Header() {
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button className="firstButton">
+          <button className="firstButton" onClick={ handleNavigate } >
             <p> Olá, <strong> nane </strong> </p>
             <FaChevronDown size={ 20 } />
           </button>

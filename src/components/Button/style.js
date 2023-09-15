@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  background: ${({ $background_color }) => $background_color};
+  background: ${({ theme }) => theme.COLORS.WHITE};
   color: ${({ theme }) => theme.COLORS.BLACK};
+  font-size: 1.6rem;
   padding: 0.5rem 1rem;
+
+  img {
+    width: 20rem;
+    height: 20rem;
+  }
 
   @media(min-width: 1000px) {
     font-size: 1.6rem;

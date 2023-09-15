@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import { Home } from './pages/Home';
+import { Routes } from './routes';
 
 register();
 
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={ theme }>
       <GlobalStyles />
-      <Home />
+      <Routes />
     </ThemeProvider>
   </React.StrictMode>,
 )

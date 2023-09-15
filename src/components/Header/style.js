@@ -7,6 +7,7 @@ export const Container = styled.header`
   top: 0;
 
   > :first-child {
+    background: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 1.1rem;
 
     width: 100%;
@@ -56,6 +57,10 @@ export const Container = styled.header`
         display: flex;
         align-items: center;
         gap: 0.5rem;
+
+        svg {
+          animation: ${({ $pathname }) => $pathname === "/" && "rotate180 0.3s reverse forwards"};
+        }
       }
 
       button {

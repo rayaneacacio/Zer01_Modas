@@ -65,4 +65,16 @@ export default createGlobalStyle`
     filter: brightness(0.8);
   }
 
+  @keyframes forBottom {
+    to {
+      opacity: 1;
+      transform: translateY(0.2rem);
+    }
+  }
+
+  @keyframes rotate180 {
+    to {
+      transform: rotateX(180deg);
+    }
+  }
 `;
