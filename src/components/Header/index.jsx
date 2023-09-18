@@ -23,20 +23,28 @@ export function Header() {
         return;
       }
 
-      navigate("/");
+      navigate(-1);
     }
 
   }
 
   function handleMenuDisplayBlock() {
-    const menu = document.querySelector(".firstButton aside");
+    if(window.innerWidth < 1000) {
+      return
+    }
+
+    const menu = document.querySelector(".boxButtons aside");
     menu.style.display = "flex";
     
     document.querySelector(".firstButton svg").style.animation = "rotate180 0.5s forwards";
   }
 
   function handleMenuDisplayNone() {
-    const menu = document.querySelector(".firstButton aside");
+    if(window.innerWidth < 1000) {
+      return
+    }
+    
+    const menu = document.querySelector(".boxButtons aside");
     menu.style.display = "none";
 
     document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.5s forwards";
@@ -65,8 +73,8 @@ export function Header() {
           <button className="firstButton" onClick={ handleMenu } onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone } >
             <p> Olá, <strong> nane </strong> </p>
             <FaChevronDown size={ 20 } />
-            <NavMenu />
           </button>
+          <NavMenu onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone }  />
 
           <button>
             <FiHeart size={ 30 } />

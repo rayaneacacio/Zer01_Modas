@@ -61,10 +61,10 @@ export const Container = styled.header`
         svg {
           animation: ${({ $pathname }) => $pathname === "/" && "rotate180 0.3s reverse forwards"};
         }
+      }
 
-        aside {
-          display: none;
-        }
+      > aside {
+        display: none;
       }
 
       > button {
@@ -116,12 +116,13 @@ export const Container = styled.header`
       }
 
       .boxButtons {
+        position: relative;
+        z-index: 2;
         gap: 5.1rem;
 
         .firstButton {
           font-size: 1.7rem;
           width: 11.3rem;
-          z-index: 2;
         }
 
       }

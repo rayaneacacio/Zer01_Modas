@@ -7,9 +7,9 @@ import { Button } from "../Button";
 
 import { Container } from "./style";
 
-export function NavMenu() {
+export function NavMenu({ ...rest }) {
   return (
-    <Container>
+    <Container {...rest}>
       <Button icon={ <IoMdContact /> } title="Minha Conta" />
       <Button icon={ <LuBox /> } title="Meus pedidos" />
       <Button icon={ <SlLocationPin /> } title="Meus Endereços" />

@@ -81,7 +81,7 @@ export default createGlobalStyle`
   @keyframes toRight {
     to {
       opacity: 1;
-      transform: translateX(0.2rem);
+      transform: translateX(0);
     }
   }
 `;

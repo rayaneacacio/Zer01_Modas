@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100vw;
   height: 100vh;
 
   position: relative;
   display: flex;
   flex-direction: column;
 
-  overflow-y: hidden;
+  overflow: hidden;
 
   > header > :nth-child(2) {
     padding-top: 0.1rem;
@@ -26,11 +27,13 @@ export const Container = styled.div`
     top: 13rem;
 
     > button {
-      color: ${({ theme }) => theme.COLORS.BLACK};
       display: flex;
-      font-size: 1.7rem;
       align-items: center;
-      margin: 1rem;
+
+      > svg {
+        width: 3rem;
+        height: 3rem;
+      }
     }
 
     > h3 {
@@ -40,25 +43,28 @@ export const Container = styled.div`
     }
   }
 
-  > footer {
+  footer {
     height: 9rem;
+    margin-top: 2rem;
   }
 `;
 
 export const Main = styled.main`
-  height: calc(100vh - 28.3rem);
-  margin-top: 20rem;
-  padding: 1rem;
+  width: 100%;
+  height: calc(100vh - 20.3rem);
+  margin-top: 21rem;
 
   opacity: 0;
+  transform: translateX(-0.5rem);
   animation: toRight 0.5s forwards;
 
+  overflow-x: hidden;
   overflow-y: auto;
 
-  > div {
+  .info {
     background: ${({ theme }) => theme.COLORS.BLACK};
     color: ${({ theme }) => theme.COLORS.WHITE};
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 
     width: 100%;
     padding: 0.5rem;
@@ -74,26 +80,31 @@ export const Main = styled.main`
     }
   }
 
-  > span {
+  .compra {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
-    > p {
+    padding: 1rem;
+
+    > span {
       display: flex;
       justify-content: space-between;
     }
 
-    > h3 {
+    .value {
+      color: ${({ theme }) => theme.COLORS.PURPLE};
       margin: 2rem 0;
       display: flex;
       justify-content: space-between;
     }
+  }
 
-    > button {
-      background: ${({ theme }) => theme.COLORS.GRAY_700};
-      color: ${({ theme }) => theme.COLORS.WHITE};
-      padding: 1rem;
-    }
+  > button {
+    background: ${({ theme }) => theme.COLORS.GRAY_700};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    width: 95%;
+    padding: 1rem;
+    margin: 1rem;
   }
 `;
