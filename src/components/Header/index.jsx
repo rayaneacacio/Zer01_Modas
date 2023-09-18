@@ -18,7 +18,7 @@ export function Header() {
 
   function handleMenu() {
     if(window.innerWidth < 1000) {
-      if(route.pathname == "/") {
+      if(route.pathname != "/menu") {
         navigate("/menu");
         return;
       }
@@ -31,11 +31,19 @@ export function Header() {
   function handleMenuDisplayBlock() {
     const menu = document.querySelector(".firstButton aside");
     menu.style.display = "flex";
+    
+    document.querySelector(".firstButton svg").style.animation = "rotate180 0.5s forwards";
   }
 
   function handleMenuDisplayNone() {
     const menu = document.querySelector(".firstButton aside");
     menu.style.display = "none";
+
+    document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.5s forwards";
+  }
+
+  function handleShopping() {
+    navigate("/shopping-cart");
   }
 
   return (
@@ -66,7 +74,7 @@ export function Header() {
           </button>
 
           <button>
-            <RiShoppingBag2Line size={ 30 } />
+            <RiShoppingBag2Line size={ 30 } onClick={ handleShopping } />
             <span> 0 </span>
           </button>
         </div>

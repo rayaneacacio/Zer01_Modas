@@ -77,4 +77,11 @@ export default createGlobalStyle`
       transform: rotateX(180deg);
     }
   }
+
+  @keyframes toRight {
+    to {
+      opacity: 1;
+      transform: translateX(0.2rem);
+    }
+  }
 `;
