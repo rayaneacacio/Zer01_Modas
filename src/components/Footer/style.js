@@ -5,7 +5,7 @@ export const Container = styled.footer`
   color: ${({ theme }) => theme.COLORS.GRAY_500};
 
   width: 100%;
-  height: 27.8rem;
+  height: 9rem;
 
   > div {
     background: ${({ theme }) => theme.COLORS.BLACK};
@@ -42,17 +42,20 @@ export const Container = styled.footer`
   }
 
   @media(min-width: 1000px) {
+    height: 8rem;
+
     > div {
-      font-size: 1.3rem;
-      height: 8rem;
+      font-size: 1.2rem;
+      height: 5.5rem;
 
       svg {
-        width: 2.4rem;
-        height: 2.4rem;
+        width: 1.8rem;
+        height: 1.8rem;
       }
 
       > img {
         width: 10rem;
+        height: 3rem;
       }
     }
 

@@ -5,7 +5,7 @@ export const Container = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
   margin: 1rem;
 
-  main {
+  .mobile, .desktop {
     width: 120%;
     display: flex;
     align-items: flex-end;
@@ -21,7 +21,6 @@ export const Container = styled.div`
       flex-direction: column;
       gap: 0.2rem;
     }
-
   }
 
   .slide2 {
@@ -43,6 +42,53 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.WHITE};
       width: 3rem;
       height: 3rem;
+    }
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  @media(min-width: 1000px) {
+    .swiper {
+      display: none;
+    }
+
+    .desktop {
+      width: 90%;
+      display: flex;
+      position: relative;
+
+      > img {
+        width: 8rem;
+      }
+
+      > div {
+        gap: 1rem;
+
+        > :first-child {
+          width: 25rem;
+        }
+      }
+
+      span {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      > button {
+        background: none;
+        width: 0;
+        height: 0;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        > svg {
+          color: ${({ theme }) => theme.COLORS.BLACK};
+        }
+      }
     }
   }
 `;

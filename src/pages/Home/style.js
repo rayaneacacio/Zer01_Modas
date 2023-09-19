@@ -11,8 +11,12 @@ export const Container = styled.div`
   }
 
   > main {
-    height: 100%;
+    height: calc(100% - 19.3rem);
     overflow: auto;
+
+    opacity: 0;
+    transform: translateX(-0.5rem);
+    animation: toRight 0.5s forwards;
   }
 
   .section_promotion {

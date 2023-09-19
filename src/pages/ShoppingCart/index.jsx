@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { MdArrowBack } from "react-icons/md";
-import { HiOutlineTruck } from "react-icons/hi";
+import { BsTruck } from "react-icons/bs";
 
 import imgPedido from "../../assets/pedido.jpg";
 
@@ -16,7 +16,7 @@ export function ShoppingCart() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate(-1);
+    navigate("/");
   }
 
   return (
@@ -30,18 +30,25 @@ export function ShoppingCart() {
 
       <Main>
         <div className="info">
-          <HiOutlineTruck />
-          FRETE GRATIS EM TODOS PEDIDOS
-          Acima de R$ 100,00
-        </div>
+          <div>
+            <BsTruck />
+            <p> FRETE GRATIS EM TODOS PEDIDOS </p>
+            <p> Acima de R$ 100,00 </p>
+          </div>
 
-        <div className="info">
-          DESCONTOS EXCLUSIVOS A PARTIR DO 10° PEDIDO 
-          Promoção Compre e Ganhe
+          <div>
+            <p> DESCONTOS EXCLUSIVOS A PARTIR DO 10° PEDIDO  </p>
+            <p> Promoção Compre e Ganhe </p>
+          </div>
         </div>
+        
 
-        <CartItem image={ imgPedido } title="Hang Loose" color="cinza" tamanho="P" preço="59,99" />
-        <CartItem image={ imgPedido } title="Camisa Polo John John Frisos Masculina" color="cinza" tamanho="P" preço="59,99" />
+        <div className="boxCards">
+          <CartItem image={ imgPedido } title="Hang Loose" color="cinza" tamanho="P" preço="59,99" />
+          <CartItem image={ imgPedido } title="Camisa Polo John John Frisos Masculina" color="cinza" tamanho="P"/>
+          <CartItem image={ imgPedido } title="Camisa Polo John John Frisos Masculina" color="cinza" tamanho="P" />
+          <CartItem image={ imgPedido } title="Camisa Polo John John Frisos Masculina" color="cinza" tamanho="P" preço="59,99" />
+        </div>
 
         <div className="compra">
           <h3> Resumo da compra </h3>
@@ -50,12 +57,15 @@ export function ShoppingCart() {
           <span> <p> Cupom de Desconto </p> <p> <strong> BEMVINDO10 </strong> </p> </span>
           <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span>
           <span className="value"> <h3> Valor Total </h3> <h3> R$ 269,97 </h3> </span>
+          <Button title="FINALIZAR COMPRA" />
         </div>
 
-        <Button title="FINALIZAR COMPRA" />
+        {/* <Button title="FINALIZAR COMPRA" /> */}
 
         <Footer />
       </Main>
+
+      {/* <Footer /> */}
 
     </Container>
   )
