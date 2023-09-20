@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.nav`
   width: 100%;
-  height: 6rem;
+  height: 5rem;
 
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
 
@@ -17,7 +17,7 @@ export const Container = styled.nav`
 
   button {
     color: ${({ theme }) => theme.COLORS.GRAY_700};
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   @media(min-width: 1000px) {
@@ -31,6 +31,10 @@ export const Container = styled.nav`
 
     .swiper-slide {
       text-align: center;
+    }
+
+    button {
+      font-size: 1.5rem;
     }
   }
 `;

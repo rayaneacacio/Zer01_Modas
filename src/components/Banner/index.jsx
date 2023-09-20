@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import background from "../../assets/background-banner.png";
@@ -10,6 +11,8 @@ import creditcardSVG from "../../assets/credit-card.svg";
 import { Container } from "./style";
 
 export function Banner() {
+  const [ sliderPerview, setSliderPerview ] = useState(2.7);
+
   const background2 = background;
   const background3 = background;
 
@@ -18,6 +21,26 @@ export function Banner() {
     background2,
     background3
   ]
+
+  function handleResize() {
+    if(window.innerWidth <= 1000) {
+      setSliderPerview(2.7);
+      return;
+    }
+
+    setSliderPerview(5);
+  }
+
+  useEffect(() => {
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+
+  }, []);
 
   return (
     <Container>
@@ -32,7 +55,7 @@ export function Banner() {
         }
       </Swiper>
 
-      <Swiper className="swiper-nav" slidesPerView={ 2.7 }>
+      <Swiper className="swiper-nav" slidesPerView={ sliderPerview }>
         <SwiperSlide>
           <button>
             <img src={ truckSVG } alt="" />

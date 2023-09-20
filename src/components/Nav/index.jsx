@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -6,6 +7,8 @@ import { Container } from "./style";
 
 export function Nav() {
   const [ sliderPerView, setSliderPerview ] = useState(3.2);
+
+  const navigate = useNavigate();
 
   const sections = [
     "PROMOÇÕES", 
@@ -20,11 +23,15 @@ export function Nav() {
   function handleResize() {
     if(window.innerWidth >= 1000) {
       setSliderPerview(7);
-      return
+      return;
     }
 
     setSliderPerview(3.2);
 
+  }
+
+  function navigateCatalog() {
+    navigate("/catalog");
   }
 
   useEffect(() => {
@@ -44,7 +51,7 @@ export function Nav() {
         {
           sections.map(title => (
             <SwiperSlide key={ title }>
-              <button> { title } </button>
+              <button onClick={ navigateCatalog }> { title } </button>
             </SwiperSlide>
           ))
         }

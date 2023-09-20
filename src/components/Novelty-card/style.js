@@ -98,11 +98,11 @@ export const Container = styled.button`
       }
 
       h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
 
       span {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
       }
     }
   }

@@ -17,7 +17,7 @@ export const Container = styled.section`
   }
 
   @media(min-width: 1000px) {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 3rem;
   }
 `;

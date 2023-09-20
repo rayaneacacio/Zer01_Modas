@@ -36,9 +36,9 @@ export const Container = styled.div`
     h2 {
       color: ${({ theme }) => theme.COLORS.BLACK};
       font-family: ${({ theme }) => theme.FONTS.TITLE};
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       text-align: initial;
-      width: 10rem;
+      width: 9rem;
     }
   }
 
@@ -51,6 +51,16 @@ export const Container = styled.div`
     .swiper-pagination-bullet {
       height: 1rem;
       width: 1rem;
+    }
+
+    .swiper-nav {
+      padding-left: 4.5rem;
+      margin: 2rem 0 5rem;
+    }
+
+    button > h2 {
+      font-size: 1.8rem;
+      width: 12rem;
     }
   }
 `;

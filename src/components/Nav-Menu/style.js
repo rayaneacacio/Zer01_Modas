@@ -6,12 +6,11 @@ export const Container = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2.5rem;
+  gap: 3rem;
 
   > button {
     background: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
-    font-size: 2rem;
 
     display: flex;
     align-items: center;

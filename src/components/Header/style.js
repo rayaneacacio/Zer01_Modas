@@ -11,7 +11,7 @@ export const Container = styled.header`
     font-size: 1.1rem;
 
     width: 100%;
-    height: 3.3rem;
+    height: 2rem;
 
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@ export const Container = styled.header`
     background: ${({ theme }) => theme.COLORS.BLACK};
 
     width: 100%;
-    height: 16rem;
+    height: 10rem;
 
     padding: 1.5rem;
 
@@ -37,10 +37,12 @@ export const Container = styled.header`
     grid-template-areas: "logo buttons" "input input";
     align-items: center;
     justify-content: space-around;
+    row-gap: 0.5rem;
 
     > img {
       grid-area: logo;
-      width: 20rem;
+      width: 10rem;
+      height: 3.2rem;
     }
 
     .boxButtons {

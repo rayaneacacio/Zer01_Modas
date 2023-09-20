@@ -7,11 +7,11 @@ export const Container = styled.div`
   position: relative;
 
   .emptyBox {
-    height: 19.3rem;
+    height: 12rem;
   }
 
   > main {
-    height: calc(100% - 19.3rem);
+    height: calc(100% - 12rem);
     overflow: auto;
 
     opacity: 0;
@@ -123,12 +123,8 @@ export const Container = styled.div`
   }
 
   @media(min-width: 1000px) {
-    .emptyBox {
-      height: 13.3rem;
-    }
-
     > main {
-      height: calc(100vh - 13.3rem);
+      height: calc(100vh - 12rem);
       overflow-x: hidden;
       
       display: flex;
@@ -137,7 +133,7 @@ export const Container = styled.div`
     }
 
     .section_promotion, .section_novelty, .section_extra {
-      margin-bottom: 10rem;
+      margin-bottom: 6rem;
     }
 
     .section_promotion {

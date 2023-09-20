@@ -42,7 +42,7 @@ export const Container = styled.button`
       height: 12rem;
 
       h2 {
-        font-size: 2.4rem;
+        font-size: 1.8rem;
       }
     }
   }

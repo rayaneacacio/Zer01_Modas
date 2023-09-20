@@ -9,7 +9,7 @@ export const Container = styled.div`
   overflow: hidden;
 
   > header > :nth-child(2) {
-    padding-top: 0.1rem;
+    padding-top: 0.5rem;
     
     .input {
       display: none;
@@ -22,7 +22,7 @@ export const Container = styled.div`
     padding-bottom: 1rem;
 
     position: absolute;
-    top: 13rem;
+    top: 7.3rem;
 
     > button > svg {
       width: 3rem;
@@ -51,14 +51,15 @@ export const Container = styled.div`
 
     > div {
       padding-left: 19.5rem;
+      top: 12rem;
     }
   }
 `;
 
 export const Main = styled.main`
   width: 100%;
-  height: calc(100vh - 20.3rem);
-  margin-top: 21rem;
+  height: calc(100vh - 15rem);
+  margin-top: 15rem;
 
   opacity: 0;
   transform: translateX(-0.5rem);
@@ -138,8 +139,10 @@ export const Main = styled.main`
   }
 
   @media(min-width: 1000px) {
-    height: calc(100% - 20.5rem);
+    height: calc(100% - 19rem);
+    margin-top: 19rem;
     font-size: 1.7rem;
+    
     display: grid;
     grid-template-areas:
         "info info"
