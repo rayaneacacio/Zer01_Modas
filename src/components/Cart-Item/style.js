@@ -11,6 +11,16 @@ export const Container = styled.div`
     align-items: flex-end;
     gap: 1rem;
 
+    .select {
+      background: none;
+      width: 1.6rem;
+      padding: 0;
+       
+      svg {
+        color: ${({ theme }) => theme.COLORS.BLACK};
+       }
+    }
+
     > img {
       width: 7rem;
     }
@@ -59,6 +69,10 @@ export const Container = styled.div`
       display: flex;
       position: relative;
 
+      .select {
+        height: 11rem;
+      }
+
       > img {
         width: 8rem;
       }
@@ -76,7 +90,8 @@ export const Container = styled.div`
         justify-content: space-between;
       }
 
-      > button {
+      .remove {
+        display: block;
         background: none;
         width: 0;
         height: 0;

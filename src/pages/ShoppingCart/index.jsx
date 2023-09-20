@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { MdArrowBack } from "react-icons/md";
 import { BsTruck } from "react-icons/bs";
+import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 
 import imgPedido from "../../assets/pedido.jpg";
 
@@ -44,6 +46,10 @@ export function ShoppingCart() {
         
 
         <div className="boxCards">
+          <div>
+            <Button icon={ <MdRadioButtonUnchecked /> } title="Selecionar tudo" />
+            <Button title="Remover" />
+          </div>
           <CartItem image={ imgPedido } title="Hang Loose" color="cinza" tamanho="P" preço="59,99" />
           <CartItem image={ imgPedido } title="Camisa Polo John John Frisos Masculina" color="cinza" tamanho="P"/>
           <CartItem image={ imgPedido } title="Camisa Polo John John Frisos Masculina" color="cinza" tamanho="P" />
@@ -60,12 +66,8 @@ export function ShoppingCart() {
           <Button title="FINALIZAR COMPRA" />
         </div>
 
-        {/* <Button title="FINALIZAR COMPRA" /> */}
-
         <Footer />
       </Main>
-
-      {/* <Footer /> */}
 
     </Container>
   )

@@ -6,6 +6,11 @@ export const Container = styled.button`
   font-size: 1.6rem;
   padding: 0.5rem 1rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
   img {
     width: 20rem;
     height: 20rem;

@@ -24,14 +24,9 @@ export const Container = styled.div`
     position: absolute;
     top: 13rem;
 
-    > button {
-      display: flex;
-      align-items: center;
-
-      > svg {
-        width: 3rem;
-        height: 3rem;
-      }
+    > button > svg {
+      width: 3rem;
+      height: 3rem;
     }
 
     > h3 {
@@ -97,6 +92,15 @@ export const Main = styled.main`
     > :first-child {
       align-items: center;
       gap: 0.5rem;
+    }
+  }
+
+  .boxCards > div {
+    display: flex;
+    justify-content: space-between;
+
+    > :last-child {
+      padding-right: 1rem;
     }
   }
 

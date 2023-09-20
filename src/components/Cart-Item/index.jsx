@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 import { GoTrash } from "react-icons/go";
 import { VscRemove } from "react-icons/vsc";
+import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,12 +11,23 @@ import { Button } from "../../components/Button";
 import { Container } from "./style";
 
 export function CartItem({ image, title, color, tamanho, preço }) {
+  const [ isSelected, setIsSelected ] = useState(false);
+
+  function handleSelect() {
+    if(isSelected === true) {
+      setIsSelected(false);
+      return;
+    }
+    
+    setIsSelected(true);
+  }
+
   return (
     <Container className="box" >
-
       <Swiper slidesPerView={ 1.9 } spaceBetween={ 10 } >
         <SwiperSlide>
           <div className="mobile">
+            <Button className="select" icon={ isSelected ? <MdRadioButtonChecked /> : <MdRadioButtonUnchecked /> } onClick={ handleSelect } />
             <img src={ image } alt="" />
             <div>
               <p> { title } </p>
@@ -34,6 +48,7 @@ export function CartItem({ image, title, color, tamanho, preço }) {
       </Swiper>
 
       <div className="desktop">
+        <Button className="select" icon={ isSelected ? <MdRadioButtonChecked /> : <MdRadioButtonUnchecked /> } onClick={ handleSelect } />
         <img src={ image } alt="" />
         <div>
           <p> { title } </p>
@@ -41,7 +56,7 @@ export function CartItem({ image, title, color, tamanho, preço }) {
           <p> Tamanho: { tamanho } </p>
           <span> <h3> Quantidade - 1 + </h3> <h3> R$ { preço } </h3> </span>
         </div>
-        <Button icon={ <VscRemove /> } />
+        <Button className="remove" icon={ <VscRemove /> } />
       </div>
      
     </Container>
