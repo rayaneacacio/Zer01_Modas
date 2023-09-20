@@ -54,6 +54,7 @@ export const Container = styled.div`
     }
 
     .swiper-nav {
+      width: 96rem;
       padding-left: 4.5rem;
       margin: 2rem 0 5rem;
     }

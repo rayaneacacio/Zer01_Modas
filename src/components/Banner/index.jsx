@@ -56,7 +56,7 @@ export function Banner() {
       </Swiper>
 
       <Swiper className="swiper-nav" slidesPerView={ sliderPerview }>
-        <SwiperSlide>
+        <SwiperSlide >
           <button>
             <img src={ truckSVG } alt="" />
             <h2> FRETE GRÁTIS </h2>
