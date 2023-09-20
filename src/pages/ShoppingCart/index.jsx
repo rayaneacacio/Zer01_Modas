@@ -39,7 +39,7 @@ export function ShoppingCart() {
           </div>
 
           <div>
-            <p> DESCONTOS EXCLUSIVOS A PARTIR DO 10° PEDIDO  </p>
+            <p> DESCONTOS EXCLUSIVOS A PARTIR DO 10° PEDIDO </p>
             <p> Promoção Compre e Ganhe </p>
           </div>
         </div>

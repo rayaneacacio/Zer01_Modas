@@ -81,6 +81,8 @@ export const Main = styled.main`
       padding: 0.5rem;
 
       display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
 
       > svg {
         width: 2rem;
@@ -90,17 +92,18 @@ export const Main = styled.main`
     }
 
     > :first-child {
+      display: grid;
+      grid-template-areas:
+        "svg title"
+        "svg subtitle";
       align-items: center;
-      gap: 0.5rem;
-    }
-  }
+      justify-content: start;
+      column-gap: 0.5rem;
+      row-gap: 0;
 
-  .boxCards > div {
-    display: flex;
-    justify-content: space-between;
-
-    > :last-child {
-      padding-right: 1rem;
+      > svg {
+        grid-area: svg;
+      }
     }
   }
 
