@@ -16,7 +16,7 @@ export function Header() {
   const navigate = useNavigate();
   const route = useLocation();
 
-  function handleMenu() {
+  function navigateMenu() {
     if(window.innerWidth < 1000) {
       if(route.pathname != "/menu") {
         navigate("/menu");
@@ -50,8 +50,11 @@ export function Header() {
     document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.5s forwards";
   }
 
-  function handleShopping() {
-    navigate("/shopping-cart");
+  function navigateShopping() {
+    if(route.pathname != "/shopping-cart") {
+      navigate("/shopping-cart");
+    }
+    
   }
 
   return (
@@ -70,7 +73,7 @@ export function Header() {
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button className="firstButton" onClick={ handleMenu } onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone } >
+          <button className="firstButton" onClick={ navigateMenu } onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone } >
             <p> Olá, <strong> nane </strong> </p>
             <FaChevronDown size={ 20 } />
           </button>
@@ -82,7 +85,7 @@ export function Header() {
           </button>
 
           <button>
-            <RiShoppingBag2Line size={ 30 } onClick={ handleShopping } />
+            <RiShoppingBag2Line size={ 30 } onClick={ navigateShopping } />
             <span> 0 </span>
           </button>
         </div>

@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { MdArrowBack } from "react-icons/md";
+import { MdArrowBack, MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 import { BsTruck } from "react-icons/bs";
-import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 
 import imgPedido from "../../assets/pedido.jpg";
 
@@ -18,7 +17,7 @@ export function ShoppingCart() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate(-1);
   }
 
   return (

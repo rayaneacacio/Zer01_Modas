@@ -5,7 +5,6 @@ export const Container = styled.aside`
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 3rem;
 
   > button {
@@ -14,6 +13,7 @@ export const Container = styled.aside`
 
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 1rem;
 
     padding-left: 1.5rem;
