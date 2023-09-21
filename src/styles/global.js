@@ -84,4 +84,10 @@ export default createGlobalStyle`
       transform: translateX(0);
     }
   }
+
+  @keyframes toLeft {
+    to {
+      transform: translateX(-1rem);
+    }
+  }
 `;

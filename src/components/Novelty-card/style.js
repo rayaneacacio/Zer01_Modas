@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import img_background from "../../assets/background-main-card-secao-novidades.jpg";
 
-export const Container = styled.button`
+export const Container = styled.div`
   color: ${({ theme }) => theme.COLORS.BLACK};
 
   > main {
@@ -45,7 +45,8 @@ export const Container = styled.button`
     }
   }
   
-  > div {
+  > button {
+    color: ${({ theme }) => theme.COLORS.BLACK};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,7 +92,7 @@ export const Container = styled.button`
       }
     }
 
-    > div {
+    > button {
       img {
         width: 20rem;
         height: 20rem;

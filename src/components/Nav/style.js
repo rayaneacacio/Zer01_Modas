@@ -20,6 +20,10 @@ export const Container = styled.nav`
     font-size: 1.3rem;
   }
 
+  .swiper-wrapper {
+    align-items: center;
+  }
+
   @media(min-width: 1000px) {
     > :first-child {
       padding: 2rem;

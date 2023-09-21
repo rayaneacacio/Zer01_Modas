@@ -11,11 +11,11 @@ export function NoveltyCard({ $main_card, gif, title, subtitle, ...rest }) {
           <span> ATÉ <strong> 80% OFF </strong> </span>
         </main>
         :
-        <div>
+        <button>
           <img src={ gif } alt="" />
           <h2> { title } </h2>
           <span> { subtitle } </span>
-        </div>
+        </button>
       }
     </Container>
   )
