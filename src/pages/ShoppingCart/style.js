@@ -108,6 +108,11 @@ export const Main = styled.main`
     }
   }
 
+  .boxCards > :first-child {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .compra {
     display: flex;
     flex-direction: column;

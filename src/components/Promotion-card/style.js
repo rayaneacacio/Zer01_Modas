@@ -26,7 +26,7 @@ export const Container = styled.button`
     padding: 0.5rem;
 
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       white-space: nowrap;
     }
   }
