@@ -8,9 +8,9 @@ export function ShowOutfit({ image, title, price, promotion }) {
       <div>
         {
           promotion &&
-          <h2 id="promotion"> R$ { promotion } </h2>
+          <h2 className="promotion"> R$ { promotion } </h2>
         }
-        <h2 id="price"> R$ { price } </h2>
+        <h2 className="price"> R$ { price } </h2>
       </div>
       
       <h2> { title } </h2>

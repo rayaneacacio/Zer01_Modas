@@ -22,12 +22,12 @@ export const Container = styled.button`
     display: flex;
   }
 
-  #promotion {
+  .promotion {
     text-decoration: line-through;
     width: 10rem;
   }
 
-  #price {
+  .price {
     color: ${({ theme, $promotion }) => $promotion && theme.COLORS.PURPLE};
     font-size: 1.4rem;
     font-weight: bold;
@@ -40,5 +40,24 @@ export const Container = styled.button`
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: initial;
+  }
+
+  @media(min-width: 1000px) {
+    width: 18rem;
+
+    > img {
+      width: 18rem;
+      height: 20rem;
+    }
+
+    .price, .promotion {
+      height: 2rem;
+    }
+
+    h2 {
+      height: 3rem;
+      white-space: wrap;
+      text-align: left;
+    }
   }
 `;

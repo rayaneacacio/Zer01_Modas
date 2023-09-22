@@ -47,21 +47,21 @@ export const Container = styled.div`
     width: 92rem;
 
     display: flex;
-    gap: 3.3rem;
+    gap: 3rem;
     justify-content: center;
 
     h3 {
-      font-size: 2.3rem;
+      font-size: 1.8rem;
     }
 
     p {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
     }
 
     button {
-      font-size: 1.8rem;
-      width: 11.1rem;
-      height: 2.9rem;
+      font-size: 1.3rem;
+      width: 9.1rem;
+      height: 1.9rem;
     }
     
     span {

@@ -9,6 +9,7 @@ import outfitImage from "../../assets/outfit.png";
 import { Header } from "../../components/Header";
 import { Nav } from "../../components/Nav";
 import { Button } from "../../components/Button";
+import { BoxCupom } from "../../components/BoxCupom";
 import { ShowOutfit } from "../../components/ShowOutfit";
 import { Footer } from "../../components/Footer";
 
@@ -32,12 +33,23 @@ export function Catalog() {
       <Nav />
 
       <Main>
-        <div>
+        <BoxCupom />
+
+        <div className="DivCatalog">
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
+          <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina ergetgetgefgqerfqwoefiwirrfjwifjisjfijwirfjiwrjfioerjgi iwrjfjwrifji  erjfiq2wjfijri" price="79,00" promotion="99,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />
