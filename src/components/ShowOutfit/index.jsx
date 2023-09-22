@@ -1,27 +1,8 @@
-import { useState } from "react";
-
-import { VscHeart, VscHeartFilled } from "react-icons/vsc";
-
-import { Button } from "../Button";
-
 import { Container } from "./style";
 
 export function ShowOutfit({ image, title, price, promotion }) {
-  const [ isFavorite, setIsFavorite ] = useState(false);
-
-  function handleFavorite() {
-    if(isFavorite) {
-      setIsFavorite(false);
-      return;
-    }
-
-    setIsFavorite(true);
-  }
-
   return (
-    <Container $promotion={ promotion }>
-      <Button icon={ isFavorite ? <VscHeartFilled size={ 25 } /> : <VscHeart size={ 25 } /> } onClick={ handleFavorite } />
-      
+    <Container $promotion={ promotion }>    
       <img src={ image } alt="" />
 
       <div>

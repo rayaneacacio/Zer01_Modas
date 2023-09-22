@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { LiaAngleLeftSolid } from "react-icons/lia";
 import { FiSearch } from "react-icons/fi";
 
-import outfitImage from "../../assets/pedido.jpg";
+import outfitImage from "../../assets/outfit.png";
 
 import { Header } from "../../components/Header";
 import { Nav } from "../../components/Nav";

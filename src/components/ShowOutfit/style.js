@@ -1,15 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 15rem;
+export const Container = styled.button`
+  color: ${({ theme }) => theme.COLORS.BLACK};
+  width: ${({ $promotion }) => $promotion ? "18rem" : "17rem"};
   position: relative;
-
-  /* transition: filter 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    filter: brightness(0.8);
-  } */
 
   > button {
     background: none;
@@ -19,8 +13,8 @@ export const Container = styled.div`
   }
 
   > img {
-    width: 15rem;
-    height: 15rem;
+    width: ${({ $promotion }) => $promotion ? "18rem" : "17rem"};
+    height: ${({ $promotion }) => $promotion ? "20rem" : "18rem"};
     object-fit: cover;
   }
 
@@ -45,5 +39,6 @@ export const Container = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: initial;
   }
 `;

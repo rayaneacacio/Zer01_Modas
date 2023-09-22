@@ -45,7 +45,9 @@ export const Main = styled.main`
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
+    align-items: start;
     gap: 2rem;
+    column-gap: 0;
     padding: 1rem;
 
     opacity: 0;
