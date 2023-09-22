@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { MdArrowBack, MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
+import { BsChevronLeft } from "react-icons/bs";
+import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 import { BsTruck } from "react-icons/bs";
 
 import imgPedido from "../../assets/pedido.jpg";
@@ -25,7 +26,7 @@ export function ShoppingCart() {
       <Header />
 
       <div>
-        <Button icon={ <MdArrowBack /> } title="Voltar" onClick={ handleBack } />
+        <Button icon={ <BsChevronLeft /> } onClick={ handleBack } />
         <h3> Meu Carrinho </h3>
       </div>
 

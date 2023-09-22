@@ -25,7 +25,7 @@ export const Container = styled.div`
     top: 7.3rem;
 
     > button > svg {
-      width: 3rem;
+      width: 2rem;
       height: 3rem;
     }
 

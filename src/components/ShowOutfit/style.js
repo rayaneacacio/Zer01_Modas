@@ -14,8 +14,8 @@ export const Container = styled.div`
   > button {
     background: none;
     position: absolute;
-    top: 1px;
-    left: 1px;
+    bottom: 3.5rem;
+    right: 0;
   }
 
   > img {
