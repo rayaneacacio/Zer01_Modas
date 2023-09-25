@@ -65,6 +65,10 @@ export default createGlobalStyle`
     filter: brightness(0.8);
   }
 
+  .swiper-pagination-bullet-active {
+    background: ${({ theme }) => theme.COLORS.BLACK};
+  }
+
   @keyframes forBottom {
     to {
       opacity: 1;

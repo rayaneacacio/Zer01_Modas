@@ -12,7 +12,7 @@ export function SecondHeader() {
   const navigate = useNavigate();
 
   function navigateBack() {
-    navigate("/");
+    navigate(-1);
   }
 
   return (

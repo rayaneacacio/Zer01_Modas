@@ -14,10 +14,6 @@ export const Container = styled.div`
     }
   }
 
-  .swiper-pagination-bullet-active {
-    background: ${({ theme }) => theme.COLORS.BLACK};
-  }
-
   .swiper-nav {
     padding-left: 1rem;
     margin: 1.3rem 0 2rem;

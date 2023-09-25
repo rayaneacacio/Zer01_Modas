@@ -1,8 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 import { Container } from "./style";
 
 export function ShowOutfit({ image, title, price, promotion }) {
+  const navigate = useNavigate();
+  
+  function navigateOutfit() {
+    navigate("/outfit");
+  }
+
   return (
-    <Container $promotion={ promotion }>    
+    <Container $promotion={ promotion } onClick={ navigateOutfit }>    
       <img src={ image } alt="" />
 
       <div>
