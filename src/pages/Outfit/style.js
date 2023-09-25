@@ -37,27 +37,21 @@ export const Main = styled.main`
     margin: 0 1rem;
   }
 
-  .slides {
+  img {
+    width: 100%;
+    height: 42rem;
+    object-fit: cover;
+  }
+
+  .swiper-pagination {
+    height: 17rem;
+    position: absolute;
+    top: 1rem;
+    left: 0rem;
     display: flex;
-
-    img {
-      width: 100%;
-      height: 42rem;
-      object-fit: cover;
-    }
-
-    .previews {
-      background: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem 0 0 1rem;
-
-      img {
-        width: 5rem;
-        height: 7rem;
-      }
-    }
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 2;
   }
 
   .about {

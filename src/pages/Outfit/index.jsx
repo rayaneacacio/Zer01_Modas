@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import OutfitImg from "../../assets/pedido.jpg";
@@ -10,7 +10,6 @@ import { VscHeartFilled, VscHeart } from "react-icons/vsc";
 import { SecondHeader } from "../../components/SecondHeader";
 import { Stars } from "../../components/Stars";
 import { Button } from "../../components/Button";
-import { Footer } from "../../components/Footer";
 
 import { Container, Main } from "./style";
 
@@ -32,30 +31,34 @@ export function Outfit() {
     setIsFavorite(true);
   }
 
+  useEffect(() => {
+    const allBulletsPagination = document.querySelectorAll(".swiper-pagination-bullet");
+    if(allBulletsPagination) {
+      for(let index = 0; index < allBulletsPagination.length; index++) {
+        allBulletsPagination[index].style.flex = 1;
+        allBulletsPagination[index].style.background = `url(${ slides[index] }) no-repeat center center`;
+        allBulletsPagination[index].style.backgroundSize = "contain";
+        allBulletsPagination[index].style.borderRadius = 0;
+        allBulletsPagination[index].style.opacity = 1;
+        allBulletsPagination[index].style.width = "4rem";
+      }
+    }
+
+  }, []);
+
   return (
     <Container>
       <SecondHeader />
 
       <Main>
-        <div className="slides">
-          <div className="previews">
-            {
-              slides &&
-              slides.map(image => (
-                <img src={ image } />
-              ))
-            }
-          </div>
-
-          <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} > 
-            {
-              slides &&
-              slides.map(image => (
-                <SwiperSlide key={ image }> <img src={ image } alt="" /> </SwiperSlide>
-              ))
-            }
-          </Swiper>
-        </div>
+        <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} > 
+          {
+            slides &&
+            slides.map(image => (
+              <SwiperSlide key={ image }> <img src={ image } alt="" /> </SwiperSlide>
+            ))
+          }
+        </Swiper>
 
         <div className="about">
           <div>
