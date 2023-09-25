@@ -33,14 +33,31 @@ export const Main = styled.main`
   margin-top: 12rem;
   overflow-y: auto;
 
-  img {
-    width: 100%;
-    height: 42rem;
-    object-fit: cover;
-  }
-
   .about, .description, .reviews {
     margin: 0 1rem;
+  }
+
+  .slides {
+    display: flex;
+
+    img {
+      width: 100%;
+      height: 42rem;
+      object-fit: cover;
+    }
+
+    .previews {
+      background: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 0 0 1rem;
+
+      img {
+        width: 5rem;
+        height: 7rem;
+      }
+    }
   }
 
   .about {
@@ -85,7 +102,7 @@ export const Main = styled.main`
 
   .reviews {
     padding: 1rem;
-    
+
     h2 {
       color: ${({ theme }) => theme.COLORS.BLACK};
       font-size: 1.5rem;

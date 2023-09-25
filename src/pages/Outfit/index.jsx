@@ -37,14 +37,25 @@ export function Outfit() {
       <SecondHeader />
 
       <Main>
-        <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} > 
-          {
-            slides &&
-            slides.map(image => (
-              <SwiperSlide key={ image }> <img src={ image } alt="" /> </SwiperSlide>
-            ))
-          }
-        </Swiper>
+        <div className="slides">
+          <div className="previews">
+            {
+              slides &&
+              slides.map(image => (
+                <img src={ image } />
+              ))
+            }
+          </div>
+
+          <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} > 
+            {
+              slides &&
+              slides.map(image => (
+                <SwiperSlide key={ image }> <img src={ image } alt="" /> </SwiperSlide>
+              ))
+            }
+          </Swiper>
+        </div>
 
         <div className="about">
           <div>
