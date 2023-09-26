@@ -4,6 +4,12 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 
+  .buttons, main {
+    opacity: 0;
+    transform: translateX(-1rem);
+    animation: toRight 0.5s forwards;
+  }
+
   .buttons {
     background: ${({ theme }) => theme.COLORS.WHITE};
     display: flex;
@@ -73,14 +79,27 @@ export const Main = styled.main`
         font-weight: 400;
       }
 
-      .stars {
+      .boxStars {
         position: absolute;
         right: 1rem;
       }
+      
     }
 
     > h2 {
       font-size: 1.5rem;
+    }
+  }
+
+  .boxStars {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    > span {
+      font-size: 1.6rem;
+      font-weight: bold;
     }
   }
 
@@ -96,11 +115,61 @@ export const Main = styled.main`
 
   .reviews {
     padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
 
-    h2 {
+    h1 {
       color: ${({ theme }) => theme.COLORS.BLACK};
       font-size: 1.5rem;
       font-weight: 400;
+      padding-bottom: 0.5rem;
+    }
+
+    > button {
+      font-size: 1.2rem;
+      align-self: center;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem
+      }
+    }
+  }
+
+  .recommended {
+    padding: 0 1rem;
+
+    > section {
+      font-size: 0.9rem;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
+      h1 {
+        font-weight: 500;
+      }
+    }
+
+    > div {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      
+      > button {
+        width: 10rem;
+
+        h2 {
+          font-size: 1rem;
+        }
+
+        .promotion {
+          width: 8.5rem;
+        }
+      }
+    }
+
+    img {
+      width: 10rem;
+      height: 10rem;
     }
   }
 `;
