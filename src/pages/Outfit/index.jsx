@@ -15,6 +15,9 @@ import { Button } from "../../components/Button";
 import { Comment } from "../../components/Comment";
 import { Section } from "../../components/Section";
 import { ShowOutfit } from "../../components/ShowOutfit";
+import { Nav } from "../../components/Nav";
+import { BoxCupom } from "../../components/BoxCupom";
+import { Footer } from "../../components/Footer";
 
 import { Container, Main } from "./style";
 
@@ -44,8 +47,6 @@ export function Outfit() {
         allBulletsPagination[index].style.background = `url(${ slides[index] }) no-repeat center center`;
         allBulletsPagination[index].style.backgroundSize = "contain";
         allBulletsPagination[index].style.borderRadius = 0;
-        allBulletsPagination[index].style.opacity = 1;
-        allBulletsPagination[index].style.width = "4rem";
       }
     }
 
@@ -54,6 +55,8 @@ export function Outfit() {
   return (
     <Container>
       <SecondHeader />
+      <Nav />
+      <BoxCupom />
 
       <Main>
         <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} > 
@@ -64,6 +67,8 @@ export function Outfit() {
             ))
           }
         </Swiper>
+
+        <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
 
         <div className="about">
           <div>
@@ -76,6 +81,8 @@ export function Outfit() {
           </div>
 
           <h2> Hang Lose </h2>
+
+          <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
         </div>
 
         <div className="description">
@@ -122,13 +129,17 @@ export function Outfit() {
             <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
             <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
             <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
+            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
+            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
           </div>
         </div>
+
+        <Footer />
       </Main>
 
       <div className="buttons">
         <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
-        <Button className="buttonBuy" title="Adicionar ao carrinho" />
+        <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
       </div>
     </Container>
   )

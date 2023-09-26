@@ -16,6 +16,7 @@ export const Container = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
+    padding-top: 0.5rem;
   }
 
   .buttonHeart {
@@ -31,12 +32,37 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.WHITE};
     width: 100%;
   }
+
+  > nav, > div {
+    display: none;
+  }
+
+  @media(min-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+
+    .buttons {
+      display: none;
+    }
+
+    > nav {
+      display: flex;
+      margin-top: 12rem;
+    }
+
+    > div {
+      display: flex;
+      align-self: center;
+    }
+  }
 `;
 
 export const Main = styled.main`
   height: calc(100% - 16rem);
   padding-bottom: 4rem;
   margin-top: 12rem;
+
+  overflow-x: hidden;
   overflow-y: auto;
 
   .about, .description, .reviews {
@@ -58,6 +84,15 @@ export const Main = styled.main`
     flex-direction: column;
     gap: 1rem;
     z-index: 2;
+
+    > span {
+      opacity: 1;
+      width: 4rem;
+    }
+  }
+
+  > button {
+    display: none;
   }
 
   .about {
@@ -88,6 +123,10 @@ export const Main = styled.main`
 
     > h2 {
       font-size: 1.5rem;
+    }
+
+    > button {
+      display: none;
     }
   }
 
@@ -153,6 +192,11 @@ export const Main = styled.main`
       display: flex;
       justify-content: center;
       gap: 2rem;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        background: none;
+      }
       
       > button {
         width: 10rem;
@@ -170,6 +214,139 @@ export const Main = styled.main`
     img {
       width: 10rem;
       height: 10rem;
+    }
+  }
+
+  > footer {
+    display: none;
+  }
+
+  @media(min-width: 1000px) {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+      "none swiper about"
+      "description description description"
+      "reviews reviews reviews"
+      "recommended recommended recommended"
+      "footer footer footer";
+    grid-template-columns: 1fr 50rem 1.5fr;
+
+    img {
+      object-fit: contain;
+    }
+
+    .swiper {
+      width: 50rem;
+      grid-area: swiper;
+    }
+
+    .swiper-pagination {
+      height: 23rem;
+
+      > span {
+        width: 5rem;
+      }
+    }
+
+    > button {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 63rem;
+      z-index: 2;
+    }
+
+    .about {
+      grid-area: about;
+      width: 30rem;
+      margin-top: 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+
+      position: relative;
+
+      > div .boxStars {
+        bottom: -4rem;
+        left: 0;
+      }
+
+      > h2 {
+        position: absolute;
+        top: -3rem;
+      }
+
+      > button {
+        display: flex;
+        height: 4rem;
+      }
+    }
+
+    .description {
+      grid-area: description;
+      font-size: 1.5rem;
+      flex-direction: row;
+      gap: 8rem;
+      padding: 2rem;
+      margin: 8rem 10rem 0 10rem;
+    }
+
+    .reviews {
+      grid-area: reviews;
+      font-size: 1.5rem;
+      padding: 2rem;
+      margin: 0 10rem;
+
+      h1, span {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      > button {
+        font-size: 1.6rem;
+        margin-top: 4rem;
+      }
+    }
+
+    .recommended {
+      grid-area: recommended;
+      margin: 0 10rem 5rem 10rem;
+
+      > section {
+        font-size: 1rem;
+        margin: 5rem 0 8rem 0;
+      }
+
+      > div {
+        gap: 6rem;
+      }
+
+      > div > button {
+        width: 16rem;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        .promotion {
+          width: 12.5rem;
+        }
+      }
+
+      img {
+        width: 16rem;
+        height: 16rem;
+      }
+    }
+
+    > footer {
+      display: grid;
+      grid-area: footer;
     }
   }
 `;

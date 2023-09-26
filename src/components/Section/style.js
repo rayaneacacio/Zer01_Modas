@@ -15,7 +15,7 @@ export const Container = styled.section`
 
   div {
     width: 100%;
-    border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY};
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
   }
 
   @media(min-width: 1000px) {
