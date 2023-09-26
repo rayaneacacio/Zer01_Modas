@@ -47,7 +47,7 @@ export const Container = styled.header`
     > button {
       color: ${({ theme }) => theme.COLORS.BLACK};
       top: 17rem;
-      left: 20rem;
+      left: 3rem;
       svg {
         width: 2.5rem;
       }
@@ -55,6 +55,12 @@ export const Container = styled.header`
 
     .buttonSearch {
       display: none;
+    }
+  }
+
+  @media(min-width: 1400px) {
+    > button {
+      left: 20rem;
     }
   }
 `;
