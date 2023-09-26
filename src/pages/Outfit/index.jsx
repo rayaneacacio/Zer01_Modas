@@ -39,6 +39,17 @@ export function Outfit() {
     setIsFavorite(true);
   }
 
+  function handleOutfitSize(button) {
+    const allButtons = document.querySelectorAll(".outfit-size button");
+    allButtons.forEach(index => {
+      index.style.border = "1px solid black";
+      index.style.fontWeight = "normal";
+    });
+ 
+    button.style.border = "2px solid black";
+    button.style.fontWeight = "bold";
+  }
+
   useEffect(() => {
     const allBulletsPagination = document.querySelectorAll(".swiper-pagination-bullet");
     if(allBulletsPagination) {
@@ -82,6 +93,23 @@ export function Outfit() {
           </div>
 
           <h2> Hang Lose </h2>
+
+          <div className="outfit-color">
+            <h2> COR </h2>
+            <div>
+              <button></button>
+            </div>
+          </div>
+
+          <div className="outfit-size">
+            <h2> TAMANHO </h2>
+            <div>
+              <button onClick={(e) => handleOutfitSize(e.target) }> P </button>
+              <button onClick={(e) => handleOutfitSize(e.target) }> M </button>
+              <button onClick={(e) => handleOutfitSize(e.target) }> G </button>
+              <button onClick={(e) => handleOutfitSize(e.target) }> GG </button>
+            </div>
+          </div>
 
           <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
         </div>

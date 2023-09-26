@@ -102,7 +102,7 @@ export const Main = styled.main`
   .about {
     margin-bottom: 2rem;
 
-    > div {
+    > :first-child {
       font-size: 1.2rem;
       display: flex;
       gap: 1rem;
@@ -122,11 +122,41 @@ export const Main = styled.main`
         position: absolute;
         right: 1rem;
       }
-      
     }
 
-    > h2 {
+    h2 {
       font-size: 1.5rem;
+    }
+
+    .outfit-size, .outfit-color {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+
+    .outfit-color {
+      button {
+        background: black;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .outfit-size {
+      button {
+        background: none;
+        color: ${({ theme }) => theme.COLORS.BLACK};
+        padding: 1.5px 13px;
+        border: 1px solid ${({ theme }) => theme.COLORS.BLACK};
+        border-radius: 2rem;
+      }
     }
 
     > button {
@@ -276,12 +306,16 @@ export const Main = styled.main`
       margin-top: 5rem;
       display: flex;
       flex-direction: column;
-      gap: 5rem;
+      gap: 3rem;
 
       position: relative;
 
-      > div .boxStars {
-        bottom: -4rem;
+      > div {
+        height: 5rem;
+      }
+      
+      .boxStars {
+        bottom: -2rem;
         left: 0;
       }
 
@@ -293,6 +327,10 @@ export const Main = styled.main`
       > button {
         display: flex;
         height: 4rem;
+      }
+
+      .outfit-size, .outfit-color {
+        padding: 0;
       }
     }
 
