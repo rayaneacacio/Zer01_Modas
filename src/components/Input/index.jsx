@@ -1,9 +1,9 @@
 import { Container } from "./style";
 
-export function Input({ title, icon, ...rest }) {
+export function Input({ placeholder, icon, ...rest }) {
   return (
     <Container {...rest}>
-      <input type="text" placeholder={ title } />
+      <input type="text" placeholder={ placeholder } />
       {
         icon &&
         <img src={ icon } alt="" />

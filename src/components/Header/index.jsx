@@ -90,7 +90,7 @@ export function Header() {
           </button>
         </div>
 
-        <Input className="input" title="O que vai querer hoje?" icon={ iconSearch } />
+        <Input className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
 
       </div>
 

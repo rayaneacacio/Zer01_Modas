@@ -65,7 +65,7 @@ export function Home() {
 
           <p> Válido para compras acima de R$230. </p>
 
-          <Input className="aside-input" title="Digite seu email aqui" />
+          <Input className="aside-input" placeholder="Digite seu email aqui" />
 
           <Button className="aside-firstButton" title="HOMEM" />
           <Button className="aside-lastButton" title="MULHER" />
