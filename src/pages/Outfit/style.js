@@ -65,6 +65,10 @@ export const Main = styled.main`
   overflow-x: hidden;
   overflow-y: auto;
 
+  > h2 {
+    display: none;
+  }
+
   .about, .description, .reviews {
     margin: 0 1rem;
   }
@@ -73,6 +77,10 @@ export const Main = styled.main`
     width: 100%;
     height: 42rem;
     object-fit: cover;
+  }
+
+  .swiper > button {
+    display: none;
   }
 
   .swiper-pagination {
@@ -89,10 +97,6 @@ export const Main = styled.main`
       opacity: 1;
       width: 4rem;
     }
-  }
-
-  > button {
-    display: none;
   }
 
   .about {
@@ -226,12 +230,20 @@ export const Main = styled.main`
     margin: 0;
     display: grid;
     grid-template-areas:
+      "route route route"
       "none swiper about"
       "description description description"
       "reviews reviews reviews"
       "recommended recommended recommended"
       "footer footer footer";
     grid-template-columns: 1fr 50rem 1.5fr;
+
+    > h2 {
+      display: block;
+      font-size: 1rem;
+      grid-area: route;
+      margin: 0.5rem 0 3.1rem 54rem;
+    }
 
     img {
       object-fit: contain;
@@ -240,6 +252,14 @@ export const Main = styled.main`
     .swiper {
       width: 50rem;
       grid-area: swiper;
+
+      > button {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 10rem;
+        z-index: 2;
+      }
     }
 
     .swiper-pagination {
@@ -248,14 +268,6 @@ export const Main = styled.main`
       > span {
         width: 5rem;
       }
-    }
-
-    > button {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 63rem;
-      z-index: 2;
     }
 
     .about {

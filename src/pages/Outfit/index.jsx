@@ -59,7 +59,10 @@ export function Outfit() {
       <BoxCupom />
 
       <Main>
-        <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} > 
+        <h2> Home / Masculino / Camisetas </h2>
+
+        <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
+          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
           {
             slides &&
             slides.map(image => (
@@ -67,8 +70,6 @@ export function Outfit() {
             ))
           }
         </Swiper>
-
-        <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
 
         <div className="about">
           <div>
