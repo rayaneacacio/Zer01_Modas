@@ -12,6 +12,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  h3 {
+    font-weight: 400;
+  }
+
   @media(min-width: 1000px) {
     height: 4.2rem;
   }
