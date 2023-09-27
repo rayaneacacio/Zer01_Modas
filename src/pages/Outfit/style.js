@@ -357,6 +357,10 @@ export const Main = styled.main`
         font-size: 1.6rem;
       }
 
+      > :nth-child(3) {
+        margin: 1.8rem 0;
+      }
+
       > button {
         font-size: 1.6rem;
         margin-top: 4rem;
