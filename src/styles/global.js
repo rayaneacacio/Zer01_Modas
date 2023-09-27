@@ -69,6 +69,13 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.COLORS.BLACK};
   }
 
+  @keyframes toTop {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes forBottom {
     to {
       opacity: 1;

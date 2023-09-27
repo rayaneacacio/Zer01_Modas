@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { FaChevronDown } from "react-icons/fa";
@@ -13,6 +14,8 @@ import { NavMenu } from "../Nav-Menu";
 import { Container } from "./style";
 
 export function Header() {
+  const [ menuDesktop, setMenuDesktop ] = useState("close");
+
   const navigate = useNavigate();
   const route = useLocation();
 
@@ -28,26 +31,16 @@ export function Header() {
 
   }
 
-  function handleMenuDisplayBlock() {
-    if(window.innerWidth < 1000) {
-      return
+  function handleMenuDesktopDisplayBlock() {
+    if(window.innerWidth >= 1000) {
+      setMenuDesktop("open");
     }
-
-    const menu = document.querySelector(".boxButtons aside");
-    menu.style.display = "flex";
-    
-    document.querySelector(".firstButton svg").style.animation = "rotate180 0.5s forwards";
   }
 
-  function handleMenuDisplayNone() {
-    if(window.innerWidth < 1000) {
-      return
+  function handleMenuDesktopDisplayNone() {
+    if(window.innerWidth >= 1000) {
+      setMenuDesktop("close");
     }
-    
-    const menu = document.querySelector(".boxButtons aside");
-    menu.style.display = "none";
-
-    document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.5s forwards";
   }
 
   function navigateShopping() {
@@ -56,6 +49,20 @@ export function Header() {
     }
     
   }
+
+  useEffect(() => {
+    const menu = document.querySelector(".boxButtons aside");
+    const modal = sessionStorage.getItem("@zer01modass:modal");
+    
+    if(menuDesktop == "open") {
+      menu.style.display = "flex";
+      document.querySelector(".firstButton svg").style.animation = "rotate180 0.5s forwards";
+    } else if(menuDesktop == "close" && !modal) {
+      menu.style.display = "none";
+      document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.5s forwards";
+    }
+
+  }, [ menuDesktop ]);
 
   return (
     <Container $pathname={ route.pathname }>
@@ -73,11 +80,11 @@ export function Header() {
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button className="firstButton" onClick={ navigateMenu } onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone } >
+          <button className="firstButton" onClick={ navigateMenu } onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone } >
             <p> Olá, <strong> nane </strong> </p>
             <FaChevronDown size={ 20 } />
           </button>
-          <NavMenu onMouseOver={ handleMenuDisplayBlock } onMouseOut={ handleMenuDisplayNone }  />
+          <NavMenu onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone }  />
 
           <button>
             <FiHeart size={ 30 } />

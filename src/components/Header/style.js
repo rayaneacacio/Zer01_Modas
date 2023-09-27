@@ -127,6 +127,10 @@ export const Container = styled.header`
           width: 11.3rem;
         }
 
+        > button {
+          z-index: -1;
+        }
+
       }
     }
   }
