@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
+
+  > div {
+    display: flex;
   flex-direction: column;
   gap: 3rem;
+  }
+  
 
-  > :first-child {
+  > div > :first-child {
     background: ${({ theme }) => theme.COLORS.BLACK};
     color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 1.5rem;
@@ -16,17 +20,17 @@ export const Container = styled.div`
     margin: 0 0 7rem 0;
 
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: center; 
+    justify-content: center;
 
-    h3 {
+    /* h3 { */
       font-weight: normal;
-      text-align: center;
-      width: 100%;
-    }
+      /* text-align: center;
+      width: 100%; */
+    /* } */
   }
 
-  > :nth-child(2) {
+  > div > :nth-child(2) {
     display: flex;
     flex-direction: column;
     gap: 3rem;

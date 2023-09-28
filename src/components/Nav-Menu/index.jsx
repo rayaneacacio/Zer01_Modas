@@ -17,9 +17,9 @@ export function NavMenu({ ...rest }) {
 
   const navigate = useNavigate();
 
-  function handleSignIn() {
+  function handleSignature() {
     if(window.innerWidth < 1000) {
-      navigate("/signin");
+      navigate("/login");
       return;
     }
     
@@ -36,12 +36,17 @@ export function NavMenu({ ...rest }) {
     setUser(false);
   }
 
-  useEffect(() => {
+  function handleWindowResize() {
+    //para o modal se adaptar ao tamanho da tela;
     const modal = document.querySelector("dialog");
     if(modal) {
       modal.style.width = `${window.innerWidth}px`;
       modal.style.height = `${window.innerHeight}px`;
     }
+  }
+
+  useEffect(() => {
+    window.onresize = () => handleWindowResize();
 
   }, []);
 
@@ -50,7 +55,7 @@ export function NavMenu({ ...rest }) {
       <Button icon={ <IoMdContact /> } title="Minha Conta" />
       <Button icon={ <LuBox /> } title="Meus pedidos" />
       <Button icon={ <SlLocationPin /> } title="Meus Endereços" />
-      <Button icon={ <MdLogout /> } title={ user ? "Sair" : "Entrar" } onClick={ user ? handleSignOut : handleSignIn } />
+      <Button icon={ <MdLogout /> } title={ user ? "Sair" : "Entrar" } onClick={ user ? handleSignOut : handleSignature } />
       <dialog>
         <div>
           <div>

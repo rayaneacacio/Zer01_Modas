@@ -7,7 +7,7 @@ import { Login } from "../../components/Login";
 
 import { Container } from "./style";
 
-export function SignIn() {
+export function Signature() {
   const navigate = useNavigate();
 
   function navigateBack() {
