@@ -46,7 +46,8 @@ export function NavMenu({ ...rest }) {
   }
 
   useEffect(() => {
-    window.onresize = () => handleWindowResize();
+    handleWindowResize();
+    window.onresize = handleWindowResize;
 
   }, []);
 
