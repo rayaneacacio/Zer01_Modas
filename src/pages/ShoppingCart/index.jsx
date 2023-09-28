@@ -21,6 +21,10 @@ export function ShoppingCart() {
     navigate(-1);
   }
 
+  function navigatePayment() {
+    navigate("/payment");
+  }
+
   return (
     <Container>
       <Header />
@@ -44,7 +48,6 @@ export function ShoppingCart() {
           </div>
         </div>
         
-
         <div className="boxCards">
           <div>
             <Button icon={ <MdRadioButtonUnchecked /> } title="Selecionar tudo" />
@@ -63,7 +66,7 @@ export function ShoppingCart() {
           <span> <p> Cupom de Desconto </p> <p> <strong> BEMVINDO10 </strong> </p> </span>
           <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span>
           <span className="value"> <h3> Valor Total </h3> <h3> R$ 269,97 </h3> </span>
-          <Button title="FINALIZAR COMPRA" />
+          <Button title="FINALIZAR COMPRA" onClick={ navigatePayment } />
         </div>
 
         <Footer />

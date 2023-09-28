@@ -10,6 +10,7 @@ export default {
 
     PURPLE: "#A332A5",
     
+    BLUE: "#009CDE",
     GREEN: "#04D483",
   },
 
