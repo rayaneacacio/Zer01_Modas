@@ -16,8 +16,10 @@ export function Signature() {
 
   return (
     <Container>
-      <Button icon={ <LiaAngleLeftSolid size={ 20 } /> } onClick={ navigateBack } />
-      <Login />
+      <div>
+        <Button icon={ <LiaAngleLeftSolid size={ 20 } /> } onClick={ navigateBack } />
+        <Login />
+      </div>
     </Container>
   )
 }

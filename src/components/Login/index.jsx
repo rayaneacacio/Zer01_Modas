@@ -28,10 +28,10 @@ export function Login() {
   }, []);
 
   return (
-    <Container className="body">
+    <Container>
       {
         account ?
-        <div>
+        <div className="body-modal">
           <h3>Identificação</h3>
 
           <div>
@@ -43,7 +43,7 @@ export function Login() {
           <Button title="criar uma conta" onClick={ handleSignUp } />
         </div>
         :
-        <div>
+        <div className="body-modal">
           <h3>Nova conta</h3>
 
           <div>
