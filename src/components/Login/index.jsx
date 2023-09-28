@@ -35,25 +35,29 @@ export function Login() {
           <h3>Identificação</h3>
 
           <div>
-            <Input className="boxInput" title="E-mail" />
-            <Input className="boxInput" title="Senha" type="password" />
-          </div>
+            <div className="boxInput">
+              <Input className="input" title="E-mail" />
+              <Input className="input" title="Senha" type="password" />
+            </div>
       
-          <Button title="ENTRAR" />
-          <Button title="criar uma conta" onClick={ handleSignUp } />
+            <Button title="ENTRAR" />
+            <Button title="criar uma conta" onClick={ handleSignUp } />
+          </div>
         </div>
         :
         <div className="body-modal">
           <h3>Nova conta</h3>
 
           <div>
-            <Input className="boxInput" title="Nome" />
-            <Input className="boxInput" title="E-mail" />
-            <Input className="boxInput" title="Senha" type="password" />
-          </div>
+            <div className="boxInput">
+              <Input className="input" title="Nome" />
+              <Input className="input" title="E-mail" />
+              <Input className="input" title="Senha" type="password" />
+            </div>
 
-          <Button title="CADASTRAR" />
-          <Button title="voltar" onClick={ handleSignIn } />
+            <Button title="CADASTRAR" />
+            <Button title="voltar" onClick={ handleSignIn } />
+          </div>
         </div>
       }
     </Container>

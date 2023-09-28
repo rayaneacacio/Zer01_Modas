@@ -11,15 +11,13 @@ export function Signature() {
   const navigate = useNavigate();
 
   function navigateBack() {
-    navigate(-1);
+    navigate("/");
   }
 
   return (
     <Container>
-      <div>
         <Button icon={ <LiaAngleLeftSolid size={ 20 } /> } onClick={ navigateBack } />
         <Login />
-      </div>
     </Container>
   )
 }

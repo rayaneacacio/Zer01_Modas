@@ -79,7 +79,7 @@ export const Container = styled.aside`
       background: none;
       color: ${({ theme }) => theme.COLORS.WHITE};
       position: absolute;
-      top: 2rem;
+      top: 2.5rem;
       right: 2rem;
     }
   }

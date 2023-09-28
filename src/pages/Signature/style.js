@@ -1,18 +1,12 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-  background: ${({ theme }) => theme.COLORS.BLACK};
+  background: ${({ theme }) => theme.COLORS.WHITE};
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  
-  > div {
-    background: ${({ theme }) => theme.COLORS.WHITE};
-    height: calc(100% - 3.5rem);
-    margin-top: 3.5rem;
-  }
 
-  > div > button {
+  > button {
     background: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
     
