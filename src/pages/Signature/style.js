@@ -2,11 +2,14 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.COLORS.BLACK};
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   
   > div {
     background: ${({ theme }) => theme.COLORS.WHITE};
-    height: 100vh;
+    height: calc(100% - 3.5rem);
+    margin-top: 3.5rem;
   }
 
   > div > button {
@@ -14,7 +17,7 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.WHITE};
     
     position: absolute;
-    top: 2rem;
+    top: 6rem;
   }
 
   .body-modal > div, .body-modal > button {
