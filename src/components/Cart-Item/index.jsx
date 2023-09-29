@@ -26,7 +26,7 @@ export function CartItem({ image, title, color, tamanho, preço }) {
     <Container className="box" >
       <Swiper slidesPerView={ 1.9 } spaceBetween={ 10 } >
         <SwiperSlide>
-          <div className="mobile">
+          <div className="mobile" onClick={ handleSelect }>
             <Button className="select" icon={ isSelected ? <MdRadioButtonChecked /> : <MdRadioButtonUnchecked /> } onClick={ handleSelect } />
             <img src={ image } alt="" />
             <div>

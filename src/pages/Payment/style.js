@@ -81,6 +81,10 @@ export const Main = styled.main`
   overflow-x: hidden;
   overflow-y: auto;
 
+  opacity: 0;
+  transform: translateX(-1rem);
+  animation: toRight 0.5s forwards;
+
   > div {
     margin: 0 3rem 2rem 3rem;
 
