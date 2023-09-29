@@ -36,4 +36,18 @@ export const Container = styled.div`
       height: 3rem;
     }
   }
+
+  @media(min-width: 1000px) {
+    font-size: 1.6rem;
+    
+    .make-payment {
+      padding-top: 0.5rem;
+      gap: 3rem;
+
+       > button {
+        font-size: 1.6rem;
+        height: 3.7rem;
+      }
+    }
+  }
 `;

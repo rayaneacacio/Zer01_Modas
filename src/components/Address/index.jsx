@@ -7,7 +7,7 @@ import { Button } from "../Button";
 
 import { Container } from "./style";
 
-export function Address({ addressee, cep, street, number, complement, district, state, city, landmark }) {
+export function Address({ addresse, cep, street, number, complement, district, state, city, landmark }) {
   const [ chosenButton, setChosenButton ] = useState(false);
 
   function handleChosenAddress() {
@@ -21,7 +21,7 @@ export function Address({ addressee, cep, street, number, complement, district, 
 
   return (
     <Container>
-      <p> <strong> { addressee } </strong> </p>
+      <p> <strong> { addresse } </strong> </p>
 
       <Button className="button-chosen-address" icon={ chosenButton ? <MdRadioButtonChecked size={ 13 } /> : <MdRadioButtonUnchecked size={ 13 } /> } onClick={ handleChosenAddress } />
 

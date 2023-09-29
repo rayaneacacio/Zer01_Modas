@@ -7,6 +7,8 @@ export const Container = styled.footer`
   width: 100%;
   height: 9rem;
 
+  margin-top: 5rem;
+
   > div {
     background: ${({ theme }) => theme.COLORS.BLACK};
     font-size: 0.9rem;
@@ -43,6 +45,7 @@ export const Container = styled.footer`
 
   @media(min-width: 1000px) {
     height: 8rem;
+    margin-top: 7rem;
 
     > div {
       font-size: 1.2rem;

@@ -47,7 +47,7 @@ export function CartItem({ image, title, color, tamanho, preço }) {
         </SwiperSlide>
       </Swiper>
 
-      <div className="desktop">
+      <div className="desktop" onClick={ handleSelect }>
         <Button className="select" icon={ isSelected ? <MdRadioButtonChecked /> : <MdRadioButtonUnchecked /> } onClick={ handleSelect } />
         <img src={ image } alt="" />
         <div>

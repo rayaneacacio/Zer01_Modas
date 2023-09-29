@@ -65,10 +65,6 @@ export default createGlobalStyle`
     filter: brightness(0.8);
   }
 
-  footer {
-    margin-top: 5rem;
-  }
-
   .swiper-pagination-bullet-active {
     background: ${({ theme }) => theme.COLORS.BLACK};
   }

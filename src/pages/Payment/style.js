@@ -4,6 +4,10 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 
+  > nav {
+    display: none;
+  }
+
   button {
     font-size: 1.3rem;
   }
@@ -19,28 +23,40 @@ export const Container = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 
-    transform: translateY(2rem);
-    animation: toTop 0.3s forwards;
+    z-index: 2;
 
-    > h3 {
+    .body-modal-address > :first-child, form {
+      transform: translateY(2rem);
+      animation: toTop 0.3s forwards;
+    }
+
+    .body-modal-address > :first-child {
       background: ${({ theme }) => theme.COLORS.BLACK};
-      color: ${({ theme }) => theme.COLORS.WHITE};
-      font-weight: normal;
-      text-align: center;
       height: 12rem;
       padding-top: 5rem;
+      position: relative;
+
+      h3 {
+        color: ${({ theme }) => theme.COLORS.WHITE};
+        font-weight: normal;
+        text-align: center;
+      }
+
+      > button {
+        background: none;
+        color: ${({ theme }) => theme.COLORS.WHITE};
+        position: absolute;
+        top: 4.5rem;
+        right: 2rem;
+        border: none;
+      }
     }
 
-    > button {
-      background: none;
-      color: ${({ theme }) => theme.COLORS.WHITE};
-      position: absolute;
-      top: 4.5rem;
-      right: 2rem;
-      border: none;
+    > h3, form {
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 
-    > div {
+    form {
       background: white;
       padding: 3rem;
       padding-bottom: 10rem;
@@ -70,6 +86,66 @@ export const Container = styled.div`
     > input {
       width: 100%;
       padding: 1rem 0;
+    }
+  }
+
+  @media(min-width: 1000px) {
+    > nav {
+      display: flex;
+      margin-top: 12rem;
+    }
+
+    .body-modal-address {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .body-modal-address > :first-child {
+      width: 70rem;
+      height: 7rem !important;
+      padding-top: 3rem !important;
+
+      > button {
+        top: 2.5rem !important;
+      }
+    }
+
+    .body-modal-address > form {
+      width: 70rem;
+      height: 50rem;
+      padding: 4.5rem 8rem 5rem 8rem;
+
+      overflow: auto;
+
+      display: grid;
+      grid-template-areas:
+        "addresse addresse addresse"
+        "cep street number"
+        "complement distrit state"
+        "city landmark none"
+        "button button button";
+      column-gap: 4rem;
+    	row-gap: 2rem;
+      
+      > div:first-of-type {
+        grid-area: addresse;
+      }
+
+      > button {
+        grid-area: button;
+        margin-top: 4rem;
+      }
+    }
+  }
+
+  @media(min-width: 1400px) {
+    .body-modal-address > :first-child, .body-modal-address > form {
+      width: 100rem;
     }
   }
 `;
@@ -142,5 +218,64 @@ export const Main = styled.main`
 
   #frete {
     color: ${({ theme }) => theme.COLORS.GREEN};
+  }
+
+  @media(min-width: 1000px) {
+    height: calc(100% - 21rem);
+    margin-top: 4rem;
+    display: grid;
+    grid-template-areas:
+      "payment_methods pack"
+      "footer footer";
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10rem;
+
+    font-size: 1.5rem;
+
+    .payment-methods {
+      grid-area: payment_methods;
+      margin: 0 0 0 26rem;
+    }
+
+    .pack {
+      grid-area: pack;
+      padding-top: 3rem;
+      margin: 0 30rem 0 0;
+    }
+
+    > div {
+      gap: 3rem;
+
+      > h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    .address, .items {
+      gap: 2rem;
+
+      h3 {
+       font-size: 1.6rem; 
+      }
+    }
+
+    .address > button {
+      font-size: 1.5rem;
+      height: 3.5rem;
+    }
+
+    .items > div > p:first-of-type {
+      width: 20rem;
+    }
+
+    > footer {
+      grid-area: footer;
+    }
+  }
+
+  @media(min-width: 1400px) {
+    .items > div > p:first-of-type {
+      width: 30rem;
+    }
   }
 `;

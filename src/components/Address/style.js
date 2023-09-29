@@ -11,9 +11,14 @@ export const Container = styled.div`
   row-gap: 0.5rem;
   
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 
   > p {
     grid-area: name;
+    text-transform: uppercase;
   }
 
   > button:first-of-type {
@@ -31,5 +36,19 @@ export const Container = styled.div`
   > button {
     background: none;
     color: ${({ theme }) => theme.COLORS.BLACK};
+  }
+
+  @media(min-width: 1000px) {
+    font-size: 1.5rem;
+
+    > button:first-of-type > svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+    
+    > button:last-of-type > svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 `;

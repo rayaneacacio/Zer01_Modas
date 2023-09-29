@@ -23,6 +23,7 @@ export function Payment() {
   return (
     <Container>
       <SecondHeader />
+      <Nav />
 
       <Main>
         <div className="payment-methods">
@@ -39,13 +40,13 @@ export function Payment() {
           <SectionPayment title="boleto bancário" text="Você poderá visualizar ou imprimir após a finalização do pedido. A data de vencimento é de 2 dias corridos após a conclusão do pedido. Após esta data, ele perderá a validade." button="pague com Boleto" />
         </div>
 
-        <div>
+        <div className="pack">
           <h3>Pedido</h3>
 
           <div className="address">
             <h3>ENDEREÇO DE ENTREGA</h3>
-            <Address addressee="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
-            <Address addressee="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
+            <Address addresse="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
+            <Address addresse="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
             <Button title="CADASTRAR NOVO ENDEREÇO" onClick={ handleNewAddress } />
           </div>
 
@@ -80,21 +81,25 @@ export function Payment() {
       </Main>
 
       <dialog className="modal-address">
-        <h3>CADASTRAR NOVO ENDEREÇO</h3>
-        <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
+        <div className="body-modal-address">
+          <div>
+            <h3>CADASTRAR NOVO ENDEREÇO</h3>
+            <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
+          </div>
 
-        <div>
-          <Input className="input-address" title="Nome do destinatario" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Seu cep" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Nome da rua" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Número" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Complemento" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Bairro" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Estado" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Cidade" placeholder="Digite aqui :)" />
-          <Input className="input-address" title="Ponto de refêrencia" placeholder="Digite aqui :)" />
+          <form>
+            <Input className="input-address" title="Nome do destinatario" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Seu cep" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Nome da rua" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Número" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Complemento" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Bairro" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Estado" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Cidade" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Ponto de refêrencia" placeholder="Digite aqui :)" />
 
-          <Button title="SALVAR" />
+            <Button title="SALVAR" />
+          </form>
         </div>
       </dialog>
     </Container>

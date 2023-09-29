@@ -11,6 +11,12 @@ export const Container = styled.div`
     align-items: flex-end;
     gap: 1rem;
 
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
     .select {
       background: none;
       width: 1.6rem;
