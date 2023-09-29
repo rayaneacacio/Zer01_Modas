@@ -1,11 +1,24 @@
+import { TfiClose } from "react-icons/tfi";
+
 import { SecondHeader } from "../../components/SecondHeader";
 import { Nav } from "../../components/Nav";
 import { SectionPayment } from "../../components/SectionPayment";
+import { Address } from "../../components/Address";
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
 import { Footer } from "../../components/Footer";
 
 import { Container, Main } from "./style";
 
 export function Payment() {
+  function handleNewAddress() {
+    document.querySelector(".modal-address").show();
+  }
+
+  function handleCloseModal() {
+    document.querySelector(".modal-address").close();
+  }
+
   return (
     <Container>
       <SecondHeader />
@@ -28,6 +41,9 @@ export function Payment() {
 
           <div className="address">
             <h3>ENDEREÇO DE ENTREGA</h3>
+            <Address addressee="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
+            <Address addressee="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
+            <Button title="CADASTRAR NOVO ENDEREÇO" onClick={ handleNewAddress } />
           </div>
 
           <div className="items">
@@ -56,6 +72,25 @@ export function Payment() {
             </div>
           </div>
         </div>
+
+        <dialog className="modal-address">
+          <h3>CADASTRAR NOVO ENDEREÇO</h3>
+          <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
+
+          <div>
+            <Input className="input-address" title="Nome do destinatario" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Seu cep" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Nome da rua" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Número" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Complemento" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Bairro" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Estado" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Cidade" placeholder="Digite aqui :)" />
+            <Input className="input-address" title="Ponto de refêrencia" placeholder="Digite aqui :)" />
+
+            <Button title="SALVAR" />
+          </div>
+        </dialog>
 
         <Footer />
       </Main>

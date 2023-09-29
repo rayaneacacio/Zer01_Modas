@@ -23,12 +23,12 @@ export function NavMenu({ ...rest }) {
       return;
     }
     
-    document.querySelector("dialog").show();
+    document.querySelector(".modal-login").show();
     sessionStorage.setItem("@zer01modass:modal", "open");
   }
 
   function handleCloseModal() {
-    document.querySelector("dialog").close();
+    document.querySelector(".modal-login").close();
     sessionStorage.removeItem("@zer01modass:modal");
   }
 
@@ -38,7 +38,7 @@ export function NavMenu({ ...rest }) {
 
   function handleWindowResize() {
     //para o modal se adaptar ao tamanho da tela;
-    const modal = document.querySelector("dialog");
+    const modal = document.querySelector(".modal-login");
     if(modal) {
       modal.style.width = `${window.innerWidth}px`;
       modal.style.height = `${window.innerHeight}px`;
@@ -57,7 +57,7 @@ export function NavMenu({ ...rest }) {
       <Button icon={ <LuBox /> } title="Meus pedidos" />
       <Button icon={ <SlLocationPin /> } title="Meus Endereços" />
       <Button icon={ <MdLogout /> } title={ user ? "Sair" : "Entrar" } onClick={ user ? handleSignOut : handleSignature } />
-      <dialog>
+      <dialog className="modal-login">
         <div>
           <div>
             <Button className="buttonClose" icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />

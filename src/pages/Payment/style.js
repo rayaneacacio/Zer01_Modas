@@ -3,6 +3,72 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
+
+  button {
+    font-size: 1.3rem;
+  }
+
+  dialog {
+    background: rgba(8, 8, 8, 0.64);
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+
+    overflow: auto;
+
+    transform: translateY(2rem);
+    animation: toTop 0.3s forwards;
+
+    > h3 {
+      background: ${({ theme }) => theme.COLORS.BLACK};
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      font-weight: normal;
+      text-align: center;
+      height: 12rem;
+      padding-top: 5rem;
+    }
+
+    > button {
+      background: none;
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      position: absolute;
+      top: 4.5rem;
+      right: 2rem;
+    }
+
+    > div {
+      background: white;
+      padding: 3rem;
+
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      > button {
+        background: ${({ theme }) => theme.COLORS.BLACK};
+        color: ${({ theme }) => theme.COLORS.WHITE};
+        height: 3.5rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .input-address {
+    color: ${({ theme }) => theme.COLORS.GRAY_700};
+    height: 6rem;
+
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
+
+    > input {
+      width: 100%;
+      padding: 1rem 0;
+    }
+  }
 `;
 
 export const Main = styled.main`
@@ -30,6 +96,17 @@ export const Main = styled.main`
     padding-top: 3rem;
   }
 
+  .address {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    > button {
+      background: ${({ theme }) => theme.COLORS.BLACK};
+      color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+  }
+
   .address > h3, .items > h3 {
     font-weight: normal;
   }
@@ -50,6 +127,7 @@ export const Main = styled.main`
   }
 
   .total {
+    font-weight: 500;
     border-top: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
     padding-top: 1rem;
   }

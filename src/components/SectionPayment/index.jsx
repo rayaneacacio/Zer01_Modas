@@ -6,29 +6,31 @@ import { Container } from "./style";
 
 export function SectionPayment({ title, text, button }) {
 
-  function handleSelectMethod(selectingButton) {
+  function handleSelectMethod(chosenButton) {
     //para mostrar apenas a div associada ao button selecionado;
     const allDivsPayment = document.querySelectorAll(".make-payment");
-    let selectingDiv = null;
+    let chosenDiv = null;
   
     const allButtons = document.querySelectorAll(".button-section-payment");
     for(let index = 0; index < allButtons.length; index++) {
-      if(selectingButton == allButtons[index]) {
-        selectingDiv = allDivsPayment[index];
+      if(chosenButton == allButtons[index]) {
+        chosenDiv = allDivsPayment[index];
       }
     }
 
-    if(selectingDiv.style.display == "flex") {
-      selectingDiv.style.display = "none";
+    const svg = chosenButton.querySelector("svg");
+    if(chosenDiv.style.display == "flex") {
+      chosenDiv.style.display = "none";
+      svg.style.animation = "rotate180 reverse 0.3s forwards";
     } else {
-      selectingDiv.style.display = "flex";
+      chosenDiv.style.display = "flex";
+      svg.style.animation = "rotate180 0.3s forwards";
     }
 
-    const otherDivs = Array.from(allDivsPayment).filter(div => div != selectingDiv);
+    const otherDivs = Array.from(allDivsPayment).filter(div => div != chosenDiv);
     otherDivs.forEach(div => {
       div.style.display = "none";
     });
-
   }
 
   return (
