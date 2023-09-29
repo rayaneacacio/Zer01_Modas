@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { TfiClose } from "react-icons/tfi";
 
 import { SecondHeader } from "../../components/SecondHeader";
@@ -11,12 +13,19 @@ import { Footer } from "../../components/Footer";
 import { Container, Main } from "./style";
 
 export function Payment() {
+
   function handleNewAddress() {
     document.querySelector(".modal-address").show();
   }
 
   function handleCloseModal() {
     document.querySelector(".modal-address").close();
+  }
+
+  function handleToBottom(modal) {
+    if(modal.offsetTop > window.innerHeight * 0.5) {
+      modal.close();
+    }
   }
 
   return (
@@ -27,13 +36,15 @@ export function Payment() {
         <div className="payment-methods">
           <h3>Pagamento</h3>
 
-          <SectionPayment title="pix" text="Você poderá finalizar seu pagamento por meio do QR Code ou código no banco que preferir. Válido por 5 horas." button="" />
+          <SectionPayment title="pix" text="Finalize seu pagamento rapidamente com o Pix. Você pode utilizar o QR Code ou inserir o código no banco de sua preferência. O código Pix é válido por 5 horas." button="pague com Pix" />
 
-          <SectionPayment title="cartão" />
+          <SectionPayment title="cartão de débito" text="Insira os detalhes do seu cartão de débito para realizar o pagamento. As transações são seguras e criptografadas. O pagamento será processado imediatamente após a confirmação." button="pague com Débito" />
 
-          <SectionPayment title="paypal" text="Após clicar no botão abaixo, você será direcionado ao PayPal para realizar o pagamento." button="pague com PayPal" />
+          <SectionPayment title="cartão de crédito" text="Oferecemos parcelamento de 1 a 5 vezes sem juros. Exemplo: 5x de R$15,00 sem juros." button="pague com Crédito" />
 
-          <SectionPayment title="boleto bancário" text="Você poderá visualizar ou imprimir após a finalização do pedido. A data de vencimento é de 2 dias corridos após a conclusão do pedido. Após esta data, ele perderá a validade." button="concluir com Boleto" />
+          <SectionPayment title="paypal" text="Ao clicar no botão abaixo, você será direcionado ao site do PayPal para finalizar o pagamento de forma segura." button="pague com PayPal" />
+
+          <SectionPayment title="boleto bancário" text="Você poderá visualizar ou imprimir após a finalização do pedido. A data de vencimento é de 2 dias corridos após a conclusão do pedido. Após esta data, ele perderá a validade." button="pague com Boleto" />
         </div>
 
         <div>
@@ -73,7 +84,7 @@ export function Payment() {
           </div>
         </div>
 
-        <dialog className="modal-address">
+        <dialog className="modal-address" onMouseUp={event => handleToBottom(event)}>
           <h3>CADASTRAR NOVO ENDEREÇO</h3>
           <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
 

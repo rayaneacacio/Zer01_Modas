@@ -23,7 +23,7 @@ export function Address({ addressee, cep, street, number, complement, district, 
     <Container>
       <p> <strong> { addressee } </strong> </p>
 
-      <Button icon={ chosenButton ? <MdRadioButtonChecked size={ 13 } /> : <MdRadioButtonUnchecked size={ 13 } /> } onClick={ handleChosenAddress } />
+      <Button className="button-chosen-address" icon={ chosenButton ? <MdRadioButtonChecked size={ 13 } /> : <MdRadioButtonUnchecked size={ 13 } /> } onClick={ handleChosenAddress } />
 
       <div onClick={ handleChosenAddress }>
         <p>{ street }, { number }</p>
@@ -39,7 +39,7 @@ export function Address({ addressee, cep, street, number, complement, district, 
         <p>{ city } - { state }</p>
         <p>{ cep }</p>
       </div>
-      
+
       <Button icon={ <HiMiniPencilSquare size={ 20 } /> } />
     </Container>
   )

@@ -12,10 +12,6 @@ export const Container = styled.div`
   
   cursor: pointer;
 
-  &:hover {
-    filter: brightness(0.9);
-  }
-
   > p {
     grid-area: name;
   }

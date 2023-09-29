@@ -44,7 +44,7 @@ export const Container = styled.div`
   }
 
   button {
-    background: red;
+    background: ${({ theme }) => theme.COLORS.RED};
     width: 100%;
     height: 10rem;
 

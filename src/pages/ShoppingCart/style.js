@@ -36,10 +36,6 @@ export const Container = styled.div`
     }
   }
 
-  footer {
-    margin-top: 2rem;
-  }
-
   @media(min-width: 1000px) {
     > header > :nth-child(2) {
       padding-top: 1.5rem;

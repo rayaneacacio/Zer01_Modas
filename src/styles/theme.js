@@ -12,6 +12,8 @@ export default {
     
     BLUE: "#009CDE",
     GREEN: "#04D483",
+
+    RED: "#ff2121",
   },
 
   FONTS: {

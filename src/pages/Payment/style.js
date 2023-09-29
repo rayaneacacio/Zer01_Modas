@@ -16,7 +16,8 @@ export const Container = styled.div`
     position: fixed;
     top: 0;
 
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     transform: translateY(2rem);
     animation: toTop 0.3s forwards;
@@ -104,6 +105,7 @@ export const Main = styled.main`
     > button {
       background: ${({ theme }) => theme.COLORS.BLACK};
       color: ${({ theme }) => theme.COLORS.WHITE};
+      height: 3rem;
     }
   }
 

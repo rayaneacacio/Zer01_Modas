@@ -33,6 +33,7 @@ export const Container = styled.div`
       background: ${({ theme }) => theme.COLORS.BLUE};
       color: ${({ theme }) => theme.COLORS.WHITE};
       font-size: 1.4rem;
+      height: 3rem;
     }
   }
 `;
