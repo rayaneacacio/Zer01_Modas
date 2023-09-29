@@ -37,11 +37,13 @@ export const Container = styled.div`
       position: absolute;
       top: 4.5rem;
       right: 2rem;
+      border: none;
     }
 
     > div {
       background: white;
       padding: 3rem;
+      padding-bottom: 10rem;
 
       display: flex;
       flex-direction: column;

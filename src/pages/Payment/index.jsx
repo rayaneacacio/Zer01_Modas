@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { TfiClose } from "react-icons/tfi";
 
 import { SecondHeader } from "../../components/SecondHeader";
@@ -20,12 +18,6 @@ export function Payment() {
 
   function handleCloseModal() {
     document.querySelector(".modal-address").close();
-  }
-
-  function handleToBottom(modal) {
-    if(modal.offsetTop > window.innerHeight * 0.5) {
-      modal.close();
-    }
   }
 
   return (
@@ -84,7 +76,7 @@ export function Payment() {
           </div>
         </div>
 
-        <dialog className="modal-address" onMouseUp={event => handleToBottom(event)}>
+        <dialog className="modal-address">
           <h3>CADASTRAR NOVO ENDEREÇO</h3>
           <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
 
