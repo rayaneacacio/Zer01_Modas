@@ -8,46 +8,37 @@ export const Container = styled.div`
 
   overflow: hidden;
 
-  > header > :nth-child(2) {
-    padding-top: 0.5rem;
-    
-    .input {
-      display: none;
-    }
+  > nav {
+    display: none;
   }
 
-  > div {
+  > h3 {
     background: white;
+    color: ${({ theme }) => theme.COLORS.PURPLE};
+    font-size: 2rem;
     width: 100%;
-    padding-bottom: 1rem;
-
+    padding: 1rem;
     position: absolute;
-    top: 7.3rem;
-
-    > button > svg {
-      width: 2rem;
-      height: 3rem;
-    }
-
-    > h3 {
-      color: ${({ theme }) => theme.COLORS.PURPLE};
-      font-size: 2rem;
-      margin-left: 1rem;
-    }
+    top: 9rem;
   }
 
   @media(min-width: 1000px) {
-    > header > :nth-child(2) {
-      padding-top: 1.5rem;
-
-      .input {
-        display: flex;
-      }
+    > nav {
+      display: flex;
+      margin-top: 12rem;
     }
 
-    > div {
-      padding-left: 19.5rem;
-      top: 12rem;
+    > h3 {
+      top: 18rem;
+      left: 20rem;
+    }
+  }
+
+  @media(min-width: 1400px) {
+    > h3 {
+      background: none;
+      padding: 0;
+      left: 25rem;
     }
   }
 `;
@@ -141,7 +132,7 @@ export const Main = styled.main`
 
   @media(min-width: 1000px) {
     height: calc(100% - 19rem);
-    margin-top: 19rem;
+    margin-top: 6rem;
     font-size: 1.7rem;
     
     display: grid;

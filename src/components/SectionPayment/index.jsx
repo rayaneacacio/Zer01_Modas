@@ -1,4 +1,4 @@
-import { IoIosArrowUp } from "react-icons/io";
+import { BsChevronDown } from "react-icons/bs";
 
 import { Button } from "../Button";
 
@@ -21,10 +21,10 @@ export function SectionPayment({ title, text, button }) {
     const svg = chosenButton.querySelector("svg");
     if(chosenDiv.style.display == "flex") {
       chosenDiv.style.display = "none";
-      svg.style.animation = "rotate180 0.3s forwards";
+      svg.style.animation = "rotate180 reverse 0.3s forwards";
     } else {
       chosenDiv.style.display = "flex";
-      svg.style.animation = "rotate180 reverse 0.3s forwards";
+      svg.style.animation = "rotate180 0.3s forwards";
     }
 
     const otherDivs = Array.from(allDivsPayment).filter(div => div != chosenDiv);
@@ -37,7 +37,7 @@ export function SectionPayment({ title, text, button }) {
     <Container>
       <button className="button-section-payment" onClick={(event) => handleSelectMethod(event.target) }>
         { title }
-        <IoIosArrowUp />
+        <BsChevronDown />
       </button>
 
       <div className="make-payment">

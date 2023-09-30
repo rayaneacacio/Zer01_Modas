@@ -7,7 +7,8 @@ import { BsTruck } from "react-icons/bs";
 
 import imgPedido from "../../assets/pedido.jpg";
 
-import { Header } from "../../components/Header";
+import { SecondHeader } from "../../components/SecondHeader";
+import { Nav } from "../../components/Nav";
 import { Button } from "../../components/Button";
 import { CartItem } from "../../components/Cart-Item";
 import { Footer } from "../../components/Footer";
@@ -27,12 +28,10 @@ export function ShoppingCart() {
 
   return (
     <Container>
-      <Header />
+      <SecondHeader />
+      <Nav />
 
-      <div>
-        <Button icon={ <BsChevronLeft /> } onClick={ handleBack } />
-        <h3> Meu Carrinho </h3>
-      </div>
+      <h3> Meu Carrinho </h3>
 
       <Main>
         <div className="info">

@@ -65,6 +65,11 @@ export default createGlobalStyle`
     filter: brightness(0.8);
   }
 
+  main {
+    align-content: space-between;
+    justify-content: space-between;
+  }
+
   .swiper-pagination-bullet-active {
     background: ${({ theme }) => theme.COLORS.BLACK};
   }
