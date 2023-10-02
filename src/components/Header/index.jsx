@@ -3,14 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { FaChevronDown } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
-import { RiShoppingBag2Line, RiHomeLine } from "react-icons/ri";
+import { RiShoppingBag2Line } from "react-icons/ri";
 
 import Logo from "../../assets/logo.svg";
 import iconSearch from "../../assets/search-icon.svg";
 
 import { Input } from "../Input";
 import { NavMenu } from "../Nav-Menu";
-import { Button } from "../Button";
 
 import { Container } from "./style";
 
@@ -59,10 +58,6 @@ export function Header() {
     navigate("/favorites");
   }
 
-  function navigateHome() {
-    navigate("/");
-  }
-
   useEffect(() => {
     const menu = document.querySelector(".boxButtons aside");
     const modal = sessionStorage.getItem("@zer01modas:modal");
@@ -108,8 +103,6 @@ export function Header() {
             <RiShoppingBag2Line size={ 30 } onClick={ navigateShopping } />
             <span> 0 </span>
           </button>
-
-          <Button className="buttonBackHome" icon={ <RiHomeLine size={ 30 } /> }  onClick={ navigateHome } />
         </div>
 
         <Input className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />

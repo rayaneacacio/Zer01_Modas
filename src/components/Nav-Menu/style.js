@@ -29,7 +29,7 @@ export const Container = styled.aside`
 
   @media(min-width: 1000px) {
     width: 20rem;
-    height: 21rem;
+    height: 25rem;
 
     position: absolute;
     top: 4rem;
@@ -82,9 +82,5 @@ export const Container = styled.aside`
       top: 2.5rem;
       right: 2rem;
     }
-  }
-
-  .buttonBackHome {
-    display: none !important;
   }
 `;

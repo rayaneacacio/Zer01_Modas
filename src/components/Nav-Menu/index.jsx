@@ -62,7 +62,7 @@ export function NavMenu({ ...rest }) {
 
   return (
     <Container className="nav-menu" {...rest}>
-      <Button className="buttonBackHome" icon={ <RiHomeLine /> } title="Voltar para o Início" onClick={ navigateHome } />
+      <Button icon={ <RiHomeLine /> } title="Voltar para o Início" onClick={ navigateHome } />
       <Button icon={ <IoMdContact /> } title="Minha Conta" />
       <Button icon={ <LuBox /> } title="Meus pedidos" />
       <Button icon={ <SlLocationPin /> } title="Meus Endereços" />

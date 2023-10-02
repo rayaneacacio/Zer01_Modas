@@ -69,8 +69,8 @@ export const Container = styled.header`
         border-radius: 50%;
 
         position: absolute;
-        right: -2px;
-        top: 13px;
+        right: -3px;
+        top: 2px;
       }
     }
   }
@@ -91,10 +91,6 @@ export const Container = styled.header`
 
   .input {
     grid-area: input;
-  }
-
-  .buttonBackHome {
-    display: none;
   }
   
   @media(min-width: 1000px) {
@@ -136,16 +132,6 @@ export const Container = styled.header`
     .firstButton {
       font-size: 1.7rem;
       width: 11.3rem !important;
-    }
-
-    .buttonBackHome {
-      display: block;
-      background: none;
-      height: 5.5rem;
-
-      svg {
-        color: ${({ theme }) => theme.COLORS.WHITE};
-      }
     }
   }
 `;
