@@ -17,6 +17,6 @@ export const Container = styled.button`
   }
 
   @media(min-width: 1000px) {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
   }
 `;

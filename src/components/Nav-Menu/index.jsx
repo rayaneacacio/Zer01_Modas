@@ -24,12 +24,12 @@ export function NavMenu({ ...rest }) {
     }
     
     document.querySelector(".modal-login").show();
-    sessionStorage.setItem("@zer01modass:modal", "open");
+    sessionStorage.setItem("@zer01modas:modal", "open");
   }
 
   function handleCloseModal() {
     document.querySelector(".modal-login").close();
-    sessionStorage.removeItem("@zer01modass:modal");
+    sessionStorage.removeItem("@zer01modas:modal");
   }
 
   function handleSignOut() {

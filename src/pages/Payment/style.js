@@ -139,6 +139,7 @@ export const Container = styled.div`
       > button {
         grid-area: button;
         margin-top: 4rem;
+        height: 4rem;
       }
     }
   }

@@ -35,12 +35,16 @@ export function Header() {
     if(window.innerWidth >= 1000) {
       setMenuDesktop("open");
     }
+
+    document.querySelector(".firstButton svg").style.animation = "rotate180 0.3s forwards";
   }
 
   function handleMenuDesktopDisplayNone() {
     if(window.innerWidth >= 1000) {
       setMenuDesktop("close");
     }
+
+    document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.3s forwards";
   }
 
   function navigateShopping() {
@@ -52,14 +56,14 @@ export function Header() {
 
   useEffect(() => {
     const menu = document.querySelector(".boxButtons aside");
-    const modal = sessionStorage.getItem("@zer01modass:modal");
+    const modal = sessionStorage.getItem("@zer01modas:modal");
     
     if(menuDesktop == "open") {
       menu.style.display = "flex";
-      document.querySelector(".firstButton svg").style.animation = "rotate180 0.5s forwards";
+
     } else if(menuDesktop == "close" && !modal) {
       menu.style.display = "none";
-      document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.5s forwards";
+
     }
 
   }, [ menuDesktop ]);
