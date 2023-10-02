@@ -14,12 +14,10 @@ export function Catalog() {
   return (
     <Container>
       <SecondHeader />
-
       <Nav />
 
       <Main>
         <BoxCupom />
-
         <div className="DivCatalog">
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" />
           <ShowOutfit image={ outfitImage } title="Camisa Polo John John Frisos Masculina" price="79,00" promotion="99,00" />

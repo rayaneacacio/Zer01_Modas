@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-import { BsChevronLeft } from "react-icons/bs";
 import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 import { BsTruck } from "react-icons/bs";
 
@@ -17,10 +15,6 @@ import { Container, Main } from "./style";
 
 export function ShoppingCart() {
   const navigate = useNavigate();
-
-  function handleBack() {
-    navigate(-1);
-  }
 
   function navigatePayment() {
     navigate("/payment");

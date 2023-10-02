@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
+import { RiHomeLine} from "react-icons/ri";
 import { IoMdContact } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
 import { LuBox } from "react-icons/lu";
@@ -16,6 +17,7 @@ export function NavMenu({ ...rest }) {
   const [ user, setUser ] = useState(false);
 
   const navigate = useNavigate();
+  const route = useLocation();
 
   function handleSignature() {
     if(window.innerWidth < 1000) {
@@ -45,6 +47,13 @@ export function NavMenu({ ...rest }) {
     }
   }
 
+  function navigateHome() {
+    if(route.pathname != "/") {
+      navigate("/");
+    }
+    
+  }
+
   useEffect(() => {
     handleWindowResize();
     window.onresize = handleWindowResize;
@@ -53,6 +62,7 @@ export function NavMenu({ ...rest }) {
 
   return (
     <Container className="nav-menu" {...rest}>
+      <Button className="buttonBackHome" icon={ <RiHomeLine /> } title="Voltar para o Início" onClick={ navigateHome } />
       <Button icon={ <IoMdContact /> } title="Minha Conta" />
       <Button icon={ <LuBox /> } title="Meus pedidos" />
       <Button icon={ <SlLocationPin /> } title="Meus Endereços" />

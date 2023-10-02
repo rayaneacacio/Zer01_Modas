@@ -7,7 +7,7 @@ import { Container } from "./style";
 
 export function Nav() {
   const [ sliderPerView, setSliderPerview ] = useState(3.2);
-  const [ mainSlide, setMainSlide ] = useState(0);
+  const [ mainSlide, setMainSlide ] = useState(-1);
   const [ mainButton, setMainButton ] = useState("");
   const [ isLoading, setIsLoading ] = useState(true);
 
@@ -43,6 +43,7 @@ export function Nav() {
   }
 
   useEffect(() => {
+    //verificar se ja existe um valor de slide principa(button em destaque) no armazenamento;
     const mainSlideValueLocalStorage = sessionStorage.getItem("@zer01modas:mainslide");
     if(mainSlideValueLocalStorage) {
       setMainSlide(mainSlideValueLocalStorage);
@@ -60,7 +61,8 @@ export function Nav() {
   }, []);
 
   useEffect(() => {
-    if(mainSlide >= 0) {
+    //resetar o estilo de todos os buttons;
+    if(mainSlide >= -1) {
       const allButtons = document.querySelectorAll(".swiper-wrapper button");
       allButtons.forEach(button => {
         button.style.fontSize = "1.3rem";
@@ -74,6 +76,7 @@ export function Nav() {
       setMainButton(allButtons[mainSlide]);
     }
 
+    //destacar o button selecionado;
     if(mainButton) {
       const button = mainButton;
       button.style.fontSize = "1.4rem";
@@ -84,11 +87,12 @@ export function Nav() {
       }
     }
     
-  }, [ mainButton ]);
+  }, [ mainSlide, mainButton ]);
 
   useEffect(() => {
     if(paramsUrl != "/catalog") {
       sessionStorage.setItem("@zer01modas:mainslide", -1);
+      setMainSlide(-1);
     }
 
   }, [ paramsUrl ]);

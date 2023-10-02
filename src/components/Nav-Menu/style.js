@@ -32,7 +32,7 @@ export const Container = styled.aside`
     height: 21rem;
 
     position: absolute;
-    top: 3rem;
+    top: 4rem;
     left: -6rem;
     padding-top: 4rem;
 
@@ -82,5 +82,9 @@ export const Container = styled.aside`
       top: 2.5rem;
       right: 2rem;
     }
+  }
+
+  .buttonBackHome {
+    display: none !important;
   }
 `;

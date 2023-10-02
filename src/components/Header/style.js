@@ -44,53 +44,57 @@ export const Container = styled.header`
       width: 10rem;
       height: 3.2rem;
     }
+  }
 
-    .boxButtons {
-      grid-area: buttons;
+  .boxButtons {
+    grid-area: buttons;
 
-      display: flex;
-      gap: 1.1rem;
+    display: flex;
+    gap: 1.1rem;
 
-      .firstButton {
-        width: 9.3rem;
+    > aside {
+      display: none;
+    }
 
-        padding-left: 1.3rem;
+    > button {
+      width: 3.2rem;
+      position: relative;
+
+      span {
+        background: ${({ theme }) => theme.COLORS.PURPLE};
+
+        width: 1.4rem;
+        height: 1.4rem;
+
+        border-radius: 50%;
+
+        position: absolute;
+        right: -2px;
+        top: 13px;
+      }
+    }
+  }
+
+  .firstButton {
+    width: 9.3rem !important;
+
+    padding-left: 1.3rem;
         
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
-        svg {
-          animation: ${({ $pathname }) => $pathname === "/" && "rotate180 0.3s reverse forwards"};
-        }
-      }
-
-      > aside {
-        display: none;
-      }
-
-      > button {
-        width: 3.2rem;
-        position: relative;
-
-        span {
-          background: ${({ theme }) => theme.COLORS.PURPLE};
-
-          width: 1.4rem;
-          height: 1.4rem;
-
-          border-radius: 50%;
-
-          position: absolute;
-          right: -2px;
-          top: 0.9rem;
-        }
-      }
+    svg {
+      animation: ${({ $pathname }) => $pathname === "/" && "rotate180 0.3s reverse forwards"};
     }
+  }
 
-    .input {
-      grid-area: input;
-    }
+  .input {
+    grid-area: input;
+  }
+
+  .buttonBackHome {
+    display: none;
   }
   
   @media(min-width: 1000px) {
@@ -116,21 +120,31 @@ export const Container = styled.header`
         width: 15.4rem;
         height: 5.1rem;
       }
+    }
 
-      .boxButtons {
-        position: relative;
-        z-index: 2;
-        gap: 5.1rem;
+    .boxButtons {
+      position: relative;
+      z-index: 2;
+      gap: 3rem;
 
-        .firstButton {
-          font-size: 1.7rem;
-          width: 11.3rem;
-        }
+      > button {
+        z-index: -1;
+      }
 
-        > button {
-          z-index: -1;
-        }
+    }
 
+    .firstButton {
+      font-size: 1.7rem;
+      width: 11.3rem !important;
+    }
+
+    .buttonBackHome {
+      display: block;
+      background: none;
+      height: 5.5rem;
+
+      svg {
+        color: ${({ theme }) => theme.COLORS.WHITE};
       }
     }
   }
