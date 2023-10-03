@@ -48,13 +48,6 @@ export const Main = styled.main`
   height: calc(100vh - 15rem);
   margin-top: 15rem;
 
-  opacity: 0;
-  transform: translateX(-0.5rem);
-  animation: toRight 0.5s forwards;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-
   .info {
     display: flex;
     flex-direction: column;
