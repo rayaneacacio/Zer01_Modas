@@ -88,15 +88,15 @@ export function Payment() {
           </div>
 
           <form>
-            <Input className="input-address" title="Nome do destinatario" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Seu cep" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Nome da rua" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Número" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Complemento" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Bairro" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Estado" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Cidade" placeholder="Digite aqui :)" />
-            <Input className="input-address" title="Ponto de refêrencia" placeholder="Digite aqui :)" />
+            <Input title="Nome do destinatario" placeholder="Digite aqui :)" />
+            <Input title="Seu cep" placeholder="Digite aqui :)" />
+            <Input title="Nome da rua" placeholder="Digite aqui :)" />
+            <Input title="Número" placeholder="Digite aqui :)" />
+            <Input title="Complemento" placeholder="Digite aqui :)" />
+            <Input title="Bairro" placeholder="Digite aqui :)" />
+            <Input title="Estado" placeholder="Digite aqui :)" />
+            <Input title="Cidade" placeholder="Digite aqui :)" />
+            <Input title="Ponto de refêrencia" placeholder="Digite aqui :)" />
 
             <Button title="SALVAR" />
           </form>

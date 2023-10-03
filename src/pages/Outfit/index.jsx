@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
 
 import OutfitImg from "../../assets/pedido.jpg";
 import OutfitCostasImg from "../../assets/outfit-costas.jpg";
@@ -32,6 +33,8 @@ export function Outfit() {
     OutfitZoomImg
   ]
 
+  const navigate = useNavigate();
+
   function handleFavorite() {
     if(isFavorite) {
       setIsFavorite(false);
@@ -50,6 +53,10 @@ export function Outfit() {
  
     button.style.border = "2px solid black";
     button.style.fontWeight = "bold";
+  }
+
+  function navigateEdit() {
+    navigate("/edit");
   }
 
   useEffect(() => {
@@ -115,7 +122,7 @@ export function Outfit() {
 
           {
             isAdmin ?
-            <Button className="buttonEdit" title="EDITAR" />
+            <Button className="buttonEdit" title="EDITAR" onClick={ navigateEdit } />
             :
             <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
           }

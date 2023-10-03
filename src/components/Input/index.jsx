@@ -1,17 +1,13 @@
 import { Container } from "./style";
 
-export function Input({ title, placeholder, icon, type, ...rest }) {
+export function Input({ title, placeholder, ...rest }) {
   return (
     <Container {...rest}>
       {
         title &&
         <h3> { title } </h3>
       }
-      <input type={ type ?? "text" } placeholder={ placeholder } />
-      {
-        icon &&
-        <img src={ icon } alt="" />
-      }
+      <input type="text" placeholder={ placeholder } />
     </Container>
   )
 }

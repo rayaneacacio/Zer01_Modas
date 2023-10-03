@@ -41,21 +41,6 @@ export const Container = styled.div`
     margin: 0 5rem;
   }
 
-  .input {
-    color: ${({ theme }) => theme.COLORS.GRAY_700};
-    height: 6rem;
-
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
-
-    > input {
-      width: 100%;
-      padding: 1rem 0;
-    }
-  }
-
   button {
     width: 80%;
     height: 4rem;

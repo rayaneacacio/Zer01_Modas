@@ -102,7 +102,6 @@ export const Container = styled.header`
 
   .input {
     grid-area: input;
-    border-radius: 2px;
     width: 90%;
     height: 3rem;
 

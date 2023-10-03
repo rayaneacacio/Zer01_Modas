@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Input } from "../../components/Input";
+import { Input } from "../Input";
 import { Button } from "../../components/Button";
 
 import { Container } from "./style";
@@ -36,8 +36,8 @@ export function Login() {
 
           <div>
             <div className="boxInput">
-              <Input className="input" title="E-mail" />
-              <Input className="input" title="Senha" type="password" />
+              <Input title="E-mail" />
+              <Input title="Senha" type="password" />
             </div>
       
             <Button title="ENTRAR" />
@@ -50,9 +50,9 @@ export function Login() {
 
           <div>
             <div className="boxInput">
-              <Input className="input" title="Nome" />
-              <Input className="input" title="E-mail" />
-              <Input className="input" title="Senha" type="password" />
+              <Input title="Nome" />
+              <Input title="E-mail" />
+              <Input title="Senha" type="password" />
             </div>
 
             <Button title="CADASTRAR" />

@@ -8,7 +8,7 @@ import { RiShoppingBag2Line } from "react-icons/ri";
 import Logo from "../../assets/logo.svg";
 import iconSearch from "../../assets/search-icon.svg";
 
-import { Input } from "../Input";
+import { InputBox } from "../InputBox";
 import { NavMenu } from "../Nav-Menu";
 
 import { Container } from "./style";
@@ -118,7 +118,7 @@ export function Header() {
           }
         </div>
 
-        <Input className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
+        <InputBox className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
       </div>
 
     </Container>

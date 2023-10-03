@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: ${({ theme }) => theme.COLORS.WHITE};
-
+  color: ${({ theme }) => theme.COLORS.GRAY_700};
   width: 100%;
-  height: 3.7rem;
-
-  padding: 1.3rem 1.5rem 1.3rem 3rem;
+  height: 6rem;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
 
   h3 {
     font-weight: 400;
   }
 
-  @media(min-width: 1000px) {
-    height: 4.2rem;
+  > input {
+    width: 100%;
+    padding: 1rem 0;
   }
 `;

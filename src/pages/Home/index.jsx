@@ -15,7 +15,7 @@ import { Section } from "../../components/Section";
 import { PromotionalCard } from "../../components/Promotion-card";
 import { NoveltyCard } from "../../components/Novelty-card";
 import { ExtraCard } from "../../components/Extra-card";
-import { Input } from "../../components/Input";
+import { InputBox } from "../../components/InputBox";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
@@ -65,7 +65,7 @@ export function Home() {
 
           <p> Válido para compras acima de R$230. </p>
 
-          <Input className="aside-input" placeholder="Digite seu email aqui" />
+          <InputBox className="aside-input" placeholder="Digite seu email aqui" />
 
           <Button className="aside-firstButton" title="HOMEM" />
           <Button className="aside-lastButton" title="MULHER" />

@@ -74,21 +74,6 @@ export const Container = styled.div`
     }
   }
 
-  .input-address {
-    color: ${({ theme }) => theme.COLORS.GRAY_700};
-    height: 6rem;
-
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
-
-    > input {
-      width: 100%;
-      padding: 1rem 0;
-    }
-  }
-
   @media(min-width: 1000px) {
     > nav {
       display: flex;
