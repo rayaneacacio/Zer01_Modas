@@ -27,10 +27,11 @@ export const Container = styled.div`
     }
   }
 
-  .buttonBuy {
+  .buttonBuy, .buttonEdit {
     background: ${({ theme }) => theme.COLORS.GREEN};
     color: ${({ theme }) => theme.COLORS.WHITE};
     width: 100%;
+    height: 4rem;
   }
 
   > nav, > div {

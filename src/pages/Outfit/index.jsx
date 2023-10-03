@@ -24,6 +24,8 @@ import { Container, Main } from "./style";
 export function Outfit() {
   const [ isFavorite, setIsFavorite ] = useState(false);
 
+  const isAdmin = true;
+
   const slides = [
     OutfitImg,
     OutfitCostasImg,
@@ -111,7 +113,12 @@ export function Outfit() {
             </div>
           </div>
 
-          <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
+          {
+            isAdmin ?
+            <Button className="buttonEdit" title="EDITAR" />
+            :
+            <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
+          }
         </div>
 
         <div className="description">
@@ -166,10 +173,15 @@ export function Outfit() {
         <Footer />
       </Main>
 
-      <div className="buttons">
-        <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
-        <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
-      </div>
+      {
+        isAdmin ?
+        <Button className="buttons buttonEdit" title="EDITAR" />
+        :
+        <div className="buttons">
+          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
+          <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
+        </div>
+      }
     </Container>
   )
 }
