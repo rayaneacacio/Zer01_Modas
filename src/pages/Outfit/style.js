@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 
-  .buttons, main {
+  .buttons {
     opacity: 0;
     transform: translateX(-1rem);
     animation: toRight 0.5s forwards;
@@ -62,9 +62,6 @@ export const Main = styled.main`
   height: calc(100% - 16rem);
   padding-bottom: 4rem;
   margin-top: 12rem;
-
-  overflow-x: hidden;
-  overflow-y: auto;
 
   > h2 {
     display: none;

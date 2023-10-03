@@ -66,6 +66,12 @@ export default createGlobalStyle`
   }
 
   main {
+    height: calc(100% - 12rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateX(-0.5rem);
+    animation: toRight 0.5s forwards;
     align-content: space-between;
     justify-content: space-between;
   }

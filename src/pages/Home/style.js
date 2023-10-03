@@ -10,15 +10,6 @@ export const Container = styled.div`
     height: 12rem;
   }
 
-  > main {
-    height: calc(100% - 12rem);
-    overflow: auto;
-
-    opacity: 0;
-    transform: translateX(-0.5rem);
-    animation: toRight 0.5s forwards;
-  }
-
   .section_promotion {
     display: grid;
     grid-template-areas:
@@ -124,9 +115,6 @@ export const Container = styled.div`
 
   @media(min-width: 1000px) {
     > main {
-      height: calc(100vh - 12rem);
-      overflow-x: hidden;
-      
       display: flex;
       flex-direction: column;
       align-items: center;
