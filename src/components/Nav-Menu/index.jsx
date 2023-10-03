@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { RiHomeLine} from "react-icons/ri";
 import { IoMdContact } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
+import { TbShoppingCartPlus } from "react-icons/tb";
 import { LuBox } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import { TfiClose } from "react-icons/tfi";
@@ -14,7 +15,9 @@ import { Login } from "../Login";
 import { Container } from "./style";
 
 export function NavMenu({ ...rest }) {
-  const [ user, setUser ] = useState(false);
+  const [ user, setUser ] = useState(true);
+
+  const isAdmin = true;
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -62,10 +65,14 @@ export function NavMenu({ ...rest }) {
 
   return (
     <Container className="nav-menu" {...rest}>
-      <Button icon={ <RiHomeLine /> } title="Voltar para o Início" onClick={ navigateHome } />
+      <Button icon={ <RiHomeLine /> } title="Início" onClick={ navigateHome } />
       <Button icon={ <IoMdContact /> } title="Minha Conta" />
-      <Button icon={ <LuBox /> } title="Meus pedidos" />
-      <Button icon={ <SlLocationPin /> } title="Meus Endereços" />
+
+      { !isAdmin && <Button icon={ <LuBox /> } title="Meus pedidos" /> }
+      { !isAdmin && <Button icon={ <SlLocationPin /> } title="Meus Endereços" /> }
+      
+      { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo item" /> }
+
       <Button icon={ <MdLogout /> } title={ user ? "Sair" : "Entrar" } onClick={ user ? handleSignOut : handleSignature } />
       <dialog className="modal-login">
         <div>

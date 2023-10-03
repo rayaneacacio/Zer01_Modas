@@ -36,20 +36,29 @@ export const Container = styled.header`
     display: grid;
     grid-template-areas: "logo buttons" "input input";
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     row-gap: 0.5rem;
 
     > img {
       grid-area: logo;
-      width: 10rem;
+      width: 9rem;
       height: 3.2rem;
+      padding-left: 1rem;
+    }
+
+    > img, .input {
+      margin-left: 2rem;
     }
   }
 
   .boxButtons {
     grid-area: buttons;
+    height: 3rem;
+    margin-right: 1rem;
 
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
     gap: 1.1rem;
 
     > aside {
@@ -69,7 +78,7 @@ export const Container = styled.header`
         border-radius: 50%;
 
         position: absolute;
-        right: -3px;
+        right: -2px;
         top: 2px;
       }
     }
@@ -84,6 +93,8 @@ export const Container = styled.header`
     align-items: center;
     gap: 0.5rem;
 
+    margin: ${({ $isAdmin }) => $isAdmin && "1rem 1.5rem"};
+
     svg {
       animation: ${({ $pathname }) => $pathname === "/" && "rotate180 0.3s reverse forwards"};
     }
@@ -91,6 +102,14 @@ export const Container = styled.header`
 
   .input {
     grid-area: input;
+    border-radius: 2px;
+    width: 90%;
+    height: 3rem;
+
+    > img {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
   
   @media(min-width: 1000px) {
@@ -132,6 +151,10 @@ export const Container = styled.header`
     .firstButton {
       font-size: 1.7rem;
       width: 11.3rem !important;
+    }
+
+    .input {
+      height: 4rem;
     }
   }
 `;

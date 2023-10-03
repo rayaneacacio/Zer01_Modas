@@ -32,8 +32,8 @@ export const Container = styled.aside`
     height: 25rem;
 
     position: absolute;
-    top: 4rem;
-    left: -6rem;
+    top: 2.5rem;
+    left: -5rem;
     padding-top: 4rem;
 
     gap: 1rem;

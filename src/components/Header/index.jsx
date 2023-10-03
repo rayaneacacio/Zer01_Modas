@@ -16,6 +16,8 @@ import { Container } from "./style";
 export function Header() {
   const [ menuDesktop, setMenuDesktop ] = useState("close");
 
+  const isAdmin = true;
+
   const navigate = useNavigate();
   const route = useLocation();
 
@@ -58,22 +60,28 @@ export function Header() {
     navigate("/favorites");
   }
 
+  function navigateNewOutfit() {
+    navigate("/new-outfit");
+  }
+
   useEffect(() => {
     const menu = document.querySelector(".boxButtons aside");
     const modal = sessionStorage.getItem("@zer01modas:modal");
     
-    if(menuDesktop == "open") {
-      menu.style.display = "flex";
+    if(menu) {
+      if(menuDesktop == "open") {
+        menu.style.display = "flex";
 
-    } else if(menuDesktop == "close" && !modal) {
-      menu.style.display = "none";
+      } else if(menuDesktop == "close" && !modal) {
+        menu.style.display = "none";
 
+      }
     }
-
+    
   }, [ menuDesktop ]);
 
   return (
-    <Container $pathname={ route.pathname }>
+    <Container $pathname={ route.pathname } $isAdmin={ isAdmin }>
 
       <div>
         <p> Sua moda é feita aqui ;) </p>
@@ -94,19 +102,23 @@ export function Header() {
           </button>
           <NavMenu onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone }  />
 
+          {
+            !isAdmin &&
           <button>
-            <FiHeart size={ 30 } onClick={ navigateFavorites } />
+            <FiHeart size={ 25 } onClick={ navigateFavorites } />
             <span> 0 </span>
           </button>
-
+          }
+          {
+            !isAdmin &&
           <button>
-            <RiShoppingBag2Line size={ 30 } onClick={ navigateShopping } />
+            <RiShoppingBag2Line size={ 25 } onClick={ navigateShopping } />
             <span> 0 </span>
           </button>
+          }
         </div>
 
         <Input className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
-
       </div>
 
     </Container>

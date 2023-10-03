@@ -14,6 +14,7 @@ export const Container = styled.div`
     > :nth-child(2) {
       padding-top: 0;
       margin-top: 0.4rem;
+      justify-content: space-between;
 
       .firstButton svg {
         animation: rotate180 0.3s forwards;

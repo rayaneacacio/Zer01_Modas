@@ -11,7 +11,7 @@ export const Container = styled.div`
 
     width: 100%;
     
-    padding: 1rem 0;
+    padding: 1rem;
     margin-top: 13rem;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   }

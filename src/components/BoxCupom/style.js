@@ -9,7 +9,7 @@ export const Container = styled.div`
   grid-template-areas: "title button span_area" "subtitle button none";
   align-items: center;
 
-  margin: 0.2rem 0 0.5rem 0;
+  margin: 0.6rem 0 1rem 0;
   
   position: relative;
 
@@ -19,16 +19,18 @@ export const Container = styled.div`
 
   h3 {
     grid-area: title;
+    font-size: 1.3rem;
   }
 
   p {
     color: ${({ theme }) => theme.COLORS.GRAY_500};
     grid-area: subtitle;
+    font-size: 1.2rem;
   }
 
   button {
     color: ${({ theme }) => theme.COLORS.GRAY_500};
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     width: 7.5rem;
 
     grid-area: button;

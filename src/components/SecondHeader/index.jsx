@@ -18,8 +18,7 @@ export function SecondHeader() {
   return (
     <Container>
       <Header />
-      <Button icon={ <LiaAngleLeftSolid size={ 20 } /> } onClick={ navigateBack } />     
-      <Button icon={ <FiSearch size={ 30 } /> } className="buttonSearch" />
+      <Button icon={ <LiaAngleLeftSolid size={ 20 } /> } onClick={ navigateBack } />
     </Container>
   )
 }

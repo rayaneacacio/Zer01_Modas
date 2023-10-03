@@ -11,6 +11,11 @@ export const Container = styled.header`
     .input {
       display: none;
     }
+
+    .boxButtons {
+      justify-content: flex-end;
+      margin-top: 0.1rem;
+    }
   }
 
   > button {
@@ -21,13 +26,6 @@ export const Container = styled.header`
 
     svg {
       height: 3.5rem;
-    }
-  }
-
-  .buttonSearch {
-    right: 1.5rem;
-    svg { 
-      height: 3rem; 
     }
   }
 
@@ -51,10 +49,6 @@ export const Container = styled.header`
       svg {
         width: 2.5rem;
       }
-    }
-
-    .buttonSearch {
-      display: none;
     }
   }
 
