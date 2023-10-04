@@ -57,6 +57,10 @@ export function NavMenu({ ...rest }) {
     
   }
 
+  function navigateNew() {
+    navigate("/new");
+  }
+
   useEffect(() => {
     handleWindowResize();
     window.onresize = handleWindowResize;
@@ -71,7 +75,7 @@ export function NavMenu({ ...rest }) {
       { !isAdmin && <Button icon={ <LuBox /> } title="Meus pedidos" /> }
       { !isAdmin && <Button icon={ <SlLocationPin /> } title="Meus Endereços" /> }
       
-      { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo item" /> }
+      { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo produto" onClick={ navigateNew } /> }
 
       <Button icon={ <MdLogout /> } title={ user ? "Sair" : "Entrar" } onClick={ user ? handleSignOut : handleSignature } />
       <dialog className="modal-login">

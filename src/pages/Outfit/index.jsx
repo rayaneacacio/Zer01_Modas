@@ -182,7 +182,7 @@ export function Outfit() {
 
       {
         isAdmin ?
-        <Button className="buttons buttonEdit" title="EDITAR" />
+        <Button className="buttons buttonEdit" title="EDITAR" onClick={ navigateEdit } />
         :
         <div className="buttons">
           <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />

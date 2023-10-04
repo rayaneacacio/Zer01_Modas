@@ -45,7 +45,7 @@ export const Container = styled.aside`
       width: 100%;
     }
 
-    dialog {
+    > dialog {
       background: rgba(8, 8, 8, 0.64);
 
       position: fixed;

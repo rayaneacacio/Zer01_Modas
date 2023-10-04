@@ -23,6 +23,7 @@ export const Container = styled.header`
     color: ${({ theme }) => theme.COLORS.WHITE};
     position: absolute;
     top: 3rem;
+    z-index: 1;
 
     svg {
       height: 3.5rem;

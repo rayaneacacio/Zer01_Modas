@@ -37,13 +37,14 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  input {
+  input, textarea, select {
     font-family: ${({ theme }) => theme.FONTS.DEFAULT};
     font-size: 1.5rem;
 
     width: 90%;
 
     outline: 0;
+    resize: none;
 
     ::placeholder {
       color: ${({ theme }) => theme.COLORS.GRAY_500};
