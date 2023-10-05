@@ -27,7 +27,7 @@ export const Main = styled.main`
   }
 
   > button:last-of-type {
-    background: ${({ theme }) => theme.COLORS.RED};
+    background: ${({ theme }) => theme.COLORS.GRAY_700};
     margin-top: 2rem;
   }
 `;
