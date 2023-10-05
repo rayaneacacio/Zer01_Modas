@@ -23,7 +23,7 @@ export function EditCatalog({ ...rest }) {
 
       <p>Cores</p>
       <div className="tags">
-        <ChangeColor color="#FF0066" nameColor="Rosa" image="vestido-rosa.png" />
+        <ChangeColor color="#FF0066" nameColor="Rosa" images={["vestido-rosa.png", "dafsgeg.png"]} />
         <ChangeColor $newColor />
       </div>
 

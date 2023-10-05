@@ -18,7 +18,8 @@ export const Container = styled.div`
   }
 
   select {
-    width: 15%;
+    width: 20%;
+    margin-left: 1rem;
   }
 
   .tags {
@@ -39,7 +40,6 @@ export const Container = styled.div`
       font-size: 1.6rem;
       width: 100%;
       height: 4rem;
-      padding-bottom: 1rem;
       border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
       margin-top: 1rem;
     }

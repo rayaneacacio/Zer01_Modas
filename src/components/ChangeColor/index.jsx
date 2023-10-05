@@ -5,7 +5,7 @@ import { Button } from "../Button";
 
 import { Container } from "./style";
 
-export function ChangeColor({ $newColor, color, nameColor, image, ...rest }) {
+export function ChangeColor({ $newColor, color, nameColor, images, ...rest }) {
   return (
     <Container>
       {
@@ -15,10 +15,17 @@ export function ChangeColor({ $newColor, color, nameColor, image, ...rest }) {
 
           <input type="text" placeholder="cor" />
 
-          <label htmlFor="input-image">
+          <label htmlFor="input-newImage">
             <BiUpload size={ 25 } />
-            Imagem
-            <input type="file" name="" id="input-image" />
+            { 
+              images && images.length > 1 ? 
+              `${ images.length } arquivos escolhidos` 
+              : images && images.length == 1 ? 
+              "1 arquivo escolhido" 
+              : 
+              "Nenhum arquivo escolhido" 
+            }
+            <input type="file" name="" id="input-newImage" accept="image/*" multiple />
           </label>
 
           <Button icon={ <AiOutlinePlus /> } />
@@ -33,8 +40,8 @@ export function ChangeColor({ $newColor, color, nameColor, image, ...rest }) {
 
           <label htmlFor="input-image">
             <BiUpload size={ 25 } />
-            { image }
-            <input type="file" name="" id="input-image" readOnly />
+            { images.length > 1 ? `${ images.length } arquivos escolhidos` : "1 arquivo escolhido" }
+            <input type="file" name="" id="input-image" accept="image/*" multiple />
           </label>
 
           <Button icon={ <AiOutlineClose /> } />
