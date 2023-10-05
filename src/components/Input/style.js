@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   color: ${({ theme }) => theme.COLORS.GRAY_700};
   width: 100%;
-  height: 6rem;
+  height: 7rem;
 
   display: flex;
   flex-direction: column;
@@ -18,5 +18,11 @@ export const Container = styled.div`
   > input {
     width: 100%;
     padding: 1rem 0;
+  }
+
+  @media(min-width: 1000px) {
+    h3, > input {
+      font-size: 1.7rem;
+    }
   }
 `;

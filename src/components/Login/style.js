@@ -59,6 +59,7 @@ export const Container = styled.div`
     }
 
     .body-modal > :first-child {
+      font-size: 1.6rem;
       height: 5rem;
       padding: 0;
     }
