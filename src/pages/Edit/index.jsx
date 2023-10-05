@@ -13,8 +13,11 @@ export function Edit() {
       <Main>
         <h3> Editar Produto </h3>
         <EditCatalog />
-        <Button title="Salvar" />
-        <Button title="Excluir" />
+        <div className="buttons">
+          <Button title="Salvar" />
+          <Button title="Excluir" />
+        </div>
+        
         <Footer />
       </Main>
     </Container>

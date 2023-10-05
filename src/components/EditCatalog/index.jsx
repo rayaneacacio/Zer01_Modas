@@ -7,7 +7,7 @@ import { Container } from "./style";
 export function EditCatalog({ ...rest }) {
   return (
     <Container {...rest}>
-      <Input className="input-address" title="Nome" placeholder="Nome do produto" />
+      <Input title="Nome" placeholder="Nome do produto" />
 
       <Input title="Preço" placeholder="R$ 00,00" />
 
@@ -21,21 +21,27 @@ export function EditCatalog({ ...rest }) {
         </select>
       </label>
 
-      <p>Cores</p>
-      <div className="tags">
-        <ChangeColor color="#FF0066" nameColor="Rosa" images={["vestido-rosa.png", "dafsgeg.png"]} />
-        <ChangeColor $newColor />
+      <div className="colors">
+        <p>Cores</p>
+        <div className="tags">
+          <ChangeColor color="#FF0066" nameColor="Rosa" images={["vestido-rosa.png", "dafsgeg.png"]} />
+          <ChangeColor $newColor />
+        </div>
       </div>
 
-      <p>Detalhes</p>
-      <div className="tags">
-        <OutfitTag text="Camiseta Masculina" />
-        <OutfitTag $newTag />
+      <div className="details">
+        <p>Detalhes</p>
+        <div className="tags">
+          <OutfitTag text="Camiseta Masculina" />
+          <OutfitTag $newTag />
+        </div>
       </div>
       
-      <p>Medidas do(a) modelo</p>
-      <div className="tags">
-        <OutfitTag $newTag />
+      <div className="modelDetails">
+        <p>Medidas do(a) modelo</p>
+        <div className="tags">
+          <OutfitTag $newTag />
+        </div>
       </div>
 
       <label className="textarea" htmlFor="textarea">

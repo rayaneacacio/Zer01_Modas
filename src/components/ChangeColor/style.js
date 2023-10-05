@@ -39,4 +39,10 @@ export const Container = styled.div`
   > div > button {
     padding-bottom: 1rem;
   }
+
+  @media(min-width: 1000px) {
+    label, input {
+      font-size: 1.7rem;
+    }
+  }
 `;

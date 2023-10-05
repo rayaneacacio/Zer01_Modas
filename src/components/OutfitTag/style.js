@@ -15,4 +15,10 @@ export const Container = styled.div`
   input, button {
     background: none;
   }
+
+  @media(min-width: 1000px) {
+    input {
+      font-size: 1.7rem;
+    }
+  }
 `;

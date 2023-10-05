@@ -6,9 +6,9 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 4rem;
 
-  > p {
+  > div > p {
     font-size: 1.6rem;
-    margin: 1rem 0 -2rem 0;
+    margin: 1rem 0;
   }
 
   > label {
@@ -45,6 +45,64 @@ export const Container = styled.div`
       width: 100%;
       height: 3rem;
       margin-top: 1rem;
+    }
+  }
+
+  @media(min-width: 1000px) {
+    display: grid;
+    grid-template-areas: 
+      "name price size"
+      "colors details modelDetails"
+      "description description description";
+    grid-template-columns: 50% 22% 22%;
+    align-items: center;
+    
+    > input:first-of-type {
+      grid-area: name;
+    }
+
+    > input:last-of-type {
+      grid-area: price;
+    }
+
+    #sizeLabel {
+      grid-area: size;
+      padding-bottom: 1.5rem;
+      margin-top: 3.3rem;
+    }
+
+    .colors {
+      grid-area: colors;
+    }
+
+    .details {
+      grid-area: details;
+    }
+
+    .modelDetails {
+      grid-area: modelDetails;
+    }
+
+    .colors, .details, .modelDetails {
+      height: 16rem;
+      overflow-y: auto;
+    }
+
+    .details > div, .modelDetails > div {
+      gap: 4rem;
+    }
+
+    .textarea {
+      grid-area: description;
+      font-size: 1.7rem;
+
+      textarea {
+        font-size: 1.7rem;
+      }
+    }
+
+    > label, > div > p {
+      font-size: 1.7rem;
     }
   }
 `;

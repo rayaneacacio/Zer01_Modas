@@ -140,18 +140,6 @@ export const Main = styled.main`
         "footer footer";
     grid-column-gap: 5rem;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 10% 80%;
-
-    & ::-webkit-scrollbar {
-      background: white;
-      width: 1.3rem;
-    }
-
-    & ::-webkit-scrollbar-thumb {
-      background: ${({ theme }) => theme.COLORS.GRAY_500};
-      border-radius: 10px;
-      border: 0.3rem solid white;
-    }
 
     .info {
       background: ${({ theme }) => theme.COLORS.BLACK};

@@ -15,19 +15,56 @@ export const Main = styled.main`
     margin: 3rem 5rem;
   }
 
-  > div, > button {
+  > div, .buttons {
     margin: 0 5rem;
   }
 
-  > button {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons > button {
     background: ${({ theme }) => theme.COLORS.PURPLE};
     color: ${({ theme }) => theme.COLORS.WHITE};
     padding: 1rem;
     margin-top: 5rem;
   }
 
-  > button:last-of-type {
+  .buttons > button:last-of-type {
     background: ${({ theme }) => theme.COLORS.GRAY_700};
     margin-top: 2rem;
+  }
+
+  @media(min-width: 1000px) {
+    height: calc(100% - 15rem);
+    margin-top: 15rem;
+
+    > h3 {
+      font-size: 2rem;
+      margin-left: 10rem;
+    }
+
+    > div, .buttons {
+      margin: 0 15rem 0 26rem;
+    }
+
+    .buttons {
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 2rem;
+
+      > button, > button:last-of-type {
+        margin-top: 4rem;
+        width: 20%;
+        height: 55%;
+      }
+    }
+  }
+
+  @media(min-width: 1400px) {
+    > h3 {
+      margin-left: 26rem;
+    }
   }
 `;
