@@ -54,10 +54,12 @@ export function ShoppingCart() {
 
         <div className="compra">
           <h3> Resumo da compra </h3>
-          <span> <p> Subtotal (3 itens) </p> <p> <strong> R$ 279,97 </strong> </p> </span>
-          <span> <p> Frete </p> <p> Grátis </p> </span>
-          <span> <p> Cupom de Desconto </p> <p> <strong> BEMVINDO10 </strong> </p> </span>
-          <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span>
+          <div>
+            <span> <p> Subtotal (3 itens) </p> <p> <strong> R$ 279,97 </strong> </p> </span>
+            <span> <p> Frete </p> <p> Grátis </p> </span>
+            <span> <p> Cupom de Desconto </p> <p> <strong> BEMVINDO10 </strong> </p> </span>
+            <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span>
+          </div>
           <span className="value"> <h3> Valor Total </h3> <h3> R$ 269,97 </h3> </span>
           <Button title="FINALIZAR COMPRA" onClick={ navigatePayment } />
         </div>

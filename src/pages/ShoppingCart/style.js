@@ -45,7 +45,7 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   width: 100%;
-  height: calc(100vh - 15rem);
+  height: calc(100% - 15rem);
   margin-top: 15rem;
 
   .info {
@@ -96,20 +96,25 @@ export const Main = styled.main`
   .compra {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 
-    > span {
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    span {
       display: flex;
       justify-content: space-between;
     }
 
-    > span, > h3 {
+    span, > h3 {
       padding: 0 1rem;
     }
 
     .value {
       color: ${({ theme }) => theme.COLORS.PURPLE};
-      margin: 2rem 0;
       display: flex;
       justify-content: space-between;
     }
@@ -124,7 +129,7 @@ export const Main = styled.main`
   }
 
   @media(min-width: 1000px) {
-    height: calc(100% - 19rem);
+    height: calc(100% - 23rem);
     margin-top: 6rem;
     font-size: 1.7rem;
     
@@ -135,7 +140,7 @@ export const Main = styled.main`
         "footer footer";
     grid-column-gap: 5rem;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-rows: 10% 80%;
 
     & ::-webkit-scrollbar {
       background: white;
@@ -208,9 +213,15 @@ export const Main = styled.main`
       justify-content: space-between;
       gap: 2rem;
 
-      padding-top: 5rem;
+      padding-top: 3rem;
 
-      > span, > h3 {
+      > div {
+        height: 70%;
+        overflow-y: auto;
+        gap: 3rem;
+      }
+
+      span, > h3 {
         padding: 0 2rem;
       }
 
