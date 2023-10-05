@@ -33,7 +33,7 @@ export const Container = styled.aside`
 
     position: absolute;
     top: 2.5rem;
-    left: -5rem;
+    left: 2%;
     padding-top: 4rem;
 
     gap: 1rem;

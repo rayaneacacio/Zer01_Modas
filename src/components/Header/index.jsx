@@ -16,7 +16,7 @@ import { Container } from "./style";
 export function Header() {
   const [ menuDesktop, setMenuDesktop ] = useState("close");
 
-  const isAdmin = false;
+  const isAdmin = true;
 
   const navigate = useNavigate();
   const route = useLocation();

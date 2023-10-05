@@ -65,7 +65,7 @@ export const Container = styled.header`
       display: none;
     }
 
-    > button {
+    > button:not(:first-child) {
       width: 3.2rem;
       position: relative;
 
@@ -85,8 +85,6 @@ export const Container = styled.header`
   }
 
   .firstButton {
-    width: 9.3rem !important;
-
     padding-left: 1.3rem;
         
     display: flex;
@@ -149,7 +147,6 @@ export const Container = styled.header`
 
     .firstButton {
       font-size: 1.7rem;
-      width: 11.3rem !important;
     }
 
     .input {
