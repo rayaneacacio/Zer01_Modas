@@ -4,7 +4,7 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.COLORS.GRAY_700};
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
 
   > p {
     font-size: 1.6rem;
@@ -17,21 +17,25 @@ export const Container = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
   }
 
+  #sizeLabel {
+    margin-top: 2rem;
+  }
+
   select {
     width: 20%;
     margin-left: 1rem;
+    cursor: pointer;
   }
 
   .tags {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
   }
 
   .textarea {
     width: 100%;
     margin-top: 1.5rem;
-    border: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -39,8 +43,7 @@ export const Container = styled.div`
     textarea {
       font-size: 1.6rem;
       width: 100%;
-      height: 4rem;
-      border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
+      height: 3rem;
       margin-top: 1rem;
     }
   }

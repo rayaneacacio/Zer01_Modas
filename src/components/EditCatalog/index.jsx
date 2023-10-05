@@ -11,7 +11,7 @@ export function EditCatalog({ ...rest }) {
 
       <Input title="Preço" placeholder="R$ 00,00" />
 
-      <label id="SizeLabel" htmlFor="size">
+      <label id="sizeLabel" htmlFor="size">
         Tamanho: 
         <select name="size" id="size">
           <option value="P">P</option>

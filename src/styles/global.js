@@ -45,7 +45,6 @@ export default createGlobalStyle`
 
     outline: 0;
     resize: none;
-    touch-action: none;
 
     ::placeholder {
       color: ${({ theme }) => theme.COLORS.GRAY_500};
