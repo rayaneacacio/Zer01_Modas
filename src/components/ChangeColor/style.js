@@ -16,6 +16,7 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       gap: 1rem;
+      cursor: pointer;
     }
 
     > label, > label > svg {
@@ -30,6 +31,7 @@ export const Container = styled.div`
 
   #input-color {
     width: 2.5rem;
+    cursor: pointer;
   }
 
   #input-image, #input-newImage {
