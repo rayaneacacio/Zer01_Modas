@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import background from "../../assets/background-banner.png";
+import banner1 from "../../assets/banner-moda-feminina.png";
+import banner2 from "../../assets/banner-moda-masculina.png";
+import banner3 from "../../assets/banner-moda infantil.png";
+
 import truckSVG from "../../assets/truck.svg";
 import ticketSVG from "../../assets/ticket.svg";
 import tagSVG from "../../assets/tag.svg";
@@ -13,13 +16,10 @@ import { Container } from "./style";
 export function Banner() {
   const [ sliderPerview, setSliderPerview ] = useState(2.7);
 
-  const background2 = background;
-  const background3 = background;
-
   const imgs = [
-    background,
-    background2,
-    background3
+    banner1,
+    banner2,
+    banner3
   ]
 
   function handleResize() {
