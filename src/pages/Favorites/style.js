@@ -32,7 +32,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  height: calc(100% - 16rem);
+  height: calc(100% - 16rem) !important;
 
   display: flex;
   flex-direction: column;

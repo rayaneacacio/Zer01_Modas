@@ -45,7 +45,7 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   width: 100%;
-  height: calc(100% - 15rem);
+  height: calc(100% - 15rem) !important;
   margin-top: 15rem;
 
   .info {
@@ -129,7 +129,7 @@ export const Main = styled.main`
   }
 
   @media(min-width: 1000px) {
-    height: calc(100% - 23rem);
+    height: calc(100% - 23rem) !important;
     margin-top: 6rem;
     font-size: 1.7rem;
     

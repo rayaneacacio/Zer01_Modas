@@ -27,7 +27,7 @@ export const Main = styled.main`
   }
 
   @media(min-width: 1000px) {
-    height: calc(100% - 15rem);
+    height: calc(100% - 15rem) !important;
     margin-top: 15rem;
 
     > h3 {

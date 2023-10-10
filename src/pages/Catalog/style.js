@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  height: calc(100% - 17rem);
+  height: calc(100% - 17rem) !important;
   overflow-y: auto;
 
   > :first-child {
