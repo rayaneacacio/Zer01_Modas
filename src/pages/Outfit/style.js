@@ -227,7 +227,7 @@ export const Main = styled.main`
       overflow-x: auto;
 
       &::-webkit-scrollbar {
-        background: none;
+        display: none;
       }
       
       > button {

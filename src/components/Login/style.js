@@ -6,7 +6,6 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
 
     overflow: hidden;
   }
@@ -17,7 +16,8 @@ export const Container = styled.div`
     font-weight: normal;
     text-transform: uppercase;
     text-align: center;
-    height: 8.5rem;
+    height: 12rem;
+    padding-bottom: 3.5rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px 0px;
 
     display: flex;

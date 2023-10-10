@@ -25,8 +25,6 @@ export function Home() {
   return (
     <Container>
       <Header />
-      
-      <div className="emptyBox"></div>
 
       <main>
         <Nav />

@@ -6,8 +6,8 @@ export const Container = styled.div`
 
   position: relative;
 
-  .emptyBox {
-    height: 12rem;
+  > main {
+    margin-top: 12rem;
   }
 
   .section_promotion {
