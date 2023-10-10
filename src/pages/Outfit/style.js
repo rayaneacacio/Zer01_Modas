@@ -59,7 +59,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  height: calc(100% - 16rem) !important;
+  height: calc(100% - 16rem);
   padding-bottom: 4rem;
   margin-top: 12rem;
 

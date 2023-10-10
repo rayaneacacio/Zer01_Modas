@@ -17,7 +17,7 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.COLORS.WHITE};
     color: ${({ theme }) => theme.COLORS.BLACK};
     font-size: 1.3rem;
-    height: 100vh !important;
+    height: 100vh;
 
     overflow: hidden;
 
@@ -68,7 +68,7 @@ export default createGlobalStyle`
   }
 
   main {
-    height: calc(100% - 12rem) !important;
+    height: calc(100% - 12rem);
     overflow-x: hidden;
     overflow-y: auto;
     opacity: 0;

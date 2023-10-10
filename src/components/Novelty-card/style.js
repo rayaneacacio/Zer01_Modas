@@ -12,7 +12,7 @@ export const Container = styled.div`
     background-position-y: initial;
 
     width: 23rem;
-    height: 26rem !important;
+    height: 26rem;
 
     position: relative;
 
@@ -69,7 +69,7 @@ export const Container = styled.div`
   @media(min-width: 1000px) {
     > main {
       width: 42rem;
-      height: 50rem !important;
+      height: 50rem;
 
       h2 {
         font-size: 1.7rem;
