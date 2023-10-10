@@ -5,7 +5,6 @@ export const Container = styled.footer`
   color: ${({ theme }) => theme.COLORS.GRAY_500};
 
   width: 100%;
-  height: 9rem;
 
   margin-top: 5rem;
 
@@ -41,10 +40,10 @@ export const Container = styled.footer`
     font-size: 0.7rem;
     text-align: center;
     padding: 0.5rem;
+    height: 10rem;
   }
 
   @media(min-width: 1000px) {
-    height: 8rem;
     margin-top: 7rem;
 
     > div {
@@ -64,6 +63,7 @@ export const Container = styled.footer`
 
     > p {
       font-size: 1.1rem;
+      height: 4rem;
     }
   }
 `;
