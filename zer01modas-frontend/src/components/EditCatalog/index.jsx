@@ -9,7 +9,7 @@ export function EditCatalog({ ...rest }) {
     <Container {...rest}>
       <Input title="Nome" placeholder="Nome do produto" />
 
-      <label id="sizeLabel" htmlFor="size">
+      <label className="label_select" id="sizeLabel" htmlFor="size">
         Tamanho: 
         <select name="size" id="size">
           <option value="P">P</option>
@@ -19,7 +19,7 @@ export function EditCatalog({ ...rest }) {
         </select>
       </label>
 
-      <label htmlFor="categoria">
+      <label className="label_select" id="categoryLabel" htmlFor="categoria">
         Categoria:
         <select name="categoria" id="">
           <option value="feminino">Feminino</option>
@@ -31,7 +31,9 @@ export function EditCatalog({ ...rest }) {
         </select>
       </label>
 
-      <Input title="Preço" placeholder="R$ 00,00" />
+      <Input id="inputPrice" title="Preço" type="number" placeholder="R$ 00,00" />
+
+      <Input id="inputPromotion" title="Promoçao" type="number" placeholder="00%" />
 
       <div className="colors">
         <p>Cores</p>

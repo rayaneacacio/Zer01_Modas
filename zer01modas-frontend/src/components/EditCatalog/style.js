@@ -17,7 +17,7 @@ export const Container = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
   }
 
-  #sizeLabel {
+  .label_select {
     margin-top: 2rem;
   }
 
@@ -51,24 +51,36 @@ export const Container = styled.div`
   @media(min-width: 1000px) {
     display: grid;
     grid-template-areas: 
-      "name price size"
+      "name name size"
+      "category price promotion"
       "colors details modelDetails"
       "description description description";
     grid-template-columns: 50% 22% 22%;
     align-items: center;
     
-    > input:first-of-type {
+    > div:first-of-type {
       grid-area: name;
     }
 
-    > input:last-of-type {
+    #inputPrice {
       grid-area: price;
+    }
+
+    #inputPromotion {
+      grid-area: promotion;
+    }
+
+    .label_select {
+      padding-bottom: 1.5rem;
+      margin-top: 3.3rem;
     }
 
     #sizeLabel {
       grid-area: size;
-      padding-bottom: 1.5rem;
-      margin-top: 3.3rem;
+    }
+
+    #categoryLabel {
+      grid-area: category;
     }
 
     .colors {
