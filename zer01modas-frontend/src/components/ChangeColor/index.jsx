@@ -28,6 +28,13 @@ export function ChangeColor({ $newColor, color, nameColor, images, ...rest }) {
             <input type="file" name="" id="input-newImage" accept="image/*" multiple />
           </label>
 
+          <div className="size">
+            <button> P </button>
+            <button> M </button>
+            <button> G </button>
+            <button> GG </button>
+          </div>
+
           <Button icon={ <AiOutlinePlus /> } />
         </div>
 
@@ -43,6 +50,13 @@ export function ChangeColor({ $newColor, color, nameColor, images, ...rest }) {
             { images.length > 1 ? `${ images.length } arquivos escolhidos` : "1 arquivo escolhido" }
             <input type="file" name="" id="input-image" accept="image/*" multiple />
           </label>
+
+          <div className="size">
+            <button> P </button>
+            <button> M </button>
+            <button> G </button>
+            <button> GG </button>
+          </div>
 
           <Button icon={ <AiOutlineClose /> } />
         </div>

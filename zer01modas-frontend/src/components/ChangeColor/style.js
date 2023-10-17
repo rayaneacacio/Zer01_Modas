@@ -8,7 +8,10 @@ export const Container = styled.div`
     align-items: center;
     gap: 1rem;
 
+    padding-bottom: 4.5rem;
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
+
+    position: relative;
 
     label {
       font-size: 1.6rem;
@@ -19,13 +22,14 @@ export const Container = styled.div`
       cursor: pointer;
     }
 
-    > label, > label > svg {
+    label, > label > svg {
       color: ${({ theme }) => theme.COLORS.GRAY_700};
       width: 40%;
     }
   }
 
-  > div > input {
+  input {
+    font-size: 1.6rem;
     width: 30%;
   }
 
@@ -38,13 +42,39 @@ export const Container = styled.div`
     display: none;
   }
 
-  > div > button {
+  button {
     padding-bottom: 1rem;
+  }
+
+  .size {
+    width: 100%;
+    font-size: 1.6rem;
+    position: absolute;
+    padding-right: 2rem;
+    bottom: 2rem;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    button {
+      background: ${({ theme }) => theme.COLORS.GRAY_200};
+      color: ${({ theme }) => theme.COLORS.BLACK};
+      padding: 1px 13px;
+    }
   }
 
   @media(min-width: 1000px) {
     label, input {
       font-size: 1.7rem;
+    }
+
+    .size {
+      gap: 1.5rem;
+
+      button {
+        padding: 1px 20px;
+      }
     }
   }
 `;
