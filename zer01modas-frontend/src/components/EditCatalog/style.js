@@ -18,11 +18,11 @@ export const Container = styled.div`
   }
 
   .label_select {
-    margin-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   select {
-    width: 20%;
+    width: 35%;
     margin-left: 1rem;
     cursor: pointer;
   }
@@ -51,7 +51,7 @@ export const Container = styled.div`
   @media(min-width: 1000px) {
     display: grid;
     grid-template-areas: 
-      "name name size"
+      "name name name"
       "category price promotion"
       "colors details modelDetails"
       "description description description";
@@ -71,12 +71,7 @@ export const Container = styled.div`
     }
 
     .label_select {
-      padding-bottom: 1.5rem;
       margin-top: 3.3rem;
-    }
-
-    #sizeLabel {
-      grid-area: size;
     }
 
     #categoryLabel {
@@ -96,7 +91,7 @@ export const Container = styled.div`
     }
 
     .colors, .details, .modelDetails {
-      height: 16rem;
+      height: 25rem;
       overflow-y: auto;
     }
 

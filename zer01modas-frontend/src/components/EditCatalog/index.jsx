@@ -9,16 +9,6 @@ export function EditCatalog({ ...rest }) {
     <Container {...rest}>
       <Input title="Nome" placeholder="Nome do produto" />
 
-      <label className="label_select" id="sizeLabel" htmlFor="size">
-        Tamanho: 
-        <select name="size" id="size">
-          <option value="P">P</option>
-          <option value="M">M</option>
-          <option value="G">G</option>
-          <option value="GG">GG</option>
-        </select>
-      </label>
-
       <label className="label_select" id="categoryLabel" htmlFor="categoria">
         Categoria:
         <select name="categoria" id="">
