@@ -1,4 +1,4 @@
-;import imgModaFeminina from "../../assets/moda-feminina-secao-promocional.png";
+import imgModaFeminina from "../../assets/moda-feminina-secao-promocional.png";
 import imgModaMasculina from "../../assets/moda-masculina-secao-promocional.png";
 import imgModaInfantil from "../../assets/moda-infantil-secao-promocional.png";
 import gifModaÍntima from "../../assets/gif-moda-intima-secao-novidades.gif";
