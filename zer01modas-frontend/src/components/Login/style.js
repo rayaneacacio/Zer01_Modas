@@ -10,7 +10,7 @@ export const Container = styled.div`
     overflow: hidden;
   }
   
-  .body-modal > :first-child {
+  .body-modal > h3 {
     color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 1.5rem;
     font-weight: normal;
@@ -25,7 +25,7 @@ export const Container = styled.div`
     justify-content: center;
   }
 
-  .body-modal > :nth-child(2) {
+  .form-modal {
     background: ${({ theme }) => theme.COLORS.WHITE};
     height: calc(100% - 10.5rem);
     display: flex;
@@ -58,7 +58,7 @@ export const Container = styled.div`
       height: 100%;
     }
 
-    .body-modal > :first-child {
+    .body-modal > h3 {
       font-size: 1.6rem;
       height: 9rem;
     }
