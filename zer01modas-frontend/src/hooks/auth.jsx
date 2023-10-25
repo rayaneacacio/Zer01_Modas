@@ -4,7 +4,7 @@ import { api } from "../services/api";
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  const [ user, setUser ] = useState("");
+  const [ userData, setUserData ] = useState("");
   const [ isAdmin, setIsAdmin ] = useState(false);
 
   async function SignUp({ name, email, password }) {
@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
     const response = await api.post("/sessions", { email, password });
 
     localStorage.setItem("@zer01modas:userData", JSON.stringify(response.data));
-    setUser(response.data);
+    setUserData(response.data);
 
     if(response.data.user.isAdmin = 1) {
       localStorage.setItem("@zer01modas:isAdmin", JSON.stringify(true));
@@ -27,7 +27,7 @@ function AuthProvider({ children }) {
   }
 
   function SignOut() {
-    setUser("");
+    setUserData("");
     setIsAdmin(false);
     localStorage.removeItem("@zer01modas:userData");
     localStorage.removeItem("@zer01modas:isAdmin");
@@ -39,7 +39,7 @@ function AuthProvider({ children }) {
 
     if(userLocalStorage) {
       api.defaults.headers.authorization = `Bearer ${ userLocalStorage.token }`;
-      setUser(userLocalStorage);
+      setUserData(userLocalStorage);
     }
 
     if(isAdminLocalStorage) {
@@ -49,7 +49,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAdmin, SignUp, SignIn, SignOut }}>
+    <AuthContext.Provider value={{ userData, isAdmin, SignUp, SignIn, SignOut }}>
       { children }
     </AuthContext.Provider>
   )

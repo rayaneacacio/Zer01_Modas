@@ -16,7 +16,7 @@ import { NavMenu } from "../Nav-Menu";
 import { Container } from "./style";
 
 export function Header() {
-  const { isAdmin } = useAuth();
+  const { userData, isAdmin } = useAuth();
   const [ menuDesktop, setMenuDesktop ] = useState("close");
 
   const navigate = useNavigate();
@@ -98,7 +98,7 @@ export function Header() {
 
         <div className="boxButtons">
           <button className="firstButton" onClick={ navigateMenu } onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone } >
-            <p> Olá, <strong> nane </strong> </p>
+            <p> Olá, <strong> { userData && userData.user.name } </strong> </p>
             <FaChevronDown size={ 20 } />
           </button>
           <NavMenu onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone }  />

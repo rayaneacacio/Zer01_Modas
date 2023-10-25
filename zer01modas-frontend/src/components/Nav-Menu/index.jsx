@@ -17,7 +17,7 @@ import { Login } from "../Login";
 import { Container } from "./style";
 
 export function NavMenu({ ...rest }) {
-  const { user, isAdmin, SignOut } = useAuth();
+  const { userData, isAdmin, SignOut } = useAuth();
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -38,7 +38,10 @@ export function NavMenu({ ...rest }) {
   }
 
   async function handleSignOut() {
-    await SignOut();
+    if(confirm("Desconectar? :(")) {
+      await SignOut();
+    }
+    
   }
 
   function handleWindowResize() {
@@ -77,7 +80,7 @@ export function NavMenu({ ...rest }) {
       
       { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo produto" onClick={ navigateNew } /> }
 
-      <Button icon={ <MdLogout /> } title={ user ? "Sair" : "Entrar" } onClick={ user ? handleSignOut : handleSignature } />
+      <Button icon={ <MdLogout /> } title={ userData ? "Sair" : "Entrar" } onClick={ userData ? handleSignOut : handleSignature } />
       <dialog className="modal-login">
         <div>
           <div>
