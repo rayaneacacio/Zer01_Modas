@@ -124,4 +124,11 @@ export default createGlobalStyle`
       transform: translateX(-1rem);
     }
   }
+
+  @keyframes ErrorMessageAnimation {
+    to {
+      opacity: 1;
+      transform: translateY(1.5rem);
+    }
+  }
 `;

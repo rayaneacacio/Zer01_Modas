@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { useAuth } from "../../hooks/auth";
+
 import { FaChevronDown } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { RiShoppingBag2Line } from "react-icons/ri";
@@ -14,9 +16,8 @@ import { NavMenu } from "../Nav-Menu";
 import { Container } from "./style";
 
 export function Header() {
+  const { isAdmin } = useAuth();
   const [ menuDesktop, setMenuDesktop ] = useState("close");
-
-  const isAdmin = false;
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -65,7 +66,7 @@ export function Header() {
   }
 
   useEffect(() => {
-    const menu = document.querySelector(".boxButtons aside");
+    const menu = document.querySelector(".nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
     
     if(menu) {

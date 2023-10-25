@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { useAuth } from "../../hooks/auth";
+
 import { RiHomeLine} from "react-icons/ri";
 import { IoMdContact } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
@@ -15,9 +17,7 @@ import { Login } from "../Login";
 import { Container } from "./style";
 
 export function NavMenu({ ...rest }) {
-  const [ user, setUser ] = useState(true);
-
-  const isAdmin = true;
+  const { user, isAdmin, SignOut } = useAuth();
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -37,8 +37,8 @@ export function NavMenu({ ...rest }) {
     sessionStorage.removeItem("@zer01modas:modal");
   }
 
-  function handleSignOut() {
-    setUser(false);
+  async function handleSignOut() {
+    await SignOut();
   }
 
   function handleWindowResize() {

@@ -9,7 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0;
-  border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
+  border-bottom: 1px solid black;
 
   h3 {
     font-weight: 400;
