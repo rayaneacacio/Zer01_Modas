@@ -61,10 +61,6 @@ export function Header() {
     navigate("/favorites");
   }
 
-  function navigateNewOutfit() {
-    navigate("/new-outfit");
-  }
-
   useEffect(() => {
     const menu = document.querySelector(".nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
@@ -72,10 +68,9 @@ export function Header() {
     if(menu) {
       if(menuDesktop == "open") {
         menu.style.display = "flex";
-
-      } else if(menuDesktop == "close" && !modal) {
+      } else if(!modal) {
         menu.style.display = "none";
-
+        
       }
     }
     

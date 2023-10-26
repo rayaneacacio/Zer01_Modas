@@ -17,7 +17,7 @@ function AuthProvider({ children }) {
     localStorage.setItem("@zer01modas:userData", JSON.stringify(response.data));
     setUserData(response.data);
 
-    if(response.data.user.isAdmin = 1) {
+    if(response.data.user.isAdmin == 1) {
       localStorage.setItem("@zer01modas:isAdmin", JSON.stringify(true));
       setIsAdmin(true);
     } else {

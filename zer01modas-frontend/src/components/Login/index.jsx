@@ -86,7 +86,7 @@ export function Login() {
     ErrorMessage.style.transform = "translateY(-1rem)";
     ErrorMessage.style.animation = "ErrorMessageAnimation 0.1s forwards";
     ErrorMessage.style.color = "red";
-    ErrorMessage.style.fontSize = "1.5rem";
+    ErrorMessage.style.fontSize = "1.6rem";
 
     if(input) {
       input.style.borderBottom = `1px solid red`;

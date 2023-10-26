@@ -22,7 +22,7 @@ export function NavMenu({ ...rest }) {
   const navigate = useNavigate();
   const route = useLocation();
 
-  function handleSignature() {
+  function handleOpenModalLogin() {
     if(window.innerWidth < 1000) {
       navigate("/login");
       return;
@@ -32,16 +32,14 @@ export function NavMenu({ ...rest }) {
     sessionStorage.setItem("@zer01modas:modal", "open");
   }
 
-  function handleCloseModal() {
+  function handleCloseModalLogin() {
     document.querySelector(".modal-login").close();
     sessionStorage.removeItem("@zer01modas:modal");
   }
 
   async function handleSignOut() {
-    if(confirm("Desconectar? :(")) {
-      await SignOut();
-    }
-    
+    await SignOut();
+    handleCloseModalDisconnect();
   }
 
   function handleWindowResize() {
@@ -64,6 +62,36 @@ export function NavMenu({ ...rest }) {
     navigate("/new");
   }
 
+  function handleOpenModalDisconnect() {
+    const modalDisconnect = document.createElement("dialog");
+    const bodyModal = document.createElement("div");
+    const childModal = document.createElement("div");
+
+    modalDisconnect.classList.add("modal-disconnect");
+
+    childModal.innerHTML = `
+      <h3>Desconectar? :(</h3>
+      <button>CONFIRMAR</button>
+      <button>CANCELAR</button>
+    `;
+
+    bodyModal.appendChild(childModal);
+    modalDisconnect.appendChild(bodyModal);
+    document.querySelector("body").appendChild(modalDisconnect);
+
+    document.querySelector(".modal-disconnect button:first-of-type").addEventListener("click", handleSignOut);
+    document.querySelector(".modal-disconnect button:last-of-type").addEventListener("click", handleCloseModalDisconnect);
+
+    document.querySelector(".modal-disconnect").show();
+    sessionStorage.setItem("@zer01modas:modal", "open");
+  }
+
+  function handleCloseModalDisconnect() {
+    document.querySelector(".modal-disconnect").close();
+    sessionStorage.removeItem("@zer01modas:modal");
+    document.querySelector(".nav-menu").style.display = "none";
+  }
+
   useEffect(() => {
     handleWindowResize();
     window.onresize = handleWindowResize;
@@ -80,11 +108,12 @@ export function NavMenu({ ...rest }) {
       
       { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo produto" onClick={ navigateNew } /> }
 
-      <Button icon={ <MdLogout /> } title={ userData ? "Sair" : "Entrar" } onClick={ userData ? handleSignOut : handleSignature } />
+      <Button icon={ <MdLogout /> } title={ userData ? "Sair" : "Entrar" } onClick={ userData ? handleOpenModalDisconnect : handleOpenModalLogin } />
+
       <dialog className="modal-login">
         <div>
           <div>
-            <Button className="buttonClose" icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
+            <Button className="buttonClose" icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModalLogin } />
             <Login />
           </div>
         </div>
