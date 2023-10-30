@@ -29,25 +29,20 @@ export const Container = styled.header`
     background: ${({ theme }) => theme.COLORS.BLACK};
 
     width: 100%;
-    height: 10rem;
+    height: 9rem;
 
     padding: 1.5rem;
 
     display: grid;
-    grid-template-areas: "logo buttons" "input input";
+    grid-template-areas: "buttonMenu logo buttons" "input input input";
     align-items: center;
     justify-content: space-between;
     row-gap: 0.5rem;
 
     > img {
       grid-area: logo;
-      width: 9rem;
-      height: 3.2rem;
-      padding-left: 1rem;
-    }
-
-    > img, .input {
-      margin-left: 2rem;
+      width: 8rem;
+      height: 3rem;
     }
   }
 
@@ -72,40 +67,71 @@ export const Container = styled.header`
       span {
         background: ${({ theme }) => theme.COLORS.PURPLE};
 
-        width: 1.4rem;
-        height: 1.4rem;
+        width: 1.6rem;
+        height: 1.6rem;
 
         border-radius: 50%;
 
         position: absolute;
-        right: -2px;
-        top: 2px;
+        right: -1px;
+        top: 1px;
       }
     }
   }
 
-  .firstButton {
-    padding-left: 1.3rem;
-        
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  .firstButton, .buttonFavorites, .input {
+    display: none;
+  }
 
-    margin: ${({ $isAdmin }) => $isAdmin && "1rem 1.5rem"};
+  .buttonMenu {
+    grid-area: buttonMenu;
+    background: none;
+    padding: 0;
+    z-index: 3;
 
-    svg {
-      animation: ${({ $pathname }) => $pathname === "/" && "rotate180 0.3s reverse forwards"};
+    > svg {
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      height: 3rem;
+      width: 3rem;
     }
   }
 
-  .input {
-    grid-area: input;
-    width: 90%;
-    height: 3rem;
+  .menuMobile {
+    background: rgba(8, 8, 8, 0.64);
+    width: 100vw;
+    height: 100vh;
 
-    > img {
-      width: 2.5rem;
-      height: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: none;
+    z-index: 2;
+
+    > div, .nav-menu {
+      background: ${({ theme }) => theme.COLORS.BLACK};
+      width: 70%;
+      transform: translateX(-5em);
+      animation: toRight 0.3s forwards;
+    }
+
+    > div {
+      height: 16rem;
+      padding-top: 10rem;
+    }
+
+    .input {
+      display: flex;
+    }
+
+    .nav-menu {
+      height: 100%;
+      display: flex;
+    }
+
+    button {
+      opacity: 1;
+      animation: 0;
     }
   }
   
@@ -134,6 +160,10 @@ export const Container = styled.header`
       }
     }
 
+    .buttonMenu {
+      display: none;
+    }
+
     .boxButtons {
       position: relative;
       z-index: 2;
@@ -143,6 +173,10 @@ export const Container = styled.header`
         z-index: -1;
       }
 
+    }
+
+    .firstButton, .buttonFavorites, .input {
+      display: flex;
     }
 
     .firstButton {

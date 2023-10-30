@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.nav`
+  background: ${({ theme }) => theme.COLORS.WHITE};
   width: 100%;
   height: 5rem;
 

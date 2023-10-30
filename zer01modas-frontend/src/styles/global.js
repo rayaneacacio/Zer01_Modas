@@ -9,6 +9,7 @@ export default createGlobalStyle`
   }
 
   :root {
+    background: ${({ theme }) => theme.COLORS.BLACK};
     font-family: ${({ theme }) => theme.FONTS.DEFAULT};
     font-size: 62.5%;
   }
@@ -67,7 +68,7 @@ export default createGlobalStyle`
   }
 
   main {
-    height: calc(100% - 12rem);
+    height: calc(100% - 11rem);
     overflow-x: hidden;
     overflow-y: auto;
     opacity: 0;

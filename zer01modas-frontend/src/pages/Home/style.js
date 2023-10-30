@@ -7,7 +7,7 @@ export const Container = styled.div`
   position: relative;
 
   > main {
-    margin-top: 12rem;
+    margin-top: 11rem;
   }
 
   .section_promotion {
@@ -115,6 +115,7 @@ export const Container = styled.div`
 
   @media(min-width: 1000px) {
     > main {
+      margin-top: 11.9rem;
       display: flex;
       flex-direction: column;
       align-items: center;

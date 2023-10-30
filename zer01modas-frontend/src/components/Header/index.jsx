@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
+import { HiOutlineViewList } from "react-icons/hi";
 import { FaChevronDown } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { RiShoppingBag2Line } from "react-icons/ri";
@@ -12,6 +13,7 @@ import iconSearch from "../../assets/search-icon.svg";
 
 import { InputBox } from "../InputBox";
 import { NavMenu } from "../Nav-Menu";
+import { Button } from "../Button";
 
 import { Container } from "./style";
 
@@ -22,19 +24,17 @@ export function Header() {
   const navigate = useNavigate();
   const route = useLocation();
 
-  function navigateMenu() {
-    if(window.innerWidth < 1000) {
-      if(route.pathname != "/menu") {
-        navigate("/menu");
-        return;
-      }
-
-      navigate(-1);
+  function handleOpenMenuMOBILE() {
+    const menuMobile = document.querySelector(".menuMobile");
+    
+    if(menuMobile.style.display == "block") {
+      menuMobile.style.display = "none";
+    } else {
+      menuMobile.style.display = "block";
     }
-
   }
 
-  function handleMenuDesktopDisplayBlock() {
+  function handleOpenMenuDESKTOP() {
     if(window.innerWidth >= 1000) {
       setMenuDesktop("open");
     }
@@ -42,7 +42,7 @@ export function Header() {
     document.querySelector(".firstButton svg").style.animation = "rotate180 0.3s forwards";
   }
 
-  function handleMenuDesktopDisplayNone() {
+  function handleCloseMenuDESKTOP() {
     if(window.innerWidth >= 1000) {
       setMenuDesktop("close");
     }
@@ -62,7 +62,7 @@ export function Header() {
   }
 
   useEffect(() => {
-    const menu = document.querySelector(".nav-menu");
+    const menu = document.querySelector(".boxButtons .nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
     
     if(menu) {
@@ -89,18 +89,26 @@ export function Header() {
       </div>
 
       <div>
+        <Button icon={ <HiOutlineViewList /> } className="buttonMenu" onClick={ handleOpenMenuMOBILE } />
+        <div className="menuMobile">
+          <div>
+            <InputBox className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
+          </div>
+          <NavMenu />
+        </div>
+        
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button className="firstButton" onClick={ navigateMenu } onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone } >
+          <button className="firstButton" onMouseOver={ handleOpenMenuDESKTOP } onMouseOut={ handleCloseMenuDESKTOP } >
             <p> Olá, <strong> { userData && userData.user.name } </strong> </p>
             <FaChevronDown size={ 20 } />
           </button>
-          <NavMenu onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone }  />
+          <NavMenu onMouseOver={ handleOpenMenuDESKTOP } onMouseOut={ handleCloseMenuDESKTOP }  />
 
           {
             !isAdmin &&
-          <button>
+          <button className="buttonFavorites">
             <FiHeart size={ 25 } onClick={ navigateFavorites } />
             <span> 0 </span>
           </button>

@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  > header > :nth-child(2) {
+  > header > div > img {
+    display: none;
+  }
+
+
+  /* > header > :nth-child(2) {
     padding-top: 0.5rem;
 
     img {
@@ -16,7 +21,7 @@ export const Container = styled.header`
       justify-content: flex-end;
       margin-top: 0.1rem;
     }
-  }
+  } */
 
   > button {
     background: none;
@@ -24,6 +29,8 @@ export const Container = styled.header`
     position: absolute;
     top: 3rem;
     z-index: 1;
+
+    display: none;
 
     svg {
       height: 3.5rem;
@@ -47,6 +54,7 @@ export const Container = styled.header`
       color: ${({ theme }) => theme.COLORS.BLACK};
       top: 17rem;
       left: 3rem;
+      display: block;
       svg {
         width: 2.5rem;
       }

@@ -19,7 +19,7 @@ export const Container = styled.div`
     width: 100%;
     padding: 1rem;
     position: absolute;
-    top: 9rem;
+    top: 11rem;
   }
 
   @media(min-width: 1000px) {
