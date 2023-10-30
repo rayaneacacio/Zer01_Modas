@@ -66,6 +66,7 @@ export function Login() {
         await SignIn({ email, password });
         document.querySelector(".modal-login").close();
         sessionStorage.removeItem("@zer01modas:modal");
+        document.querySelector(".boxButtons .nav-menu").style.display = "none";
 
       } catch(error) {
         if(error) {

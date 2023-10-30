@@ -48,43 +48,5 @@ export const Container = styled.aside`
     .buttonsOnlyMobile {
       display: none;
     }
-
-    .modal-login {
-      background: rgba(8, 8, 8, 0.64);
-
-      position: fixed;
-      top: 0;
-      left: 0;
-
-      > div {
-        width: 100%;
-        height: 100%;
-        
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        opacity: 0;
-        transform: translateY(2rem);
-        animation: toTop 0.5s forwards;
-
-        > div{
-          background: ${({ theme }) => theme.COLORS.WHITE};
-          position: relative;
-          width: 40rem;
-          height: 63rem;
-
-          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        }
-      }
-    }
-
-    .buttonClose {
-      background: none;
-      color: ${({ theme }) => theme.COLORS.WHITE};
-      position: absolute;
-      top: 2.5rem;
-      right: 2rem;
-    }
   }
 `;

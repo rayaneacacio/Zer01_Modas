@@ -11,10 +11,8 @@ import { SlLocationPin } from "react-icons/sl";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { LuBox } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
-import { TfiClose } from "react-icons/tfi";
 
 import { Button } from "../Button";
-import { Login } from "../Login";
 
 import { Container } from "./style";
 
@@ -32,11 +30,6 @@ export function NavMenu({ ...rest }) {
     
     document.querySelector(".modal-login").show();
     sessionStorage.setItem("@zer01modas:modal", "open");
-  }
-
-  function handleCloseModalLogin() {
-    document.querySelector(".modal-login").close();
-    sessionStorage.removeItem("@zer01modas:modal");
   }
 
   async function handleSignOut() {
@@ -99,7 +92,7 @@ export function NavMenu({ ...rest }) {
   function handleCloseModalDisconnect() {
     document.querySelector(".modal-disconnect").close();
     sessionStorage.removeItem("@zer01modas:modal");
-    document.querySelector(".nav-menu").style.display = "none";
+    document.querySelector(".boxButtons .nav-menu").style.display = "none";
   }
 
   useEffect(() => {
@@ -122,15 +115,6 @@ export function NavMenu({ ...rest }) {
       { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo produto" onClick={ navigateNew } /> }
 
       <Button icon={ <MdLogout /> } title={ userData ? "Sair" : "Entrar" } onClick={ userData ? handleOpenModalDisconnect : handleOpenModalLogin } />
-
-      <dialog className="modal-login">
-        <div>
-          <div>
-            <Button className="buttonClose" icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModalLogin } />
-            <Login />
-          </div>
-        </div>
-      </dialog>
     </Container>
   )
 }

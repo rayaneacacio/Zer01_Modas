@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 
 import { HiOutlineViewList } from "react-icons/hi";
+import { TfiClose } from "react-icons/tfi";
 import { FaChevronDown } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { RiShoppingBag2Line } from "react-icons/ri";
@@ -14,6 +15,7 @@ import iconSearch from "../../assets/search-icon.svg";
 import { InputBox } from "../InputBox";
 import { NavMenu } from "../Nav-Menu";
 import { Button } from "../Button";
+import { Login } from "../Login";
 
 import { Container } from "./style";
 
@@ -61,9 +63,17 @@ export function Header() {
     navigate("/favorites");
   }
 
+  function handleCloseModalLogin() {
+    document.querySelector(".modal-login").close();
+    sessionStorage.removeItem("@zer01modas:modal");
+    document.querySelector(".boxButtons .nav-menu").style.display = "none";
+  }
+
   useEffect(() => {
     const menu = document.querySelector(".boxButtons .nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
+
+    console.log(menuDesktop)
     
     if(menu) {
       if(menuDesktop == "open") {
@@ -101,7 +111,12 @@ export function Header() {
 
         <div className="boxButtons">
           <button className="firstButton" onMouseOver={ handleOpenMenuDESKTOP } onMouseOut={ handleCloseMenuDESKTOP } >
-            <p> Olá, <strong> { userData && userData.user.name } </strong> </p>
+            {
+              userData ?
+              <p> Oie, <strong> { userData && userData.user.name } </strong> </p>
+              :
+              <p> Oie! </p>
+            }
             <FaChevronDown size={ 20 } />
           </button>
           <NavMenu onMouseOver={ handleOpenMenuDESKTOP } onMouseOut={ handleCloseMenuDESKTOP }  />
@@ -123,6 +138,15 @@ export function Header() {
         </div>
 
         <InputBox className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
+
+        <dialog className="modal-login">
+        <div>
+          <div>
+            <Button className="buttonClose" icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModalLogin } />
+            <Login />
+          </div>
+        </div>
+      </dialog>
       </div>
 
     </Container>
