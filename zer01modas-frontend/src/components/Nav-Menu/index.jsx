@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
+import { MdOutlineArrowBackIos } from "react-icons/md";
+import { FiHeart } from "react-icons/fi";
 import { RiHomeLine} from "react-icons/ri";
 import { IoMdContact } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
@@ -51,11 +53,19 @@ export function NavMenu({ ...rest }) {
     }
   }
 
+  function navigateBack() {
+    navigate(-1);
+  }
+
   function navigateHome() {
     if(route.pathname != "/") {
       navigate("/");
     }
     
+  }
+
+  function navigateFavorites() {
+    navigate("/favorites");
   }
 
   function navigateNew() {
@@ -100,8 +110,11 @@ export function NavMenu({ ...rest }) {
 
   return (
     <Container className="nav-menu" {...rest}>
+      <Button icon={ <MdOutlineArrowBackIos /> } title="Voltar" className="buttonsOnlyMobile" onClick={ navigateBack } />
       <Button icon={ <RiHomeLine /> } title="Início" onClick={ navigateHome } />
       <Button icon={ <IoMdContact /> } title="Minha Conta" />
+
+      { !isAdmin && <Button icon={ <FiHeart /> } title="Favoritos" className="buttonsOnlyMobile" onClick={ navigateFavorites } /> }
 
       { !isAdmin && <Button icon={ <LuBox /> } title="Meus pedidos" /> }
       { !isAdmin && <Button icon={ <SlLocationPin /> } title="Meus Endereços" /> }

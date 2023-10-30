@@ -45,6 +45,10 @@ export const Container = styled.aside`
       width: 100%;
     }
 
+    .buttonsOnlyMobile {
+      display: none;
+    }
+
     .modal-login {
       background: rgba(8, 8, 8, 0.64);
 
