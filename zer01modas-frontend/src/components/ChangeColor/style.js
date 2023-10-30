@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  
   > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
 
+    padding-top: 5rem;
     padding-bottom: 4.5rem;
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
 
@@ -26,6 +26,10 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.GRAY_700};
       width: 40%;
     }
+  }
+
+  .new {
+    padding-top: 0;
   }
 
   input {
@@ -58,10 +62,15 @@ export const Container = styled.div`
     gap: 1rem;
 
     button {
-      background: ${({ theme }) => theme.COLORS.GRAY_200};
-      color: ${({ theme }) => theme.COLORS.BLACK};
+      background: ${({ theme }) => theme.COLORS.PURPLE};
+      color: white;
       padding: 1px 13px;
     }
+  }
+
+  .new .size button {
+    background: ${({ theme }) => theme.COLORS.GRAY_200};
+    color: black;
   }
 
   @media(min-width: 1000px) {

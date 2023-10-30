@@ -52,11 +52,12 @@ export const Container = styled.div`
     display: grid;
     grid-template-areas: 
       "name name name"
+      "description description description"
       "category price promotion"
-      "colors details modelDetails"
-      "description description description";
+      "colors details modelDetails";
     grid-template-columns: 50% 22% 22%;
     align-items: center;
+    row-gap: 2rem;
     
     > div:first-of-type {
       grid-area: name;
@@ -90,9 +91,10 @@ export const Container = styled.div`
       grid-area: modelDetails;
     }
 
-    .colors, .details, .modelDetails {
-      height: 25rem;
+    .tags {
+      height: 20rem;
       overflow-y: auto;
+      align-self: self-start;
     }
 
     .details > div, .modelDetails > div {

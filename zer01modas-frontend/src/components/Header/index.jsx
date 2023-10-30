@@ -72,8 +72,6 @@ export function Header() {
   useEffect(() => {
     const menu = document.querySelector(".boxButtons .nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
-
-    console.log(menuDesktop)
     
     if(menu) {
       if(menuDesktop == "open") {

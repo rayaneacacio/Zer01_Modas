@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { BiUpload } from "react-icons/bi";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
 
@@ -5,15 +7,60 @@ import { Button } from "../Button";
 
 import { Container } from "./style";
 
-export function ChangeColor({ $newColor, color, nameColor, images, ...rest }) {
+export function ChangeColor({ ...rest }) {
+  const [ hexColor, setHexColor ] = useState("");
+  const [ nameColor, setNameColor ] = useState("");
+  const [ images, setImages ] = useState([]);
+  const [ sizes, setSizes ] = useState([]);
+  const [ section, setSection ] = useState([]);
+
+  function handleAddSize(button, value) {
+    const alreadyExists = sizes.some(size => size == value);
+
+    if(alreadyExists) {
+      setSizes(sizes.filter(size => size != value));
+      button.style.background = "#d9d2d2";
+      button.style.color = "black";
+    } else {
+      setSizes([...sizes, value]);
+      button.style.background = "#A332A5";
+      button.style.color = "white";
+    }
+  }
+
+  async function handleNewSection() {
+    setSection([...section, {
+      hexColor: hexColor,
+      nameColor: nameColor,
+      images: images,
+      sizes: sizes
+    }]);
+
+    setHexColor("");
+    setNameColor("");
+    setImages([]);
+    setSizes([]);
+
+    const inputs = document.querySelectorAll(".new input");
+    Array.from(inputs).map(input => input.value = "");
+
+    const buttonsNewSize = document.querySelectorAll(".new .size button");
+    Array.from(buttonsNewSize).map(button => {
+      button.style.background = "#d9d2d2";
+    });
+  }
+
+  function handleDeleteSection(value) {
+    const newSectionList = section.filter(item => item != value);
+    setSection(newSectionList);
+  }
+
   return (
     <Container>
-      {
-        $newColor ?
-        <div>
-          <input type="color" name="" id="input-color" />
+        <div className="new">
+          <input type="color" name="" id="input-color" onChange={e => setHexColor(e.target.value) }  />
 
-          <input type="text" placeholder="cor" />
+          <input type="text" placeholder="cor" onChange={e => setNameColor(e.target.value) } />
 
           <label htmlFor="input-newImage">
             <BiUpload size={ 25 } />
@@ -23,44 +70,46 @@ export function ChangeColor({ $newColor, color, nameColor, images, ...rest }) {
               : images && images.length == 1 ? 
               "1 arquivo escolhido" 
               : 
-              "Nenhum arquivo escolhido" 
+              "Nenhum arquivo" 
             }
-            <input type="file" name="" id="input-newImage" accept="image/*" multiple />
+            <input type="file" name="" id="input-newImage" accept="image/*" multiple onChange={e => setImages(Array.from(e.target.files)) }  />
           </label>
 
           <div className="size">
-            <button> P </button>
-            <button> M </button>
-            <button> G </button>
-            <button> GG </button>
+            <button onClick={(e) => handleAddSize(e.target, "P") }> P </button>
+            <button onClick={(e) => handleAddSize(e.target, "M") }> M </button>
+            <button onClick={(e) => handleAddSize(e.target, "G") }> G </button>
+            <button onClick={(e) => handleAddSize(e.target, "GG") }> GG </button>
           </div>
 
-          <Button icon={ <AiOutlinePlus /> } />
+          <Button icon={ <AiOutlinePlus /> } onClick={ handleNewSection } />
         </div>
 
-        :
+        {
+          section.length > 0 &&
+          section.map((item, index) => (
+            <div key={ index }>
+              <input type="color" name="" id="input-color" value={ item.hexColor } disabled />
+              <input type="text" defaultValue={ item.nameColor } readOnly />
 
-        <div>
-          <input type="color" name="" id="input-color" value={ color } readOnly />
+              <label htmlFor="input-image">
+                <BiUpload size={ 25 } />
+                { item.images.length > 1 ? `${ item.images.length } arquivos escolhidos` : "1 arquivo escolhido" }
+                <input type="file" name="" id="input-image" accept="image/*" multiple disabled />
+              </label>
 
-          <input type="text" value={ nameColor } readOnly />
+              <div className="size">
+                {
+                  item.sizes.map((size, index) => (
+                    <button key={ index } >{ size }</button>
+                  ))
+                }
+              </div>
 
-          <label htmlFor="input-image">
-            <BiUpload size={ 25 } />
-            { images.length > 1 ? `${ images.length } arquivos escolhidos` : "1 arquivo escolhido" }
-            <input type="file" name="" id="input-image" accept="image/*" multiple />
-          </label>
-
-          <div className="size">
-            <button> P </button>
-            <button> M </button>
-            <button> G </button>
-            <button> GG </button>
-          </div>
-
-          <Button icon={ <AiOutlineClose /> } />
-        </div>
-      }
+              <Button icon={ <AiOutlineClose /> } onClick={(e) => handleDeleteSection(item) } />             
+            </div>
+          )).reverse()
+        }
     </Container>
   )
 }
