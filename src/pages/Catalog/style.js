@@ -5,7 +5,7 @@ export const Container = styled.div`
   overflow: hidden;
 
   > nav {
-    margin-top: 11rem;
+    margin-top: 12rem;
   }
 `;
 
