@@ -6,6 +6,10 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 4rem;
 
+  > div, > label {
+    position: relative;
+  }
+
   > div > p {
     font-size: 1.6rem;
     margin: 1rem 0;

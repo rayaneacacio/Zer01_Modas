@@ -15,7 +15,7 @@ export function EditCatalog({ ...rest }) {
 
   return (
     <Container {...rest}>
-      <Input title="Nome" placeholder="Nome do produto" onChange={e => setName(e.target.value)} />
+      <Input id="inputName" title="Nome" placeholder="Nome do produto" onChange={e => setName(e.target.value)} />
 
       <label className="label_select" id="categoryLabel" htmlFor="categoria">
         Categoria:

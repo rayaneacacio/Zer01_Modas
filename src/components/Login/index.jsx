@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { createErrorMessage, createAlert, removeErrorMessage } from "../../scripts/messages-inputs.js";
 
 import { Input } from "../Input";
 import { Button } from "../../components/Button";
@@ -86,43 +87,6 @@ export function Login() {
     }
   }
 
-  function createErrorMessage(input, error) {
-    //cria mensagens de erro referente aos INPUTS;
-    const ErrorMessage = document.createElement("div");
-    ErrorMessage.classList.add("divMessage");
-    ErrorMessage.innerHTML = error ? error : "Por favor preencha todos os campos";
-    ErrorMessage.style.opacity = 0; 
-    ErrorMessage.style.transform = "translateY(-1rem)";
-    ErrorMessage.style.animation = "ErrorMessageAnimation 0.1s forwards";
-    ErrorMessage.style.color = "red";
-    ErrorMessage.style.fontSize = "1.6rem";
-
-    if(input) {
-      input.style.borderBottom = `1px solid red`;
-      if(!input.querySelector(".divMessage")) {
-        input.appendChild(ErrorMessage);
-      }
-    }
-
-    return ErrorMessage;
-  }
-
-  function createAlert(error) {
-    //cria mensagens referentes ao login/cadastro;
-    const ErrorMessage = createErrorMessage();
-    ErrorMessage.innerHTML = error ? error : "Nao foi posível cadastrar";
-    ErrorMessage.style.position = "absolute";
-    ErrorMessage.style.top = window.innerWidth >= 1000 ? "15%" : "1%";
-    ErrorMessage.style.width = "100%";
-    ErrorMessage.style.textAlign = "center";
-    ErrorMessage.style.animation = "ErrorMessageAnimation 0s forwards";
-
-    const form = document.querySelector(".form-modal");
-    if(!form.querySelector(".divMessage")) {
-      form.insertBefore(ErrorMessage, form.firstChild);
-    }
-  }
-
   function resetInputs() {
     const registerInputs = document.querySelectorAll(".registerInput");
     const loginInputs = document.querySelectorAll(".loginInput");
@@ -144,21 +108,6 @@ export function Login() {
           div.style.borderBottom = `1px solid black`;
         }
       }
-    }
-  }
-
-  function removeErrorMessage(input) {
-    const error = input.querySelector(".divMessage");
-    const form = document.querySelector(".form-modal");
-    const alert = form.querySelector(".divMessage");
-
-    input.style.borderBottom = `1px solid black`;
-    if(error) {
-      error.remove();
-    }
-
-    if(alert) {
-      alert.remove();
     }
   }
 

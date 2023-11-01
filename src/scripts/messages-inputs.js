@@ -8,6 +8,8 @@ function createErrorMessage(input, error) {
   ErrorMessage.style.animation = "ErrorMessageAnimation 0.1s forwards";
   ErrorMessage.style.color = "red";
   ErrorMessage.style.fontSize = "1.6rem";
+  ErrorMessage.style.position = "absolute";
+  ErrorMessage.style.bottom = "-1rem";
 
   if(input) {
     input.style.borderBottom = `1px solid red`;
@@ -35,4 +37,19 @@ function createAlert(error) {
   }
 }
 
-export { createErrorMessage, createAlert };
+function removeErrorMessage(input) {
+  const error = document.querySelector(".divMessage");
+  const alert = document.querySelector(".form-modal .divMessage");
+
+  input.style.borderBottom = `1px solid black`;
+  
+  if(error) {
+    error.remove();
+  }
+
+  if(alert) {
+    alert.remove();
+  }
+}
+
+export { createErrorMessage, createAlert, removeErrorMessage };

@@ -23,7 +23,7 @@ export const Main = styled.main`
     background: ${({ theme }) => theme.COLORS.PURPLE};
     color: ${({ theme }) => theme.COLORS.WHITE};
     padding: 1rem;
-    margin-top: 3rem;
+    margin-top: 10rem;
   }
 
   @media(min-width: 1000px) {

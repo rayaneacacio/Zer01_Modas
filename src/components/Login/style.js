@@ -37,6 +37,10 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 3rem;
     margin: 0 5rem;
+
+    > div {
+      position: relative;
+    }
   }
 
   button {

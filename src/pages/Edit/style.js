@@ -28,7 +28,7 @@ export const Main = styled.main`
     background: ${({ theme }) => theme.COLORS.PURPLE};
     color: ${({ theme }) => theme.COLORS.WHITE};
     padding: 1rem;
-    margin-top: 5rem;
+    margin-top: 10rem;
   }
 
   .buttons > button:last-of-type {

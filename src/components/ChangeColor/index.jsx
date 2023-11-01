@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { createErrorMessage } from "../../scripts/createMessages";
+import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
 
 import { BiUpload } from "react-icons/bi";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
@@ -68,7 +68,7 @@ export function ChangeColor({ ...rest }) {
   useEffect(() => {
     const divMessage = document.querySelector(".divMessage");
     if(divMessage) {
-      
+      removeErrorMessage(document.querySelector(".new"));
     }
 
   }, [ hexColor, nameColor, images, sizes, section ]);
