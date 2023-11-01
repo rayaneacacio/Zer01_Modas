@@ -86,7 +86,7 @@ export function Nav() {
         button.style.fontSize = "1.6rem";
       }
     }
-    
+
   }, [ mainSlide, mainButton ]);
 
   useEffect(() => {

@@ -10,15 +10,12 @@ export const Container = styled.div`
     background-size: 200%;
     background-position-x: center;
     background-position-y: initial;
-
     width: 23rem;
     height: 26rem;
-
     position: relative;
 
     h2 {
       font-weight: 700;
-
       position: absolute;
       top: 5.5rem;
       font-size: 1rem;
@@ -26,7 +23,6 @@ export const Container = styled.div`
 
     p {
       letter-spacing: 0.4rem;
-
       position: absolute;
       top: 7rem;
       font-size: 0.6rem;
@@ -36,9 +32,7 @@ export const Container = styled.div`
       background: ${({ theme }) => theme.COLORS.BLACK};
       color: ${({ theme }) => theme.COLORS.WHITE};
       font-size: 1.1rem;
-
       padding: 0.5rem 1.2rem;
-
       position: absolute;
       top: 4rem;
       right: 0;
@@ -101,7 +95,7 @@ export const Container = styled.div`
       h2 {
         font-size: 1.8rem;
       }
-
+      
       span {
         font-size: 1.4rem;
       }

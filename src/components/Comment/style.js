@@ -12,7 +12,7 @@ export const Container = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
+  
   h2 {
     font-size: 1.2rem;
     font-weight: 400;

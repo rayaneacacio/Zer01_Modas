@@ -13,7 +13,7 @@ export const Container = styled.div`
     position: absolute;
     top: 6rem;
   }
-
+  
   .body-modal > div, .body-modal > button {
     opacity: 0;
     transform: translateX(-1rem);

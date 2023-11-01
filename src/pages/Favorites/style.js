@@ -8,11 +8,10 @@ export const Container = styled.div`
   > h3 {
     color: ${({ theme }) => theme.COLORS.GRAY_700};
     font-size: 1.5rem; 
-
     width: 100%;
     
     padding: 1rem;
-    margin-top: 13rem;
+    margin-top: 11rem;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   }
 
@@ -32,12 +31,9 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  height: calc(100% - 16rem);
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   overflow-y: auto;
 
   > :first-child {
@@ -53,7 +49,6 @@ export const Main = styled.main`
     gap: 2rem;
     column-gap: 0;
     padding: 1rem;
-
     opacity: 0;
     transform: translateX(-1rem);
     animation: toRight 0.5s forwards;
@@ -67,7 +62,7 @@ export const Main = styled.main`
     > :first-child {
       display: flex;
     }
-
+    
     .DivCatalog {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       row-gap: 2rem;

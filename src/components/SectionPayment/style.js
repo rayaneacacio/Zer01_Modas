@@ -10,13 +10,10 @@ export const Container = styled.div`
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: 1px;
-
     width: 100%;
-
     padding-bottom: 1rem;
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
     margin-bottom: 1rem;
-
     display: flex;
     justify-content: space-between;
   }
@@ -25,7 +22,6 @@ export const Container = styled.div`
     display: none;
     transform: translateY(-1rem);
     animation: toTop 0.2s forwards;
-
     flex-direction: column;
     gap: 2rem;
 
@@ -43,7 +39,7 @@ export const Container = styled.div`
     .make-payment {
       padding-top: 0.5rem;
       gap: 3rem;
-
+      
        > button {
         font-size: 1.6rem;
         height: 3.7rem;

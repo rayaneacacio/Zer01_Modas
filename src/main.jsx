@@ -12,13 +12,20 @@ import "swiper/css/scrollbar";
 
 import { Routes } from './routes';
 
+import { AuthProvider } from "./hooks/auth";
+import { ProductsProvider } from "./hooks/products";
+
 register();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={ theme }>
       <GlobalStyles />
-      <Routes />
+      <AuthProvider>
+        <ProductsProvider>
+          <Routes />
+        </ProductsProvider>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )

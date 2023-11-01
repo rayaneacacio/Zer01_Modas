@@ -14,12 +14,9 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.COLORS.WHITE};
     color: ${({ theme }) => theme.COLORS.BLACK};
     font-size: 1.3rem;
-
     overflow: hidden;
-
     scroll-behavior: smooth;
   }
 
@@ -40,9 +37,7 @@ export default createGlobalStyle`
   input, textarea, select {
     font-family: ${({ theme }) => theme.FONTS.DEFAULT};
     font-size: 1.5rem;
-
     width: 90%;
-
     outline: 0;
     resize: none;
 
@@ -67,7 +62,7 @@ export default createGlobalStyle`
   }
 
   main {
-    height: calc(100% - 12rem);
+    height: calc(100% - 11rem);
     overflow-x: hidden;
     overflow-y: auto;
     opacity: 0;
@@ -105,7 +100,7 @@ export default createGlobalStyle`
       transform: translateY(0.2rem);
     }
   }
-
+  
   @keyframes rotate180 {
     to {
       transform: rotateX(180deg);
@@ -122,6 +117,62 @@ export default createGlobalStyle`
   @keyframes toLeft {
     to {
       transform: translateX(-1rem);
+    }
+  }
+
+  @keyframes ErrorMessageAnimation {
+    to {
+      opacity: 1;
+      transform: translateY(1.5rem);
+    }
+  }
+
+  .modal-disconnect {
+    background: rgba(8, 8, 8, 0.64);
+    position: fixed;
+    top: 0;
+    z-index: 2;
+
+    > div {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    > div > div {
+      background: ${({ theme }) => theme.COLORS.WHITE};;
+      color: ${({ theme }) => theme.COLORS.PURPLE};
+      width: 30rem;
+      height: 18rem;
+      font-size: 2rem;
+      text-align: center;
+      padding-top: 5rem;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      opacity: 0;
+      transform: translateY(1rem);
+      animation: toTop 0.3s forwards;
+    }
+
+    button {
+      background: ${({ theme }) => theme.COLORS.GRAY_700};
+      font-size: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 3px;
+      margin-top: 3rem;
+    }
+      
+    button:last-of-type {
+      background: ${({ theme }) => theme.COLORS.PURPLE};
+      margin-left: 2rem;
+    }
+  }
+
+  @media(min-width: 1000px) {
+    .modal-disconnect > div > div {
+        width: 40rem;
     }
   }
 `;

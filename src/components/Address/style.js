@@ -40,7 +40,7 @@ export const Container = styled.div`
 
   @media(min-width: 1000px) {
     font-size: 1.5rem;
-
+    
     > button:first-of-type > svg {
       width: 1.8rem;
       height: 1.8rem;

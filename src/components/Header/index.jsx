@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { useAuth } from "../../hooks/auth";
+
+import { HiOutlineViewList } from "react-icons/hi";
+import { TfiClose } from "react-icons/tfi";
 import { FaChevronDown } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { RiShoppingBag2Line } from "react-icons/ri";
@@ -10,30 +14,27 @@ import iconSearch from "../../assets/search-icon.svg";
 
 import { InputBox } from "../InputBox";
 import { NavMenu } from "../Nav-Menu";
+import { Button } from "../Button";
+import { Login } from "../Login";
 
 import { Container } from "./style";
 
 export function Header() {
+  const { userData, isAdmin } = useAuth();
   const [ menuDesktop, setMenuDesktop ] = useState("close");
-
-  const isAdmin = true;
 
   const navigate = useNavigate();
   const route = useLocation();
 
-  function navigateMenu() {
-    if(window.innerWidth < 1000) {
-      if(route.pathname != "/menu") {
-        navigate("/menu");
-        return;
-      }
-
-      navigate(-1);
-    }
-
+  function handleOpenMenuMOBILE() {
+    document.querySelector(".menuMobile").style.display = "block";
   }
 
-  function handleMenuDesktopDisplayBlock() {
+  function handleCloseMenuMOBILE() {
+    document.querySelector(".menuMobile").style.display = "none";
+  }
+
+  function handleOpenMenuDESKTOP() {
     if(window.innerWidth >= 1000) {
       setMenuDesktop("open");
     }
@@ -41,7 +42,7 @@ export function Header() {
     document.querySelector(".firstButton svg").style.animation = "rotate180 0.3s forwards";
   }
 
-  function handleMenuDesktopDisplayNone() {
+  function handleCloseMenuDESKTOP() {
     if(window.innerWidth >= 1000) {
       setMenuDesktop("close");
     }
@@ -53,31 +54,32 @@ export function Header() {
     if(route.pathname != "/shopping-cart") {
       navigate("/shopping-cart");
     }
-    
+
   }
 
   function navigateFavorites() {
     navigate("/favorites");
   }
 
-  function navigateNewOutfit() {
-    navigate("/new-outfit");
+  function handleCloseModalLogin() {
+    document.querySelector(".modal-login").close();
+    sessionStorage.removeItem("@zer01modas:modal");
+    document.querySelector(".boxButtons .nav-menu").style.display = "none";
   }
 
   useEffect(() => {
-    const menu = document.querySelector(".boxButtons aside");
+    const menu = document.querySelector(".boxButtons .nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
-    
+
     if(menu) {
       if(menuDesktop == "open") {
         menu.style.display = "flex";
-
-      } else if(menuDesktop == "close" && !modal) {
+      } else if(!modal) {
         menu.style.display = "none";
 
       }
     }
-    
+
   }, [ menuDesktop ]);
 
   return (
@@ -93,18 +95,32 @@ export function Header() {
       </div>
 
       <div>
+        <Button icon={ <HiOutlineViewList /> } className="buttonMenu" onClick={ handleOpenMenuMOBILE } />
+        <div className="menuMobile">
+          <div>
+            <InputBox className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
+          </div>
+          <NavMenu />
+          <Button onClick={ handleCloseMenuMOBILE } />
+        </div>
+
         <img src={ Logo } alt="Logomarca" />
 
         <div className="boxButtons">
-          <button className="firstButton" onClick={ navigateMenu } onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone } >
-            <p> Olá, <strong> nane </strong> </p>
+          <button className="firstButton" onMouseOver={ handleOpenMenuDESKTOP } onMouseOut={ handleCloseMenuDESKTOP } >
+            {
+              userData ?
+              <p> Oie, <strong> { userData && userData.user.name } </strong> </p>
+              :
+              <p> Oie! </p>
+            }
             <FaChevronDown size={ 20 } />
           </button>
-          <NavMenu onMouseOver={ handleMenuDesktopDisplayBlock } onMouseOut={ handleMenuDesktopDisplayNone }  />
+          <NavMenu onMouseOver={ handleOpenMenuDESKTOP } onMouseOut={ handleCloseMenuDESKTOP }  />
 
           {
             !isAdmin &&
-          <button>
+          <button className="buttonFavorites">
             <FiHeart size={ 25 } onClick={ navigateFavorites } />
             <span> 0 </span>
           </button>
@@ -119,6 +135,15 @@ export function Header() {
         </div>
 
         <InputBox className="input" placeholder="O que vai querer hoje?" icon={ iconSearch } />
+
+        <dialog className="modal-login">
+        <div>
+          <div>
+            <Button className="buttonClose" icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModalLogin } />
+            <Login />
+          </div>
+        </div>
+      </dialog>
       </div>
 
     </Container>

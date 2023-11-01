@@ -6,7 +6,6 @@ export const Container = styled.button`
   font-size: 1.6rem;
   padding: 0.5rem 1rem;
   border-radius: 2px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +15,7 @@ export const Container = styled.button`
     width: 20rem;
     height: 20rem;
   }
-
+  
   @media(min-width: 1000px) {
     font-size: 1.6rem !important;
   }

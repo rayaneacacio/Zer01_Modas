@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  margin-top: 12rem;
+  margin-top: 11rem;
   display: flex;
   flex-direction: column;
 
@@ -18,7 +18,7 @@ export const Main = styled.main`
   > div, .buttons {
     margin: 0 5rem;
   }
-
+  
   .buttons {
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@ export const Main = styled.main`
       flex-direction: row;
       justify-content: flex-end;
       gap: 2rem;
-
+      
       > button, > button:last-of-type {
         margin-top: 4rem;
         width: 20%;
@@ -61,7 +61,7 @@ export const Main = styled.main`
       }
     }
   }
-
+  
   @media(min-width: 1400px) {
     > h3 {
       margin-left: 26rem;

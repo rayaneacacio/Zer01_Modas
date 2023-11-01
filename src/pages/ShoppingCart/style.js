@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-
   position: relative;
-
   overflow: hidden;
 
   > nav {
@@ -19,7 +17,7 @@ export const Container = styled.div`
     width: 100%;
     padding: 1rem;
     position: absolute;
-    top: 9rem;
+    top: 11rem;
   }
 
   @media(min-width: 1000px) {
@@ -57,10 +55,8 @@ export const Main = styled.main`
       background: ${({ theme }) => theme.COLORS.BLACK};
       color: ${({ theme }) => theme.COLORS.WHITE};
       font-size: 1.2rem;
-
       width: 100%;
       padding: 0.5rem;
-
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -103,7 +99,7 @@ export const Main = styled.main`
       flex-direction: column;
       gap: 1.5rem;
     }
-
+    
     span {
       display: flex;
       justify-content: space-between;
@@ -146,7 +142,6 @@ export const Main = styled.main`
       grid-area: info;
       height: 7rem;
       font-size: 1.4rem;
-
       flex-direction: row;
       align-items: flex-start;
       padding-top: 1rem;
@@ -156,7 +151,6 @@ export const Main = styled.main`
         border-right: 1px solid ${({ theme }) => theme.COLORS.WHITE};
         width: 50%;
         height: 76%;
-
         display: grid;
         grid-template-areas:
           "svg title"
@@ -200,7 +194,6 @@ export const Main = styled.main`
       margin-right: 20rem;
       justify-content: space-between;
       gap: 2rem;
-
       padding-top: 3rem;
 
       > div {
@@ -223,11 +216,10 @@ export const Main = styled.main`
         margin: 0;
       }
     }
-
+    
     > footer {
       grid-area: footer;
       margin-top: 7rem;
     }
-
   }
 `;

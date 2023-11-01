@@ -18,7 +18,7 @@ export function CartItem({ image, title, color, tamanho, preço }) {
       setIsSelected(false);
       return;
     }
-    
+
     setIsSelected(true);
   }
 
@@ -58,7 +58,7 @@ export function CartItem({ image, title, color, tamanho, preço }) {
         </div>
         <Button className="remove" icon={ <VscRemove /> } />
       </div>
-     
+
     </Container>
   )
 }

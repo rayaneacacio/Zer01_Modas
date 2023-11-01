@@ -3,15 +3,12 @@ import styled from "styled-components";
 export const Container = styled.footer`
   background: ${({ theme }) => theme.COLORS.BLACK_22};
   color: ${({ theme }) => theme.COLORS.GRAY_500};
-
   width: 100%;
-
   margin-top: 5rem;
-
+  
   > div {
     background: ${({ theme }) => theme.COLORS.BLACK};
     font-size: 0.9rem;
-
     height: 6rem;
     display: flex;
     align-items: flex-end;
@@ -21,7 +18,6 @@ export const Container = styled.footer`
     svg {
       width: 2rem;
       height: 2rem;
-
       margin: 0.5rem 1rem 0 0;
     }
 

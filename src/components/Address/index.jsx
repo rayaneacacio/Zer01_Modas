@@ -27,16 +27,21 @@ export function Address({ addresse, cep, street, number, complement, district, s
 
       <div onClick={ handleChosenAddress }>
         <p>{ street }, { number }</p>
+        
         <p>{ district }</p>
+
         {
           landmark &&
           <p>{ landmark }</p>
         }
+
         {
           complement &&
           <p>{ complement }</p>
         }
+
         <p>{ city } - { state }</p>
+
         <p>{ cep }</p>
       </div>
 

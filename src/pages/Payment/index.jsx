@@ -94,8 +94,8 @@ export function Payment() {
             <Input title="Número" placeholder="Digite aqui :)" />
             <Input title="Complemento" placeholder="Digite aqui :)" />
             <Input title="Bairro" placeholder="Digite aqui :)" />
-            <Input title="Estado" placeholder="Digite aqui :)" />
             <Input title="Cidade" placeholder="Digite aqui :)" />
+            <Input title="Estado" placeholder="Digite aqui :)" />
             <Input title="Ponto de refêrencia" placeholder="Digite aqui :)" />
 
             <Button title="SALVAR" />

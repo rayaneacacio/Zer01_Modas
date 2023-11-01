@@ -1,32 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  > header > :nth-child(2) {
-    padding-top: 0.5rem;
-
-    img {
-      display: none;
-    }
-
-    .input {
-      display: none;
-    }
-
-    .boxButtons {
-      justify-content: flex-end;
-      margin-top: 0.1rem;
-    }
+  > header > div > img  {
+    display: none;
   }
 
   > button {
     background: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
     position: absolute;
-    top: 3rem;
+    top: 3.2rem;
     z-index: 1;
+    display: none;
 
     svg {
       height: 3.5rem;
+      width: 2.5rem;
     }
   }
 
@@ -47,12 +36,14 @@ export const Container = styled.header`
       color: ${({ theme }) => theme.COLORS.BLACK};
       top: 17rem;
       left: 3rem;
+      display: block;
+      
       svg {
         width: 2.5rem;
       }
     }
   }
-
+  
   @media(min-width: 1400px) {
     > button {
       left: 20rem;

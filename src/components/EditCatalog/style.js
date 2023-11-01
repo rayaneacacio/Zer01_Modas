@@ -17,12 +17,12 @@ export const Container = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BLACK};
   }
 
-  #sizeLabel {
-    margin-top: 2rem;
+  .label_select {
+    padding-bottom: 2rem;
   }
 
   select {
-    width: 20%;
+    width: 35%;
     margin-left: 1rem;
     cursor: pointer;
   }
@@ -51,24 +51,32 @@ export const Container = styled.div`
   @media(min-width: 1000px) {
     display: grid;
     grid-template-areas: 
-      "name price size"
-      "colors details modelDetails"
-      "description description description";
+      "name name name"
+      "description description description"
+      "category price promotion"
+      "colors details modelDetails";
     grid-template-columns: 50% 22% 22%;
     align-items: center;
+    row-gap: 2rem;
     
-    > input:first-of-type {
+    > div:first-of-type {
       grid-area: name;
     }
 
-    > input:last-of-type {
+    #inputPrice {
       grid-area: price;
     }
 
-    #sizeLabel {
-      grid-area: size;
-      padding-bottom: 1.5rem;
+    #inputPromotion {
+      grid-area: promotion;
+    }
+
+    .label_select {
       margin-top: 3.3rem;
+    }
+
+    #categoryLabel {
+      grid-area: category;
     }
 
     .colors {
@@ -83,9 +91,10 @@ export const Container = styled.div`
       grid-area: modelDetails;
     }
 
-    .colors, .details, .modelDetails {
-      height: 16rem;
+    .tags {
+      height: 20rem;
       overflow-y: auto;
+      align-self: self-start;
     }
 
     .details > div, .modelDetails > div {
@@ -100,7 +109,7 @@ export const Container = styled.div`
         font-size: 1.7rem;
       }
     }
-
+    
     > label, > div > p {
       font-size: 1.7rem;
     }

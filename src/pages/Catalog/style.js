@@ -5,18 +5,17 @@ export const Container = styled.div`
   overflow: hidden;
 
   > nav {
-    margin-top: 12rem;
+    margin-top: 11rem;
   }
 `;
 
 export const Main = styled.main`
-  height: calc(100% - 17rem);
   overflow-y: auto;
 
   > :first-child {
     display: none;
   }
-
+  
   .DivCatalog {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -25,7 +24,6 @@ export const Main = styled.main`
     gap: 2rem;
     column-gap: 0;
     padding: 1rem;
-
     opacity: 0;
     transform: translateX(-1rem);
     animation: toRight 0.5s forwards;
@@ -39,7 +37,7 @@ export const Main = styled.main`
     > :first-child {
       display: flex;
     }
-
+    
     .DivCatalog {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       row-gap: 2rem;

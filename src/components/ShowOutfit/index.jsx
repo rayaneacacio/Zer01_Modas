@@ -4,7 +4,7 @@ import { Container } from "./style";
 
 export function ShowOutfit({ image, title, price, promotion }) {
   const navigate = useNavigate();
-  
+
   function navigateOutfit() {
     navigate("/outfit");
   }
@@ -20,7 +20,7 @@ export function ShowOutfit({ image, title, price, promotion }) {
         }
         <h2 className="price"> R$ { price } </h2>
       </div>
-      
+
       <h2> { title } </h2>
     </Container>
   )

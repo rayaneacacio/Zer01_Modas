@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 import { LiaAngleLeftSolid } from "react-icons/lia";
-import { FiSearch } from "react-icons/fi";
 
 import { Header } from "../Header";
 import { Button } from "../Button";

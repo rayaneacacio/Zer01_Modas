@@ -53,7 +53,7 @@ export const Container = styled.button`
     .price, .promotion {
       height: 2rem;
     }
-
+    
     h2 {
       height: 3rem;
       white-space: wrap;

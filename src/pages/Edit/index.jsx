@@ -17,7 +17,7 @@ export function Edit() {
           <Button title="Salvar" />
           <Button title="Excluir" />
         </div>
-        
+
         <Footer />
       </Main>
     </Container>

@@ -40,7 +40,7 @@ export function ShoppingCart() {
             <p> Promoção Compre e Ganhe </p>
           </div>
         </div>
-        
+
         <div className="boxCards">
           <div>
             <Button icon={ <MdRadioButtonUnchecked /> } title="Selecionar tudo" />

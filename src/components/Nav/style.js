@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.nav`
+  background: ${({ theme }) => theme.COLORS.WHITE};
   width: 100%;
   height: 5rem;
-
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
-
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -36,7 +35,7 @@ export const Container = styled.nav`
     .swiper-slide {
       text-align: center;
     }
-
+    
     button {
       font-size: 1.5rem !important;
     }

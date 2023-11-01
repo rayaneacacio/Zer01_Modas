@@ -59,9 +59,8 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  height: calc(100% - 16rem);
-  padding-bottom: 4rem;
-  margin-top: 12rem;
+  padding-bottom: 15rem;
+  margin-top: 11rem;
 
   > h2 {
     display: none;
@@ -104,7 +103,6 @@ export const Main = styled.main`
       font-size: 1.2rem;
       display: flex;
       gap: 1rem;
-
       position: relative;
 
       > :first-child {
@@ -115,7 +113,7 @@ export const Main = styled.main`
       > :nth-child(2) {
         font-weight: 400;
       }
-
+      
       .boxStars {
         position: absolute;
         right: 1rem;
@@ -178,7 +176,6 @@ export const Main = styled.main`
     border-top: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
     padding: 1rem;
-
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -200,7 +197,6 @@ export const Main = styled.main`
     > button {
       font-size: 1.2rem;
       align-self: center;
-
       svg {
         width: 1.5rem;
         height: 1.5rem
@@ -215,6 +211,7 @@ export const Main = styled.main`
       font-size: 0.9rem;
       padding: 0 1rem;
       margin-bottom: 2rem;
+
       h1 {
         font-weight: 500;
       }
@@ -265,7 +262,7 @@ export const Main = styled.main`
       "recommended recommended recommended"
       "footer footer footer";
     grid-template-columns: 1fr 50rem 1.5fr;
-
+    
     > h2 {
       display: block;
       font-size: 1rem;
@@ -292,7 +289,6 @@ export const Main = styled.main`
 
     .swiper-pagination {
       height: 23rem;
-
       > span {
         width: 5rem;
       }
@@ -305,7 +301,6 @@ export const Main = styled.main`
       display: flex;
       flex-direction: column;
       gap: 3rem;
-
       position: relative;
 
       > div {
@@ -321,7 +316,7 @@ export const Main = styled.main`
         position: absolute;
         top: -3rem;
       }
-
+      
       > button {
         display: flex;
         height: 4rem;
@@ -354,7 +349,7 @@ export const Main = styled.main`
       h2 {
         font-size: 1.6rem;
       }
-
+      
       > :nth-child(3) {
         margin: 1.8rem 0;
       }
@@ -395,7 +390,7 @@ export const Main = styled.main`
         height: 16rem;
       }
     }
-
+    
     > footer {
       display: grid;
       grid-area: footer;

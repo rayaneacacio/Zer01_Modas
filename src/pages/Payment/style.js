@@ -16,13 +16,10 @@ export const Container = styled.div`
     background: rgba(8, 8, 8, 0.64);
     width: 100vw;
     height: 100vh;
-
     position: fixed;
     top: 0;
-
     overflow-x: hidden;
     overflow-y: auto;
-
     z-index: 2;
 
     .body-modal-address > :first-child, form {
@@ -60,7 +57,6 @@ export const Container = styled.div`
       background: white;
       padding: 3rem;
       padding-bottom: 10rem;
-
       display: flex;
       flex-direction: column;
       gap: 2rem;
@@ -83,7 +79,6 @@ export const Container = styled.div`
     .body-modal-address {
       width: 100%;
       height: 100%;
-
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -104,9 +99,7 @@ export const Container = styled.div`
       width: 70rem;
       height: 50rem;
       padding: 4.5rem 8rem 5rem 8rem;
-
       overflow: auto;
-
       display: grid;
       grid-template-areas:
         "addresse addresse addresse"
@@ -137,8 +130,8 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  margin-top: 12rem;
-
+  margin-top: 11rem;
+  
   > div {
     margin: 0 3rem 2rem 3rem;
 
@@ -207,7 +200,6 @@ export const Main = styled.main`
       "footer footer";
     grid-template-columns: 1fr 1fr;
     column-gap: 10rem;
-
     font-size: 1.5rem;
 
     .payment-methods {
@@ -250,7 +242,7 @@ export const Main = styled.main`
       grid-area: footer;
     }
   }
-
+  
   @media(min-width: 1400px) {
     .items > div > p:first-of-type {
       width: 30rem;

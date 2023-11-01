@@ -50,7 +50,7 @@ export function Outfit() {
       index.style.border = "1px solid black";
       index.style.fontWeight = "normal";
     });
- 
+
     button.style.border = "2px solid black";
     button.style.fontWeight = "bold";
   }
@@ -144,7 +144,7 @@ export function Outfit() {
             <p> <strong> Tecido: </strong> Meia Malha </p>
             <p> <strong> Composição: </strong> 100% Algodão </p>
           </div>
-          
+
           <div>
             <p> <strong> Medidas do modelo: </strong> </p>
             <p> <strong> Altura: </strong> 1,87 </p>

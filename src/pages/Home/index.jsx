@@ -1,4 +1,4 @@
-;import imgModaFeminina from "../../assets/moda-feminina-secao-promocional.png";
+import imgModaFeminina from "../../assets/moda-feminina-secao-promocional.png";
 import imgModaMasculina from "../../assets/moda-masculina-secao-promocional.png";
 import imgModaInfantil from "../../assets/moda-infantil-secao-promocional.png";
 import gifModaÍntima from "../../assets/gif-moda-intima-secao-novidades.gif";
@@ -14,7 +14,7 @@ import { Banner } from "../../components/Banner";
 import { Section } from "../../components/Section";
 import { PromotionalCard } from "../../components/Promotion-card";
 import { NoveltyCard } from "../../components/Novelty-card";
-import { ExtraCard } from "../../components/Extra-card";
+import { ExtraCard } from "../../components/ExtraCard";
 import { InputBox } from "../../components/InputBox";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";

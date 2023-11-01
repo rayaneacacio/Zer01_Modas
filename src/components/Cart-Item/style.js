@@ -10,7 +10,6 @@ export const Container = styled.div`
     display: flex;
     align-items: flex-end;
     gap: 1rem;
-
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
@@ -42,9 +41,7 @@ export const Container = styled.div`
   .slide2 {
     width: 50rem;
     height: 10rem;
-
     padding-left: 7rem;
-
     display: flex;
     align-items: flex-end;
   }
@@ -53,7 +50,6 @@ export const Container = styled.div`
     background: ${({ theme }) => theme.COLORS.RED};
     width: 100%;
     height: 10rem;
-
     svg {
       color: ${({ theme }) => theme.COLORS.WHITE};
       width: 3rem;
@@ -101,11 +97,10 @@ export const Container = styled.div`
         background: none;
         width: 0;
         height: 0;
-
         position: absolute;
         top: 0;
         right: 0;
-
+        
         > svg {
           color: ${({ theme }) => theme.COLORS.BLACK};
         }

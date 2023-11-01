@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import banner1 from "../../assets/banner-moda-feminina.png";
 import banner2 from "../../assets/banner-moda-masculina.png";
-import banner3 from "../../assets/banner-moda infantil.png";
+import banner3 from "../../assets/banner-moda-infantil.png";
 
 import truckSVG from "../../assets/truck.svg";
 import ticketSVG from "../../assets/ticket.svg";

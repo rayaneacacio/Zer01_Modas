@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
   .carrossel-imgs {
     height: 12rem;
-
     img {
       width: 100%;
       height: 150%;
       padding: 0 3rem;
-
       object-fit: cover;
     }
   }
@@ -54,7 +51,7 @@ export const Container = styled.div`
       padding-left: 4.5rem;
       margin: 2rem 0 5rem;
     }
-
+    
     button > h2 {
       font-size: 1.8rem;
       width: 12rem;
