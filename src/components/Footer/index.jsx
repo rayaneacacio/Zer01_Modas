@@ -24,14 +24,14 @@ export function Footer() {
 
         <span>
           <p> Fale conosco </p>
-          <p> (73) 99932-3341 </p>
-          <p> (73) 99817-2200 </p>
+          <p> (85) 99999-9999 </p>
+          <p> (85) 99999-9999 </p>
         </span>
 
       </div>
 
       <p>
-        Copyright Zer01 Modas S.A. © - Hilda do Prado Guerra, 373 - Redencao  - Teixeira de Freitas/BA CEP: 45994-132 CNPJ: 37.924.162/0001-26 - Todos os direitos reservados
+        Copyright Zer01 Modas S.A. © - adfufhuwghioqead, 2984 - Centro - Pentecoste/CE CEP: 62640-000 CNPJ: 37.924.162/0001-26 - Todos os direitos reservados
       </p>
 
     </Container>
