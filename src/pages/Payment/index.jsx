@@ -45,8 +45,8 @@ export function Payment() {
 
           <div className="address">
             <h3>ENDEREÇO DE ENTREGA</h3>
-            <Address addresse="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
-            <Address addresse="nane" cep="62640000" street="rua Francisco Moreira" number="284" district="Centro" state="CE" city="Pentecoste"  />
+            <Address addresse="nane" cep="62640000" street="rua fwrgfyw aehfuaf" number="000" district="Centro" state="CE" city="Pentecoste"  />
+            <Address addresse="nane" cep="62640000" street="rua arefuiifg" number="000" district="Centro" state="CE" city="Pentecoste"  />
             <Button title="CADASTRAR NOVO ENDEREÇO" onClick={ handleNewAddress } />
           </div>
 

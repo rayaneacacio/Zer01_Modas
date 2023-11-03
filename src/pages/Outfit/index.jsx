@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth } from "../../hooks/auth";
+
 import OutfitImg from "../../assets/pedido.jpg";
 import OutfitCostasImg from "../../assets/outfit-costas.jpg";
 import OutfitZoomImg from "../../assets/outfit-zoom.jpg";
@@ -23,9 +25,8 @@ import { Footer } from "../../components/Footer";
 import { Container, Main } from "./style";
 
 export function Outfit() {
+  const { isAdmin } = useAuth();
   const [ isFavorite, setIsFavorite ] = useState(false);
-
-  const isAdmin = true;
 
   const slides = [
     OutfitImg,
