@@ -24,6 +24,7 @@ function createErrorMessage(input, error) {
 function createAlert(error) {
   //cria mensagens referentes ao login/cadastro;
   const ErrorMessage = createErrorMessage();
+  ErrorMessage.classList.add("divAlert");
   ErrorMessage.innerHTML = error ? error : "Nao foi posível cadastrar";
   ErrorMessage.style.position = "absolute";
   ErrorMessage.style.top = window.innerWidth >= 1000 ? "15%" : "1%";
@@ -38,18 +39,22 @@ function createAlert(error) {
 }
 
 function removeErrorMessage(input) {
-  const error = document.querySelector(".divMessage");
-  const alert = document.querySelector(".form-modal .divMessage");
+  const error = input.querySelector(".divMessage");
 
   input.style.borderBottom = `1px solid black`;
-  
+
   if(error) {
     error.remove();
   }
+  
+}
+
+function removeAlertMessage() {
+  const alert = document.querySelector(".form-modal .divAlert");
 
   if(alert) {
     alert.remove();
   }
 }
 
-export { createErrorMessage, createAlert, removeErrorMessage };
+export { createErrorMessage, createAlert, removeErrorMessage, removeAlertMessage };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
-import { createErrorMessage, createAlert, removeErrorMessage } from "../../scripts/messages-inputs.js";
+import { createErrorMessage, createAlert, removeErrorMessage, removeAlertMessage } from "../../scripts/messages-inputs.js";
 
 import { Input } from "../Input";
 import { Button } from "../../components/Button";
@@ -183,6 +183,10 @@ export function Login() {
     }
 
   }, [ account ]);
+
+  useEffect(() => {
+    removeAlertMessage();
+  }, [ name, email, password ]);
 
   return (
     <Container>

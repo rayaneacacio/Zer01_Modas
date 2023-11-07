@@ -186,7 +186,6 @@ export const Container = styled.header`
     }
     
     .modal-login {
-      background: rgba(8, 8, 8, 0.64);
       position: fixed;
       top: 0;
       left: 0;

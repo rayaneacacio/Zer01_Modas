@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { createConfirmationMessage } from "../../scripts/notifications";
 
-import { MdOutlineArrowBackIos } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
 import { RiHomeLine} from "react-icons/ri";
 import { IoMdContact } from "react-icons/io";
@@ -62,31 +62,13 @@ export function NavMenu({ ...rest }) {
   }
 
   function handleOpenModalDisconnect() {
-    const modalDisconnect = document.createElement("dialog");
-    const bodyModal = document.createElement("div");
-    const childModal = document.createElement("div");
-
-    modalDisconnect.classList.add("modal-disconnect");
-
-    childModal.innerHTML = `
-      <h3>Desconectar? :(</h3>
-      <button>CONFIRMAR</button>
-      <button>CANCELAR</button>
-    `;
-
-    bodyModal.appendChild(childModal);
-    modalDisconnect.appendChild(bodyModal);
-    document.querySelector("body").appendChild(modalDisconnect);
-
-    document.querySelector(".modal-disconnect button:first-of-type").addEventListener("click", handleSignOut);
-    document.querySelector(".modal-disconnect button:last-of-type").addEventListener("click", handleCloseModalDisconnect);
-
-    document.querySelector(".modal-disconnect").show();
+    const buttonConfirm = createConfirmationMessage("Desconectar? :(");
+    buttonConfirm.addEventListener("click", handleSignOut);
     sessionStorage.setItem("@zer01modas:modal", "open");
   }
 
   function handleCloseModalDisconnect() {
-    document.querySelector(".modal-disconnect").close();
+    document.querySelector(".confirmationModal").remove();
     sessionStorage.removeItem("@zer01modas:modal");
     document.querySelector(".boxButtons .nav-menu").style.display = "none";
   }

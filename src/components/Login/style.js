@@ -35,7 +35,7 @@ export const Container = styled.div`
   .boxInput {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 5rem;
     margin: 0 5rem;
 
     > div {
