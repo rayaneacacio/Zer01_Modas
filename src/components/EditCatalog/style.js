@@ -52,16 +52,39 @@ export const Container = styled.div`
     }
   }
 
+  > button, .buttons > button {
+    background: ${({ theme }) => theme.COLORS.PURPLE};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    padding: 1rem;
+    justify-self: end;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 2rem;
+
+    > button {
+      width: 50%;
+    }
+      
+    > button:last-of-type {
+      background: ${({ theme }) => theme.COLORS.GRAY_700};
+    }
+  }
+
   @media(min-width: 1000px) {
     display: grid;
     grid-template-areas: 
       "name name name"
       "description description description"
       "category price promotion"
-      "colors details modelDetails";
+      "colors details modelDetails"
+      "none button button";
     grid-template-columns: 50% 22% 22%;
     align-items: center;
-    row-gap: 2rem;
+    row-gap: 4rem;
     
     > div:first-of-type {
       grid-area: name;
@@ -116,6 +139,14 @@ export const Container = styled.div`
     
     > label, > div > p {
       font-size: 1.7rem;
+    }
+
+    > button, .buttons {
+      grid-area: button;
+    }
+
+    > button {
+      width: 50%;
     }
   }
 `;

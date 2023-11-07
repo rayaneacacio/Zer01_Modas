@@ -14,6 +14,7 @@ import { Routes } from './routes';
 
 import { AuthProvider } from "./hooks/auth";
 import { ProductsProvider } from "./hooks/products";
+import { ProductAttributesProvider } from './hooks/productAttributes';
 
 register();
 
@@ -23,7 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <GlobalStyles />
       <AuthProvider>
         <ProductsProvider>
-          <Routes />
+          <ProductAttributesProvider>
+            <Routes />
+          </ProductAttributesProvider>
         </ProductsProvider>
       </AuthProvider>
     </ThemeProvider>

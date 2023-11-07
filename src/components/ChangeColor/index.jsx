@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
+import { useProductAttributes } from "../../hooks/productAttributes";
 
 import { BiUpload } from "react-icons/bi";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
@@ -10,11 +11,13 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function ChangeColor({ ...rest }) {
+  const { saveStorage } = useProductAttributes();
+
   const [ hexColor, setHexColor ] = useState("");
   const [ nameColor, setNameColor ] = useState("");
   const [ images, setImages ] = useState([]);
   const [ sizes, setSizes ] = useState([]);
-  const [ section, setSection ] = useState([]);
+  const [ sections, setSections ] = useState([]);
 
   function handleAddSize(button, value) {
     const alreadyExists = sizes.some(size => size == value);
@@ -38,13 +41,16 @@ export function ChangeColor({ ...rest }) {
       return;
     }
 
-    setSection([...section, {
-      hexColor: hexColor,
-      nameColor: nameColor,
+    setSections([...sections, {
+      colors: { name: nameColor, hex: hexColor },
       images: images,
       sizes: sizes
     }]);
 
+    clearInputNew();
+  }
+
+  function clearInputNew() {
     setHexColor("");
     setNameColor("");
     setImages([]);
@@ -61,8 +67,8 @@ export function ChangeColor({ ...rest }) {
   }
 
   function handleDeleteSection(value) {
-    const newSectionList = section.filter(item => item != value);
-    setSection(newSectionList);
+    const newSectionList = sections.filter(item => item != value);
+    setSections(newSectionList);
   }
 
   useEffect(() => {
@@ -71,7 +77,12 @@ export function ChangeColor({ ...rest }) {
       removeErrorMessage(document.querySelector(".new"));
     }
 
-  }, [ hexColor, nameColor, images, sizes, section ]);
+  }, [ hexColor, nameColor, images, sizes, sections ]);
+
+  useEffect(() => {
+    saveStorage(sections);
+
+  }, [ sections ]);
 
   return (
     <Container>
@@ -104,11 +115,11 @@ export function ChangeColor({ ...rest }) {
         </div>
 
         {
-          section.length > 0 &&
-          section.map((item, index) => (
+          sections.length > 0 &&
+          sections.map((item, index) => (
             <div key={ index }>
-              <input type="color" name="" id="input-color" value={ item.hexColor } disabled />
-              <input type="text" defaultValue={ item.nameColor } readOnly />
+              <input type="color" name="" id="input-color" value={ item.colors.hex } disabled />
+              <input type="text" defaultValue={ item.colors.name } readOnly />
 
               <label htmlFor="input-image">
                 <BiUpload size={ 25 } />
