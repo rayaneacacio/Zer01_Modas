@@ -5,7 +5,13 @@ export const Container = styled.div`
   overflow: hidden;
 
   > nav {
-    margin-top: 12rem;
+    margin-top: 11rem;
+  }
+
+  @media(min-width: 1000px) {
+    > nav {
+      margin-top: 12rem;
+    }
   }
 `;
 

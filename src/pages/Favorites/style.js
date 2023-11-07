@@ -26,6 +26,7 @@ export const Container = styled.div`
       letter-spacing: 1px;
       box-shadow: none;
       border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
+      margin-top: 12rem;
     }
   }
 `;

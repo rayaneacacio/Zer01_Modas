@@ -15,25 +15,8 @@ export const Main = styled.main`
     margin: 3rem 5rem;
   }
 
-  > div, .buttons {
+  > div {
     margin: 0 5rem;
-  }
-  
-  .buttons {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .buttons > button {
-    background: ${({ theme }) => theme.COLORS.PURPLE};
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    padding: 1rem;
-    margin-top: 10rem;
-  }
-
-  .buttons > button:last-of-type {
-    background: ${({ theme }) => theme.COLORS.GRAY_700};
-    margin-top: 2rem;
   }
 
   @media(min-width: 1000px) {
@@ -45,20 +28,8 @@ export const Main = styled.main`
       margin-left: 10rem;
     }
 
-    > div, .buttons {
+    > div {
       margin: 0 15rem 0 26rem;
-    }
-
-    .buttons {
-      flex-direction: row;
-      justify-content: flex-end;
-      gap: 2rem;
-      
-      > button, > button:last-of-type {
-        margin-top: 4rem;
-        width: 20%;
-        height: 55%;
-      }
     }
   }
   

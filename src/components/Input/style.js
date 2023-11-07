@@ -14,13 +14,28 @@ export const Container = styled.div`
     font-weight: 400;
   }
 
-  > input {
+  > div {
+    font-size: 1.6rem;
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+
+    input, span {
+      padding: 1rem 0;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  /* input {
     width: 100%;
     padding: 1rem 0;
-  }
+  } */
   
   @media(min-width: 1000px) {
-    h3, > input {
+    h3, div, input {
       font-size: 1.7rem;
     }
   }

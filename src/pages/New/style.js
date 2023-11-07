@@ -15,15 +15,8 @@ export const Main = styled.main`
     margin: 3rem 5rem;
   }
 
-  > div, > button {
+  > div {
     margin: 0 5rem;
-  }
-
-  > button {
-    background: ${({ theme }) => theme.COLORS.PURPLE};
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    padding: 1rem;
-    margin-top: 10rem;
   }
 
   @media(min-width: 1000px) {
@@ -35,14 +28,8 @@ export const Main = styled.main`
       margin-left: 10rem;
     }
 
-    > div, > button {
+    > div {
       margin: 0 15rem 0 26rem;
-    }
-
-    > button {
-      width: 20%;
-      align-self: flex-end;
-      margin-top: 4rem;
     }
   }
   
