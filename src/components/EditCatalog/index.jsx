@@ -5,6 +5,7 @@ import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-i
 import { createNotification, createConfirmationMessage } from "../../scripts/notifications";
 import { useProducts } from "../../hooks/products";
 import { useProductAttributes } from "../../hooks/productAttributes";
+import { useProductDetails } from "../../hooks/productDetails";
 
 import { Input } from "../Input";
 import { ChangeColor } from "../ChangeColor";
@@ -15,7 +16,8 @@ import { Container } from "./style";
 
 export function EditCatalog({ ...rest }) {
   const { createProduct } = useProducts();
-  const { AddAttributes } = useProductAttributes();
+  const { AddAttributes, saveSectionsStorage } = useProductAttributes();
+  const { addDetailsDatabase, saveProductDetailsStorage, saveModelDetailsStorage } = useProductDetails();
 
   const [ name, setName ] = useState("");
   const [ category, setCategory ] = useState("Feminino");
@@ -29,9 +31,17 @@ export function EditCatalog({ ...rest }) {
     verifyValues();
 
     if(name != "" && price != "" && description != "") {
-      const product_id = await createProduct({ name, category, price, promotion, description });
-      await AddAttributes({ product_id });
-      createNotification("Produto criado com sucesso :)");
+      try {
+        const product_id = await createProduct({ name, category, price, promotion, description });
+        await AddAttributes(product_id);
+        await addDetailsDatabase(product_id); 
+
+        createNotification("Produto criado com sucesso :)");
+        clearPage();
+
+      } catch(error) {
+        alert(error);
+      }
     }
   }
 
@@ -58,6 +68,29 @@ export function EditCatalog({ ...rest }) {
     if(divDescription.querySelector("textarea").value == "") {
       createErrorMessage(divDescription);
     }
+  }
+
+  function clearPage() {
+    const allInputs = document.querySelectorAll("input");
+    const select = document.querySelector(".label_select select");
+    const textarea = document.querySelector("#textarea");
+
+    Array.from(allInputs).map(input => {
+      input.value = "";
+    });
+
+    select.value = "Feminino";
+    textarea.value = "";
+
+    setName("");
+    setCategory("Feminino");
+    setPrice("");
+    setPromotion("");
+    setDescription("");
+
+    saveSectionsStorage([]);
+    saveProductDetailsStorage([]);
+    saveModelDetailsStorage([]);
   }
 
   useEffect(() => {

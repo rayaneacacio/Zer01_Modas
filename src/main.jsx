@@ -10,11 +10,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import { Routes } from './routes';
+import { Zer01ModasRoutes } from './routes';
 
 import { AuthProvider } from "./hooks/auth";
 import { ProductsProvider } from "./hooks/products";
 import { ProductAttributesProvider } from './hooks/productAttributes';
+import { ProductDetailProvider } from './hooks/productDetails';
 
 register();
 
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <ProductsProvider>
           <ProductAttributesProvider>
-            <Routes />
+            <ProductDetailProvider>
+              <Zer01ModasRoutes />
+            </ProductDetailProvider>
           </ProductAttributesProvider>
         </ProductsProvider>
       </AuthProvider>
