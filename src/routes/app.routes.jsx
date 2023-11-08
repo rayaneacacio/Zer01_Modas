@@ -8,7 +8,6 @@ import { Outfit } from "../pages/Outfit";
 import { Favorites } from "../pages/Favorites";
 import { New } from "../pages/New";
 import { Edit } from "../pages/Edit";
-import NotFound404 from "../pages/404";
 
 export function AppRoutes() {
   const { isAdmin } = useAuth();
@@ -28,8 +27,6 @@ export function AppRoutes() {
         isAdmin && <Route path="/edit" element={ <Edit /> } />
       }
 
-      <Route path="*" element={ <NotFound404 /> } />
-    
     </Routes>
   )
 }
