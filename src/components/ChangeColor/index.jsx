@@ -11,13 +11,13 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function ChangeColor({ ...rest }) {
-  const { saveStorage } = useProductAttributes();
+  const { sectionsList, saveSectionsStorage } = useProductAttributes();
 
   const [ hexColor, setHexColor ] = useState("");
   const [ nameColor, setNameColor ] = useState("");
   const [ images, setImages ] = useState([]);
   const [ sizes, setSizes ] = useState([]);
-  const [ sections, setSections ] = useState([]);
+  const [ sections, setSections ] = useState(sectionsList);
 
   function handleAddSize(button, value) {
     const alreadyExists = sizes.some(size => size == value);
@@ -41,7 +41,7 @@ export function ChangeColor({ ...rest }) {
       return;
     }
 
-    setSections([...sections, {
+    saveSectionsStorage([...sections, {
       colors: { name: nameColor, hex: hexColor },
       images: images,
       sizes: sizes
@@ -80,9 +80,9 @@ export function ChangeColor({ ...rest }) {
   }, [ hexColor, nameColor, images, sizes, sections ]);
 
   useEffect(() => {
-    saveStorage(sections);
+    setSections(sectionsList);
 
-  }, [ sections ]);
+  }, [ sectionsList ]);
 
   return (
     <Container>

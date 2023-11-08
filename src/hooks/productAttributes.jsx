@@ -1,20 +1,19 @@
-import { createContext, useContext, useRef } from "react";
+import { createContext, useContext, useState } from "react";
 
 import { api } from "../services/api";
 
 export const productAttributesContext = createContext({});
 
 function ProductAttributesProvider({ children }) {
-  const sectionsList = useRef([]);
+  const [ sectionsList, setSectionsList ] = useState([]);
 
-  function saveStorage(sections) {
-    sectionsList.current = sections;
+  function saveSectionsStorage(sections) {
+    setSectionsList(sections);
   }
 
-  async function AddAttributes({ product_id }) {
+  async function AddAttributes(product_id) {
     try {
-
-      sectionsList.current.map(async (section) => {
+      sectionsList.map(async (section) => {
         const response = await api.post("/products_colors", { product_id, color: section.colors });
         const color_id = response.data;
         uploadImgs(product_id, color_id, section.images);
@@ -40,7 +39,7 @@ function ProductAttributesProvider({ children }) {
   }
 
   return (
-    <productAttributesContext.Provider value={{ saveStorage, AddAttributes }}>
+    <productAttributesContext.Provider value={{ sectionsList, saveSectionsStorage, AddAttributes }}>
       { children }
     </productAttributesContext.Provider>
   )
