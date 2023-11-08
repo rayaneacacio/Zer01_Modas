@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useProductDetails } from "../../hooks/productDetails";
 
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
 
@@ -7,11 +9,22 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function OutfitTag({ $detail, $modelDetail }) {
+  const { productDetails, modelDetails, saveProductDetailsStorage, saveModelDetailsStorage } = useProductDetails();
+
   const [ tag, setTag ] = useState("");
-  const [ tagList, setTagList ] = useState([]);
+  const [ tagList, setTagList ] = $detail ? useState(productDetails) : useState(modelDetails);
 
   function handleAddTag() {
-    setTagList([...tagList, tag]);
+    if(tag == "") {
+      return;
+    }
+
+    if($detail) {
+      saveProductDetailsStorage([...tagList, tag]);
+    } else if($modelDetail) {
+      saveModelDetailsStorage([...tagList, tag]);
+    }
+
     setTag("");
 
     if($detail) {
@@ -25,6 +38,17 @@ export function OutfitTag({ $detail, $modelDetail }) {
   function handleDeleteTag(item) {
     setTagList(tagList.filter(value => value != item));
   }
+
+  useEffect(() => {
+    if($detail) {
+      setTagList(productDetails);
+    }
+
+    if($modelDetail) {
+      setTagList(modelDetails);
+    }
+
+  }, [ productDetails, modelDetails ]);
 
   return (
     <Container>
