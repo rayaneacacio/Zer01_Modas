@@ -23,6 +23,7 @@ export const Main = styled.main`
   }
   
   .DivCatalog {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
@@ -36,6 +37,7 @@ export const Main = styled.main`
   }
 
   @media(min-width: 1000px) {
+    height: calc(100% - 16rem);
     display: flex;
     flex-direction: column;
     align-items: center;
