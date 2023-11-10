@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { useProducts } from "../../hooks/products";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Container } from "./style";
 
 export function Nav() {
+  const { findProductsByCategory } = useProducts();
+
   const [ sliderPerView, setSliderPerview ] = useState(3.2);
   const [ mainSlide, setMainSlide ] = useState(-1);
   const [ mainButton, setMainButton ] = useState("");
   const [ isLoading, setIsLoading ] = useState(true);
 
   const navigate = useNavigate();
-  const paramsUrl = useLocation().pathname;
+  const url = useLocation();
 
   const sections = [
     "PROMOÇÕES", 
@@ -34,10 +38,14 @@ export function Nav() {
 
   }
 
-  function navigateCatalog({ button, title, index }) {
+  async function navigateCatalog({ button, title, index }) {
     sessionStorage.setItem("@zer01modas:mainslide", index);
     setMainSlide(index);
     setMainButton(button);
+
+    if(title != "PROMOÇÕES") {
+      await findProductsByCategory(title);
+    }
 
     navigate(`/catalog?section=${ title.toLowerCase() }`);
   }
@@ -90,12 +98,18 @@ export function Nav() {
   }, [ mainSlide, mainButton ]);
 
   useEffect(() => {
-    if(paramsUrl != "/catalog") {
+    if(url.pathname != "/catalog") {
       sessionStorage.setItem("@zer01modas:mainslide", -1);
       setMainSlide(-1);
     }
 
-  }, [ paramsUrl ]);
+    sections.map(async(section) => {
+      if(url.search == `?section=${ section.toLocaleLowerCase() }`) {
+        await findProductsByCategory(section);
+      }
+    });
+
+  }, [ url ]);
 
   return (
     <Container>

@@ -56,7 +56,6 @@ export const Container = styled.button`
     
     h2 {
       height: 3rem;
-      white-space: wrap;
       text-align: left;
     }
   }

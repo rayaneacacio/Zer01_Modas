@@ -19,6 +19,10 @@ export const Container = styled.nav`
     font-size: 1.3rem;
   }
 
+  .swiper {
+    z-index: 0;
+  }
+
   .swiper-wrapper {
     align-items: center;
   }
