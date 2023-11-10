@@ -3,10 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { useProducts } from "../../hooks/products";
+import { useProductAttributes } from "../../hooks/productAttributes";
+import { api } from "../../services/api";
 
-import OutfitImg from "../../assets/pedido.jpg";
-import OutfitCostasImg from "../../assets/outfit-costas.jpg";
-import OutfitZoomImg from "../../assets/outfit-zoom.jpg";
 import bermuda from "../../assets/bermuda.jpg";
 
 import { VscHeartFilled, VscHeart } from "react-icons/vsc";
@@ -26,15 +26,26 @@ import { Container, Main } from "./style";
 
 export function Outfit() {
   const { isAdmin } = useAuth();
-  const [ isFavorite, setIsFavorite ] = useState(false);
+  const { findProductById } = useProducts();
+  const { allColorsOfProduct } = useProductAttributes();
 
-  const slides = [
-    OutfitImg,
-    OutfitCostasImg,
-    OutfitZoomImg
-  ]
+  const [ isFavorite, setIsFavorite ] = useState(false);
+  const [ product, setProduct ] = useState({});
+  const [ colors, setColors ] = useState([]);
+  const [ colorName, setColorName ] = useState([]);
+  const [ slides, setSlides ] = useState([]);
+  const [ sizes, setSizes ] = useState([]);
+  const [ productDetails, setProductDetails ] = useState([]);
+  const [ productModelDetails, setProductModelDetails ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
+
+  const product_id = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
 
   const navigate = useNavigate();
+
+  function navigateEdit() {
+    navigate("/edit");
+  }  
 
   function handleFavorite() {
     if(isFavorite) {
@@ -45,33 +56,72 @@ export function Outfit() {
     setIsFavorite(true);
   }
 
-  function handleOutfitSize(button) {
+  function handleChangeSize(button) {
     const allButtons = document.querySelectorAll(".outfit-size button");
-    allButtons.forEach(index => {
-      index.style.border = "1px solid black";
-      index.style.fontWeight = "normal";
-    });
+    const othersButtons = Array.from(allButtons).filter(btn => btn != button);
 
-    button.style.border = "2px solid black";
-    button.style.fontWeight = "bold";
+    button.classList.toggle("changeSize");
+
+    othersButtons.forEach(index => {
+      index.classList.remove("changeSize");
+    });
   }
 
-  function navigateEdit() {
-    navigate("/edit");
+  function handleChangeSlides(allImages, allSizes, color) {
+    const newSlides = [];
+    const newSizes = [];
+
+    allImages.map(img =>{
+      if(img.color_id == color.id) {
+        newSlides.push(img.image);
+      }
+    });
+
+    allSizes.map(size =>{
+      if(size.color_id == color.id) {
+        newSizes.push(size.size);
+      }
+    });
+
+    setColorName(color.name);
+    setSlides(newSlides);
+    setSizes(newSizes);
   }
 
   useEffect(() => {
+    (async() => {
+      const newProduct = await findProductById(product_id);
+      const colorsList = await allColorsOfProduct(product_id);
+
+      setProduct(newProduct);
+      setColors(colorsList);
+      setProductDetails(newProduct.details);
+      setProductModelDetails(newProduct.model_details);
+
+      handleChangeSlides(newProduct.images, newProduct.sizes, colorsList[0]);
+    })();
+
+  }, []);
+
+  useEffect(() => {
+    //estilizar os paginations do swiper;
     const allBulletsPagination = document.querySelectorAll(".swiper-pagination-bullet");
     if(allBulletsPagination) {
       for(let index = 0; index < allBulletsPagination.length; index++) {
         allBulletsPagination[index].style.flex = 1;
-        allBulletsPagination[index].style.background = `url(${ slides[index] }) no-repeat center center`;
-        allBulletsPagination[index].style.backgroundSize = "contain";
+        allBulletsPagination[index].style.background = `url(${ `${ api.defaults.baseURL }/files/${ slides[index] }` }) no-repeat center center`;
+        allBulletsPagination[index].style.backgroundSize = "cover";
         allBulletsPagination[index].style.borderRadius = 0;
+
+        if(allBulletsPagination.length > 4) {
+          document.querySelector(".swiper-pagination").style.height = "35rem";
+        }
       }
     }
 
-  }, []);
+    setLoading(false);
+
+  }, [ slides ]);
 
   return (
     <Container>
@@ -79,45 +129,62 @@ export function Outfit() {
       <Nav />
       <BoxCupom />
 
+  	  {
+        !loading &&
       <Main>
-        <h2> Home / Masculino / Camisetas </h2>
+        <h2> Home / { product.category } / { product.name } </h2>
 
         <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
           <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
           {
             slides &&
-            slides.map(image => (
-              <SwiperSlide key={ image }> <img src={ image } alt="" /> </SwiperSlide>
+            slides.map((image, index) => (
+              <SwiperSlide key={ index }> <img src={ `${ api.defaults.baseURL }/files/${ image }` } alt="" /> </SwiperSlide>
             ))
           }
         </Swiper>
 
         <div className="about">
           <div>
-            <h1> R$ 74,90 </h1>
-            <h1> R$ 59,99 </h1>
+            {
+              product.promotion ? 
+              <div className="promotion">
+                <h1> { product.price } </h1>
+                <h1> { product.promotion } </h1>
+              </div>
+              :
+              <h1> { product.price } </h1>
+            }
+
             <div className="boxStars">
-              <Stars score={ 4 } />
-              <p> (19) </p>
+              <Stars score={ product.score } />
+              <p> 0 </p>
             </div>
           </div>
 
-          <h2> Hang Lose </h2>
+          <h2> { product.name } </h2>
 
           <div className="outfit-color">
-            <h2> COR </h2>
+            <h2> COR: { colorName } </h2>
             <div>
-              <button></button>
+              {
+                colors.length > 0 &&
+                colors.map((color, index) => (
+                  <button style={{background: color.hex}} key={ index } onClick={() => handleChangeSlides(product.images, product.sizes, color) }></button>
+                ))
+              }
             </div>
           </div>
 
           <div className="outfit-size">
             <h2> TAMANHO </h2>
             <div>
-              <button onClick={(e) => handleOutfitSize(e.target) }> P </button>
-              <button onClick={(e) => handleOutfitSize(e.target) }> M </button>
-              <button onClick={(e) => handleOutfitSize(e.target) }> G </button>
-              <button onClick={(e) => handleOutfitSize(e.target) }> GG </button>
+              {
+                sizes.length > 0 &&
+                sizes.map((item, index) => (
+                  <button key={ index } onClick={(e) => handleChangeSize(e.target) }> { item } </button>
+                ))
+              }
             </div>
           </div>
 
@@ -129,31 +196,35 @@ export function Outfit() {
           }
         </div>
 
-        <div className="description">
+        <div className="description"> 
           <div>
             <p> <strong> DETALHES </strong> </p>
-            <p> Camiseta masculina </p>
-            <p> Manga curta </p>
-            <p> Gola careca redonda </p>
-            <p> Lisa </p>
-            <p> Tape preta nos ombros </p>
+            <p> { product.description } </p>
           </div>
 
-          <div>
-            <p> <strong> Marca: </strong> Blue Steel </p>
-            <p> <strong> Material: </strong> Sustentável </p>
-            <p> <strong> Tecido: </strong> Meia Malha </p>
-            <p> <strong> Composição: </strong> 100% Algodão </p>
-          </div>
+          {
+            productDetails.length > 0 &&
+            <div>
+              {
+              productDetails.map((item, index) => (
+                <p key={ index }> { item.detail } </p>
+              ))
+              }
+            </div>
+          }
 
-          <div>
-            <p> <strong> Medidas do modelo: </strong> </p>
-            <p> <strong> Altura: </strong> 1,87 </p>
-            <p> <strong> Tórax: </strong> 97 </p>
-            <p> <strong> Cintura: </strong> 79 </p>
-            <p> <strong> Quadril: </strong> 92 </p>
-            <p> <strong> Modelo veste tamanho: </strong> M </p>
-          </div>
+
+          {
+            productModelDetails.length > 0 &&
+            <div>
+              <p> <strong> Medidas do modelo: </strong> </p>
+              {
+              productModelDetails.map((item, index) => (
+                <p key={ index }> { item.model_detail } </p>
+              ))
+              }
+            </div>
+          }
         </div>
 
         <div className="reviews">
@@ -180,6 +251,8 @@ export function Outfit() {
 
         <Footer />
       </Main>
+
+      }
 
       {
         isAdmin ?

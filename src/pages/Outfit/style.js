@@ -63,6 +63,7 @@ export const Main = styled.main`
   margin-top: 11rem;
 
   > h2 {
+    text-transform: lowercase;
     display: none;
   }
 
@@ -101,9 +102,18 @@ export const Main = styled.main`
 
     > :first-child {
       font-size: 1.2rem;
+      position: relative;
+      
+      .boxStars {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+    }
+
+    .promotion {
       display: flex;
       gap: 1rem;
-      position: relative;
 
       > :first-child {
         text-decoration: line-through;
@@ -112,11 +122,6 @@ export const Main = styled.main`
 
       > :nth-child(2) {
         font-weight: 400;
-      }
-      
-      .boxStars {
-        position: absolute;
-        right: 1rem;
       }
     }
 
@@ -128,20 +133,20 @@ export const Main = styled.main`
       padding: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.5rem;
 
       > div {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1rem;
       }
     }
 
     .outfit-color {
       button {
-        background: black;
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid ${({ theme }) => theme.COLORS.BLACK};
       }
     }
 
@@ -150,8 +155,13 @@ export const Main = styled.main`
         background: none;
         color: ${({ theme }) => theme.COLORS.BLACK};
         padding: 1.5px 13px;
-        border: 1px solid ${({ theme }) => theme.COLORS.BLACK};
+        border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
         border-radius: 2rem;
+      }
+
+      .changeSize {
+        font-weight: bold;
+        border: 1.5px solid ${({ theme }) => theme.COLORS.BLACK};
       }
     }
 
@@ -303,12 +313,17 @@ export const Main = styled.main`
       gap: 3rem;
       position: relative;
 
+      > :first-child {
+        margin-top: 2rem;
+      }
+
       > div {
         height: 5rem;
       }
       
       .boxStars {
-        bottom: -2rem;
+        bottom: -3rem;
+        top: 0;
         left: 0;
       }
 
@@ -334,6 +349,14 @@ export const Main = styled.main`
       gap: 8rem;
       padding: 2rem;
       margin: 8rem 10rem 0 10rem;
+
+      > :first-child{
+        width: 35%;
+      }
+
+      > div:nth-of-type(2) {
+        margin-top: 1.8rem;
+      }
     }
 
     .reviews {
