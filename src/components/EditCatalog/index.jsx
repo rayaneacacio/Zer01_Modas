@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
 import { createNotification, createConfirmationMessage } from "../../scripts/notifications";
@@ -15,17 +15,19 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function EditCatalog({ ...rest }) {
-  const { createProduct } = useProducts();
-  const { AddAttributes, saveSectionsStorage } = useProductAttributes();
+  const { createProduct, deleteProducts } = useProducts();
+  const { AddAttributes, saveSectionsStorage, deleteImgs } = useProductAttributes();
   const { addDetailsDatabase, saveProductDetailsStorage, saveModelDetailsStorage } = useProductDetails();
 
   const [ name, setName ] = useState("");
-  const [ category, setCategory ] = useState("Feminino");
+  const [ category, setCategory ] = useState("FEMININO");
   const [ price, setPrice ] = useState("");
   const [ promotion, setPromotion ] = useState("");
   const [ description, setDescription ] = useState("");
 
+  const product_id = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
   const path = useLocation().pathname;
+  const navigate = useNavigate();
 
   async function handleNewProduct() {
     verifyValues();
@@ -49,8 +51,16 @@ export function EditCatalog({ ...rest }) {
     createNotification("Produto atualizado com sucesso :)");
   }
 
-  async function handleDeleteProduct() {
+  function handleDeleteProduct() {
     const buttonConfirm = createConfirmationMessage("Tem certeza que deseja excluir?");
+
+    buttonConfirm.addEventListener("click", async() => {
+      await deleteImgs(product_id);
+      await deleteProducts([product_id]);
+      document.querySelector(".confirmationModal").remove();
+      createNotification("Produto removido ;)");
+      navigate(-2);
+    });
   }
 
   function verifyValues() {
@@ -129,13 +139,13 @@ export function EditCatalog({ ...rest }) {
 
       <label className="label_select" id="categoryLabel" htmlFor="categoria">
         Categoria:
-        <select name="categoria" id="" defaultValue="Feminino" onChange={e => setCategory(e.target.value)}>
-          <option value="Feminino">Feminino</option>
-          <option value="Masculino">Masculino</option>
-          <option value="Infantil">Infantil</option>
-          <option value="Casa">Casa</option>
-          <option value="Esporte">Esporte</option>
-          <option value="Acessórios">Acessórios</option>
+        <select name="categoria" id="" defaultValue="FEMININO" onChange={e => setCategory(e.target.value)}>
+          <option value="FEMININO">Feminino</option>
+          <option value="MASCULINO">Masculino</option>
+          <option value="INFANTIL">Infantil</option>
+          <option value="CASA">Casa</option>
+          <option value="ESPORTE">Esporte</option>
+          <option value="ACESSÓRIOS">Acessórios</option>
         </select>
       </label>
 
