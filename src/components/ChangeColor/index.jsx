@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
+import { useProducts } from "../../hooks/products";
 import { useProductAttributes } from "../../hooks/productAttributes";
 
 import { BiUpload } from "react-icons/bi";
@@ -11,13 +13,16 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function ChangeColor({ ...rest }) {
-  const { sectionsList, saveSectionsStorage } = useProductAttributes();
+  const { lastViewedProduct } = useProducts();
+  const { sectionsList, saveSectionsStorage, setRemoveSectionsStorage } = useProductAttributes();
 
   const [ hexColor, setHexColor ] = useState("");
   const [ nameColor, setNameColor ] = useState("");
   const [ images, setImages ] = useState([]);
   const [ sizes, setSizes ] = useState([]);
   const [ sections, setSections ] = useState(sectionsList);
+
+  const path = useLocation().pathname;
 
   function handleAddSize(button, value) {
     const alreadyExists = sizes.some(size => size == value);
@@ -34,15 +39,17 @@ export function ChangeColor({ ...rest }) {
   }
 
   async function handleNewSection() {
-    if(hexColor == "" || nameColor == "" || images.length == 0 || sizes.length == 0) {
+    if(nameColor == "" || images.length == 0 || sizes.length == 0) {
       createErrorMessage(document.querySelector(".new"));
       document.querySelector(".divMessage").style.position = "absolute";
       document.querySelector(".divMessage").style.bottom = "-1rem";
       return;
     }
 
+    let hex = hexColor == "" ? "#030303" : hexColor;
+
     saveSectionsStorage([...sections, {
-      colors: { name: nameColor, hex: hexColor },
+      colors: { name: nameColor, hex },
       images: images,
       sizes: sizes
     }]);
@@ -69,9 +76,11 @@ export function ChangeColor({ ...rest }) {
   function handleDeleteSection(value) {
     const newSectionList = sections.filter(item => item != value);
     setSections(newSectionList);
+    setRemoveSectionsStorage(value);
   }
 
   useEffect(() => {
+    //remover mensagens de erro sempre que um state mudar;
     const divMessage = document.querySelector(".divMessage");
     if(divMessage) {
       removeErrorMessage(document.querySelector(".new"));
@@ -80,9 +89,52 @@ export function ChangeColor({ ...rest }) {
   }, [ hexColor, nameColor, images, sizes, sections ]);
 
   useEffect(() => {
+    //salvar na lista de sections para visualizar no html;
     setSections(sectionsList);
 
   }, [ sectionsList ]);
+
+  useEffect(() => {
+    //salvar sections no hook productAttributes;
+    saveSectionsStorage(sections);
+
+  }, [ sections ]);
+
+  useEffect(() => {
+    //definir os valores caso esteja na pag de edicao;
+    if(path == "/edit") {
+      const newSections = [];
+
+      for(let color of lastViewedProduct.colors) {
+        const imgs = [];
+        const sizes = [];
+
+        lastViewedProduct.images.map(img => {
+          if(img.color_id == color.id) {
+            imgs.push(img.image);
+          }
+        });
+
+        lastViewedProduct.sizes.map(size => {
+          if(size.color_id == color.id) {
+            sizes.push(size.size);
+          }
+        });
+
+        newSections.push({
+          colors: { name: color.name, hex: color.hex },
+          images: imgs,
+          sizes: sizes
+        });
+
+      };
+
+      saveSectionsStorage(newSections);
+    } else {
+      saveSectionsStorage([]);
+    }
+
+  }, []);
 
   return (
     <Container>
@@ -95,9 +147,9 @@ export function ChangeColor({ ...rest }) {
             <BiUpload size={ 25 } />
             { 
               images && images.length > 1 ? 
-              `${ images.length } arquivos escolhidos` 
+              `${ images.length } arquivos` 
               : images && images.length == 1 ? 
-              "1 arquivo escolhido" 
+              "1 arquivo" 
               : 
               "Nenhum arquivo" 
             }
@@ -119,11 +171,11 @@ export function ChangeColor({ ...rest }) {
           sections.map((item, index) => (
             <div key={ index }>
               <input type="color" name="" id="input-color" value={ item.colors.hex } disabled />
-              <input type="text" defaultValue={ item.colors.name } readOnly />
+              <input type="text" value={ item.colors.name } readOnly />
 
               <label htmlFor="input-image">
                 <BiUpload size={ 25 } />
-                { item.images.length > 1 ? `${ item.images.length } arquivos escolhidos` : "1 arquivo escolhido" }
+                { item.images.length > 1 ? `${ item.images.length } arquivos` : "1 arquivo" }
                 <input type="file" name="" id="input-image" accept="image/*" multiple disabled />
               </label>
 
