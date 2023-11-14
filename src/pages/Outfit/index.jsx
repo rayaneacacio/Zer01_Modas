@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
@@ -26,7 +26,7 @@ import { Container, Main } from "./style";
 
 export function Outfit() {
   const { isAdmin } = useAuth();
-  const { findProductById } = useProducts();
+  const { findProduct, setLastViewedProductStorage } = useProducts();
   const { allColorsOfProduct } = useProductAttributes();
 
   const [ isFavorite, setIsFavorite ] = useState(false);
@@ -34,16 +34,28 @@ export function Outfit() {
   const [ colors, setColors ] = useState([]);
   const [ colorName, setColorName ] = useState([]);
   const [ slides, setSlides ] = useState([]);
-  const [ sizes, setSizes ] = useState([]);
+  const [ allSizes, setAllSizes ] = useState([]);
+  const [ sizesByColor, setSizesByColor ] = useState([]);
   const [ productDetails, setProductDetails ] = useState([]);
   const [ productModelDetails, setProductModelDetails ] = useState([]);
   const [ loading, setLoading ] = useState(true);
 
-  const product_id = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
-
+  let urlSearch = (useLocation().search).split("?")[1];
+  urlSearch = decodeURIComponent(urlSearch); 
+  const product_name = urlSearch.replace(/-/g, ' ');
+  const product_id = Number(product_name);
+  
   const navigate = useNavigate();
 
   function navigateEdit() {
+    setLastViewedProductStorage({
+      ...product,
+      colors: colors,
+      sizes: allSizes,
+      productDetails: productDetails,
+      productModelDetails: productModelDetails
+    });
+
     navigate("/edit");
   }  
 
@@ -67,7 +79,7 @@ export function Outfit() {
     });
   }
 
-  function handleChangeSlides(allImages, allSizes, color) {
+  function handleChangeSlides(allImages, allProductSizes, color) {
     const newSlides = [];
     const newSizes = [];
 
@@ -77,28 +89,39 @@ export function Outfit() {
       }
     });
 
-    allSizes.map(size =>{
+    allProductSizes.map(size =>{
       if(size.color_id == color.id) {
         newSizes.push(size.size);
       }
     });
 
     setColorName(color.name);
+    setAllSizes(allProductSizes);
     setSlides(newSlides);
-    setSizes(newSizes);
+    setSizesByColor(newSizes);
   }
 
   useEffect(() => {
     (async() => {
-      const newProduct = await findProductById(product_id);
-      const colorsList = await allColorsOfProduct(product_id);
+      try {
+        const { newProduct, error } = await findProduct(product_name, product_id);
 
-      setProduct(newProduct);
-      setColors(colorsList);
-      setProductDetails(newProduct.details);
-      setProductModelDetails(newProduct.model_details);
+        if(!newProduct) {
+          throw new Error(error);
+        }
+        const colorsList = await allColorsOfProduct(newProduct.id);
 
-      handleChangeSlides(newProduct.images, newProduct.sizes, colorsList[0]);
+        setProduct(newProduct);
+        setColors(colorsList);
+        setProductDetails(newProduct.details);
+        setProductModelDetails(newProduct.model_details);
+
+        handleChangeSlides(newProduct.images, newProduct.sizes, colorsList[0]);
+
+      } catch(error) {
+        document.querySelector("main").innerHTML = error;
+      }
+
     })();
 
   }, []);
@@ -132,7 +155,7 @@ export function Outfit() {
   	  {
         !loading &&
       <Main>
-        <h2> Home / { product.category } / { product.name } </h2>
+        <h2> Home / { product.category } / { product.name } / ID: { product.id } </h2>
 
         <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
           <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
@@ -180,8 +203,8 @@ export function Outfit() {
             <h2> TAMANHO </h2>
             <div>
               {
-                sizes.length > 0 &&
-                sizes.map((item, index) => (
+                sizesByColor.length > 0 &&
+                sizesByColor.map((item, index) => (
                   <button key={ index } onClick={(e) => handleChangeSize(e.target) }> { item } </button>
                 ))
               }
@@ -196,9 +219,10 @@ export function Outfit() {
           }
         </div>
 
-        <div className="description"> 
+        <div className="description">
           <div>
             <p> <strong> DETALHES </strong> </p>
+            <p className="routeInfo"> Home / { product.category } / { product.name } / ID: { product.id } </p>
             <p> { product.description } </p>
           </div>
 

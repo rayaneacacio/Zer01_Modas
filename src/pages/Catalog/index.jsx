@@ -15,8 +15,8 @@ export function Catalog() {
   const { allProducts } = useProducts();
   const navigate = useNavigate();
 
-  function handleNavigateOutfit(product_name, product_id) {
-    sessionStorage.setItem("@zer01modas:product", JSON.stringify(product_id));
+  function handleNavigateOutfit(product_name) {
+    // const path_product_name = product_name.replace(/ /g, "-");
     navigate(`/outfit?${product_name}`);
   }
 
@@ -31,7 +31,7 @@ export function Catalog() {
           {
             allProducts.length > 0 &&
             allProducts.map((product, index) => (
-              <ShowOutfit key={ index } image={ `${ api.defaults.baseURL }/files/${ product.img }` } title={ product.name } price={ product.price } onClick={() => handleNavigateOutfit(product.name, product.id) } />
+              <ShowOutfit key={ index } image={ `${ api.defaults.baseURL }/files/${ product.img }` } title={ product.name } price={ product.price } onClick={() => handleNavigateOutfit(product.name) } />
             )).reverse()
           }
           </div>

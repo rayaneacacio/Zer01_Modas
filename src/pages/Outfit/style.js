@@ -189,6 +189,11 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    .routeInfo {
+      text-transform: lowercase;
+      margin-bottom: 1rem;
+    }
   }
 
   .reviews {
@@ -356,6 +361,10 @@ export const Main = styled.main`
 
       > div:nth-of-type(2) {
         margin-top: 1.8rem;
+      }
+
+      .routeInfo {
+        display: none;
       }
     }
 
