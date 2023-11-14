@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import { api } from "../services/api";
 
@@ -6,6 +6,7 @@ export const ProductsContext = createContext({});
 
 function ProductsProvider({ children }) {
   const [ allProducts, setAllProducts ] = useState([]);
+  const [ lastViewedProduct, setLastViewedProduct ] = useState({});
 
   async function createProduct({ name, category, price, promotion, description }) {
     try {
@@ -48,28 +49,65 @@ function ProductsProvider({ children }) {
     
   }
 
-  async function findProductById(id) {
+  // async function findProductById(id) {
+  //   try {
+  //     const product = await api.get(`/products/show?id=${ id }`);
+  //     const images = await api.get(`/products_images/index?product_id=${ id }`);
+  //     const sizes = await api.get(`/products_sizes/index?product_id=${ id }`);
+  //     const details = await api.get(`/products_details/index?product_id=${ id }`);
+  //     const model_details = await api.get(`/products_model_details/index?product_id=${ id }`);
+
+  //     const response = {
+  //       ...product.data,
+  //       images: images.data,
+  //       sizes: sizes.data,
+  //       details: details.data,
+  //       model_details: model_details.data
+  //     };
+
+  //     return response;
+
+  //   } catch(error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  async function findProduct(name, id) {
     try {
-      const product = await api.get(`/products/show?id=${ id }`);
-      const images = await api.get(`/products_images/index?product_id=${ id }`);
-      const sizes = await api.get(`/products_sizes/index?product_id=${ id }`);
-      const details = await api.get(`/products_details/index?product_id=${ id }`);
-      const model_details = await api.get(`/products_model_details/index?product_id=${ id }`);
+      let products = null;
+      let product = null;
+
+      if(isNaN(id)) {
+        products = await api.post("/products/show", { name });
+        product = products.data[0];
+      } else {
+        products = await api.post("/products/show", { id });
+        product = products.data;
+      }
+
+      const [images, sizes, details, model_details] = await Promise.all([
+        api.get(`/products_images/index?product_id=${ product.id }`),
+        api.get(`/products_sizes/index?product_id=${ product.id }`),
+        api.get(`/products_details/index?product_id=${ product.id }`),
+        api.get(`/products_model_details/index?product_id=${ product.id }`)
+      ]);
 
       const response = {
-        ...product.data,
+        ...product,
         images: images.data,
         sizes: sizes.data,
         details: details.data,
         model_details: model_details.data
       };
 
-      return response;
+      return { newProduct: response };
 
     } catch(error) {
-      console.log(error);
+      return({ newProduct: undefined, error: error.response.data.message });
+      
     }
   }
+
 
   async function deleteProducts(products_id) {
     try {
@@ -84,8 +122,35 @@ function ProductsProvider({ children }) {
     }
   }
 
+  function setLastViewedProductStorage(product) {
+    sessionStorage.setItem("@zer01modas:product", JSON.stringify(product));
+    setLastViewedProduct(product);
+  }
+
+  async function updateProduct({ id, name, category, price, description }) {
+    try {
+      await api.patch(`/products?id=${ id }`, { name, category, price, description });
+
+    } catch(error) {
+      if(error) {
+        console.log(error);
+      } else {
+        console.log("erro ao atualizar o produto");
+      }
+      
+    }
+  }
+
+  useEffect(() => {
+    const product = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
+    if(product) {
+      setLastViewedProduct(product);
+    }
+
+  }, []);
+
   return (
-    <ProductsContext.Provider value={{ allProducts, createProduct, findProductsByCategory, findProductById, deleteProducts }}>
+    <ProductsContext.Provider value={{ allProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct }}>
       { children }
     </ProductsContext.Provider>
   )

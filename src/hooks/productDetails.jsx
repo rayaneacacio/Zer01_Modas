@@ -35,8 +35,20 @@ function ProductDetailProvider({ children }) {
     }
   }
 
+  async function updateTags(product_id) {
+    try {
+      await api.delete(`/products_details/delete?product_id=${ product_id }`);
+      await api.delete(`/products_model_details/delete?product_id=${ product_id }`);
+
+      await addDetailsDatabase(product_id);
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <ProductDetailsContext.Provider value={{ productDetails, modelDetails, saveProductDetailsStorage, saveModelDetailsStorage, addDetailsDatabase }}>
+    <ProductDetailsContext.Provider value={{ productDetails, modelDetails, saveProductDetailsStorage, saveModelDetailsStorage, addDetailsDatabase, updateTags }}>
       { children }
     </ProductDetailsContext.Provider>
   )
