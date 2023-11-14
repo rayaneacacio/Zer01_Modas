@@ -15,9 +15,9 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function EditCatalog({ ...rest }) {
-  const { createProduct, deleteProducts } = useProducts();
-  const { AddAttributes, saveSectionsStorage, deleteImgs } = useProductAttributes();
-  const { addDetailsDatabase, saveProductDetailsStorage, saveModelDetailsStorage } = useProductDetails();
+  const { createProduct, deleteProducts, lastViewedProduct, updateProduct } = useProducts();
+  const { AddAttributes, saveSectionsStorage, deleteAllImgs, updateColors } = useProductAttributes();
+  const { addDetailsDatabase, saveProductDetailsStorage, saveModelDetailsStorage, updateTags } = useProductDetails();
 
   const [ name, setName ] = useState("");
   const [ category, setCategory ] = useState("FEMININO");
@@ -25,7 +25,6 @@ export function EditCatalog({ ...rest }) {
   const [ promotion, setPromotion ] = useState("");
   const [ description, setDescription ] = useState("");
 
-  const product_id = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
   const path = useLocation().pathname;
   const navigate = useNavigate();
 
@@ -48,6 +47,15 @@ export function EditCatalog({ ...rest }) {
   }
 
   async function handleEditProduct() {
+    try {
+      await updateProduct({ id: lastViewedProduct.id, name, category, price, description });
+      await updateColors(lastViewedProduct);
+      await updateTags(lastViewedProduct.id);
+
+    } catch(error) {
+      console.log(error);
+    }
+
     createNotification("Produto atualizado com sucesso :)");
   }
 
@@ -55,7 +63,7 @@ export function EditCatalog({ ...rest }) {
     const buttonConfirm = createConfirmationMessage("Tem certeza que deseja excluir?");
 
     buttonConfirm.addEventListener("click", async() => {
-      await deleteImgs(product_id);
+      await deleteAllImgs(product_id);
       await deleteProducts([product_id]);
       document.querySelector(".confirmationModal").remove();
       createNotification("Produto removido ;)");
@@ -133,6 +141,21 @@ export function EditCatalog({ ...rest }) {
 
   }, [ description ]);
 
+  useEffect(() => {
+    if(path == "/edit") {
+      document.querySelector("#inputName input").value = lastViewedProduct.name;
+      document.querySelector("#textarea").value = lastViewedProduct.description;
+      document.querySelector("#categoryLabel select").value = lastViewedProduct.category;
+      document.querySelector("#inputPrice input").value = (lastViewedProduct.price).replace(/[^0-9,]/g, "");
+
+      setName(lastViewedProduct.name);
+      setDescription(lastViewedProduct.description);
+      setCategory(lastViewedProduct.category);
+      setPrice((lastViewedProduct.price).replace(/[^0-9,]/g, ""));
+    }
+
+  }, []);
+
   return (
     <Container {...rest}>
       <Input id="inputName" title="Nome" placeholder="Nome do produto" onChange={e => setName(e.target.value)} />
@@ -149,9 +172,9 @@ export function EditCatalog({ ...rest }) {
         </select>
       </label>
 
-      <Input id="inputPrice" title="Preço" type="number" span="R$" placeholder="00,00" onChange={e => setPrice(e.target.value)} />
+      <Input id="inputPrice" title="Preço" span="R$" placeholder="00,00" onChange={e => setPrice(e.target.value)} />
 
-      <Input id="inputPromotion" title="Promoçao" type="number" span="%" placeholder="00" onChange={e => setPromotion(e.target.value)} />
+      <Input id="inputPromotion" title="Promoçao" span="%" placeholder="00" onChange={e => setPromotion(e.target.value)} />
 
       <div className="colors">
         <p>Cores</p>

@@ -47,7 +47,7 @@ export const Container = styled.div`
     textarea {
       font-size: 1.6rem;
       width: 100%;
-      height: 3rem;
+      height: 7rem;
       margin-top: 1rem;
     }
   }
