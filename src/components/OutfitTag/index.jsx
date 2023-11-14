@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
+import { useProducts } from "../../hooks/products";
 import { useProductDetails } from "../../hooks/productDetails";
 
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
@@ -9,10 +11,13 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function OutfitTag({ $detail, $modelDetail }) {
+  const { lastViewedProduct } = useProducts();
   const { productDetails, modelDetails, saveProductDetailsStorage, saveModelDetailsStorage } = useProductDetails();
 
   const [ tag, setTag ] = useState("");
   const [ tagList, setTagList ] = $detail ? useState(productDetails) : useState(modelDetails);
+
+  const path = useLocation().pathname;
 
   function handleAddTag() {
     if(tag == "") {
@@ -49,6 +54,42 @@ export function OutfitTag({ $detail, $modelDetail }) {
     }
 
   }, [ productDetails, modelDetails ]);
+
+  useEffect(() => {
+    if(path == "/edit") {
+      if($detail && lastViewedProduct.details.length > 0) {
+        const newDetails = [];
+        lastViewedProduct.details.map(detail => {
+          newDetails.push(detail.detail);
+        });
+
+        setTagList(newDetails);
+      }
+  
+      if($modelDetail && lastViewedProduct.model_details.length > 0) {
+        const newDetails = [];
+        lastViewedProduct.model_details.map(detail => {
+          newDetails.push(detail.model_detail);
+        });
+
+        setTagList(newDetails);
+      }
+    } else {
+      setTagList([]);
+    }
+
+  }, []);
+
+  useEffect(() => {
+    if($detail) {
+      saveProductDetailsStorage(tagList);
+    }
+
+    if($modelDetail) {
+      saveModelDetailsStorage(tagList);
+    }
+
+  }, [ tagList ]);
 
   return (
     <Container>
