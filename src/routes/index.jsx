@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { useAuth } from "../hooks/auth";
 
@@ -36,7 +36,8 @@ export function Zer01ModasRoutes() {
         <Route path="/shopping-cart" element={ <ShoppingCart /> } />
         <Route path="/payment" element={ <Payment /> } />
 
-        <Route path="*" element={ <NotFound404 /> } />
+        {/* <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="/404" element={ <NotFound404 /> } /> */}
       </Routes>
     </BrowserRouter>
   )
