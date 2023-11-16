@@ -42,7 +42,7 @@ export function Outfit() {
 
   let urlSearch = (useLocation().search).split("?")[1];
   urlSearch = decodeURIComponent(urlSearch); 
-  const product_name = urlSearch.replace(/-/g, ' ');
+  const product_name = urlSearch;
   const product_id = Number(product_name);
   
   const navigate = useNavigate();

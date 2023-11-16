@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Container } from "./style";
 
 export function Nav() {
-  const { findProductsByCategory } = useProducts();
+  const { findProductsByCategory, findPromotions } = useProducts();
 
   const [ sliderPerView, setSliderPerview ] = useState(3.2);
   const [ mainSlide, setMainSlide ] = useState(-1);
@@ -43,11 +43,17 @@ export function Nav() {
     setMainSlide(index);
     setMainButton(button);
 
-    if(title != "PROMOÇÕES") {
-      await findProductsByCategory(title);
-    }
+    await fetchData(title);
 
     navigate(`/catalog?section=${ title.toLowerCase() }`);
+  }
+
+  async function fetchData(title) {
+    if(title != "PROMOÇÕES") {
+      await findProductsByCategory(title);
+    } else {
+      await findPromotions();
+    }
   }
 
   useEffect(() => {
@@ -104,8 +110,8 @@ export function Nav() {
     }
 
     sections.map(async(section) => {
-      if(url.search == `?section=${ section.toLocaleLowerCase() }`) {
-        await findProductsByCategory(section);
+      if(decodeURIComponent(url.search) == `?section=${ section.toLocaleLowerCase() }`) {
+        await fetchData(section);
       }
     });
 
@@ -117,8 +123,8 @@ export function Nav() {
         !isLoading &&
         <Swiper slidesPerView={ sliderPerView } initialSlide={ mainSlide }>
           {
-            sections.map(title => (
-              <SwiperSlide key={ title }>
+            sections.map((title, index) => (
+              <SwiperSlide key={ index }>
                 <button onClick={(event) => navigateCatalog({ button: event.target, title, index: sections.indexOf(title)})}> { title } </button>
               </SwiperSlide>
             ))

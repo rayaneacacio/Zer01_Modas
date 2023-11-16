@@ -178,6 +178,34 @@ function ProductsProvider({ children }) {
     }
   }
 
+  async function findPromotions() {
+    //retorna todas as promocoes disponiveis;
+    try {
+      const response = await api.get("/products_promotions/index");
+      const products = [];
+
+      if(response.data.length > 0) {
+        for(let product of response.data) {
+          if(product) {
+          const imgs = await api.get(`/products_images/index?product_id=${ product.id }`);
+          product.img = imgs.data[0].image;
+
+          products.push(product);
+          }
+        };
+      }
+
+      setAllProducts(products);
+
+    } catch(error) {
+      if(error) {
+        alert(error);
+      } else {
+        console.log("erro ao buscar promocoes");
+      }
+    }
+  }
+
   useEffect(() => {
     const product = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
     if(product) {
@@ -187,7 +215,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts }}>
+    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions }}>
       { children }
     </ProductsContext.Provider>
   )
