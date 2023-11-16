@@ -36,6 +36,19 @@ export const Main = styled.main`
     animation: toRight 0.5s forwards;
   }
 
+  .div_img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > img {
+      width: 31rem;
+      height: 26rem;
+    }
+  }
+
   @media(min-width: 1000px) {
     height: calc(100% - 16rem);
     display: flex;
@@ -50,6 +63,15 @@ export const Main = styled.main`
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       row-gap: 2rem;
       column-gap: 3rem;
+    }
+
+    .div_img {
+      margin-top: 10rem;
+    }
+
+    .div_img > img {
+      width: 43rem;
+      height: 33rem;
     }
   }
 `;

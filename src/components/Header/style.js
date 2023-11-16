@@ -102,8 +102,44 @@ export const Container = styled.header`
     }
 
     > div {
-      height: 16rem;
       padding-top: 10rem;
+    }
+
+    .responseSearch {
+      > div {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 5rem;
+
+      > img {
+        width: 19rem;
+      }
+    }
+
+      .div_products {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: min-content;
+        gap: 2rem;
+        column-gap: 2rem;
+        margin: 0 2rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 3rem 0 10rem;
+
+        > button {
+          width: 11rem;
+          color: white;
+        }
+
+        > button > img {
+          width: 11rem;
+          height: 12rem;
+        }
+      }
     }
 
     .input {

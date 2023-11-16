@@ -72,7 +72,38 @@ function ProductsProvider({ children }) {
   //   }
   // }
 
+  async function searchProducts(name, id) {
+    //retorna uma lista de produtos;
+      let response = null;
+      let products = [];
+
+      if(name == "") {
+        return [];
+      }
+
+      if(isNaN(id)) {
+        response = await api.post("/products/show", { name });
+      } else {
+        response = await api.post("/products/show", { id });
+      }
+
+      if(response.data.length > 0) {
+        for(let product of response.data) {
+          if(product) {
+          const imgs = await api.get(`/products_images/index?product_id=${ product.id }`);
+          product.img = imgs.data[0].image;
+
+          products.push(product);
+          }
+        };
+      }
+
+      setAllProducts(products);
+      return products;
+  }
+
   async function findProduct(name, id) {
+    //retorna um produto especifico;
     try {
       let products = null;
       let product = null;
@@ -85,7 +116,8 @@ function ProductsProvider({ children }) {
         product = products.data;
       }
 
-      const [images, sizes, details, model_details] = await Promise.all([
+      const [promotion, images, sizes, details, model_details] = await Promise.all([
+        api.get(`/products_promotions/show?product_id=${ product.id }`),
         api.get(`/products_images/index?product_id=${ product.id }`),
         api.get(`/products_sizes/index?product_id=${ product.id }`),
         api.get(`/products_details/index?product_id=${ product.id }`),
@@ -94,6 +126,7 @@ function ProductsProvider({ children }) {
 
       const response = {
         ...product,
+        promotion: promotion.data,
         images: images.data,
         sizes: sizes.data,
         details: details.data,
@@ -103,11 +136,10 @@ function ProductsProvider({ children }) {
       return { newProduct: response };
 
     } catch(error) {
-      return({ newProduct: undefined, error: error.response.data.message });
+      return({ newProduct: undefined, error: error.response.data.message ?? "Nenhum produto encontrado" });
       
     }
   }
-
 
   async function deleteProducts(products_id) {
     try {
@@ -127,9 +159,14 @@ function ProductsProvider({ children }) {
     setLastViewedProduct(product);
   }
 
-  async function updateProduct({ id, name, category, price, description }) {
+  async function updateProduct({ id, name, category, price, promotion, description }) {
     try {
       await api.patch(`/products?id=${ id }`, { name, category, price, description });
+
+      if(promotion) {
+        await api.post("/products_promotions/delete", { product_id: id });
+        await api.post("/products_promotions", { product_id: id, percentage: promotion });
+      }
 
     } catch(error) {
       if(error) {
@@ -150,7 +187,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ allProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct }}>
+    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts }}>
       { children }
     </ProductsContext.Provider>
   )
