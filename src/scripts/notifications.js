@@ -22,8 +22,10 @@ function style() {
   div.style.opacity = 0;
   div.style.transform = "translateY(1rem)";
   div.style.animation = "toTop 0.3s forwards";
+
   if(window.innerWidth <= 500) {
     div.style.width = "70%";
+    div.style.padding = "5rem 0 3rem";
   }
 
   modal.appendChild(div);

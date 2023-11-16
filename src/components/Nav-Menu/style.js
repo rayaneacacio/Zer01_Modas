@@ -5,6 +5,7 @@ export const Container = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  padding-top: 2rem;
 
   > button {
     background: none;
