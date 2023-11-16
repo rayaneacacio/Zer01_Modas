@@ -124,7 +124,7 @@ export function Outfit() {
 
     })();
 
-  }, []);
+  }, [ urlSearch ]);
 
   useEffect(() => {
     //estilizar os paginations do swiper;
@@ -172,8 +172,11 @@ export function Outfit() {
             {
               product.promotion ? 
               <div className="promotion">
+                <h1> { product.promotion.new_price } </h1>
                 <h1> { product.price } </h1>
-                <h1> { product.promotion } </h1>
+                <div>
+                  <p> -{ product.promotion.percentage }% </p>
+                </div>
               </div>
               :
               <h1> { product.price } </h1>
@@ -253,7 +256,7 @@ export function Outfit() {
 
         <div className="reviews">
           <h1> AVALIÇÕES DOS CLIENTES (19) </h1>
-          <div className="boxStars">
+          <div className="boxScore">
             <span> 4.2 </span>
             <Stars score={ 5 } />
           </div>

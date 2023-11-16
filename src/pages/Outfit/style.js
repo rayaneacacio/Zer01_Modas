@@ -103,26 +103,43 @@ export const Main = styled.main`
     > :first-child {
       font-size: 1.2rem;
       position: relative;
-      
-      .boxStars {
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-      }
     }
 
     .promotion {
       display: flex;
+      align-items: flex-end;
       gap: 1rem;
 
       > :first-child {
-        text-decoration: line-through;
-        font-weight: 300;
+        color: ${({ theme }) => theme.COLORS.PURPLE};
+        font-weight: 400;
       }
 
       > :nth-child(2) {
-        font-weight: 400;
+        font-size: 1.6rem;
+        font-weight: 300;
+        text-decoration: line-through;
       }
+
+      > div {
+        background: #f2f2f2;
+        color: ${({ theme }) => theme.COLORS.PURPLE};
+        font-size: 1.4rem;
+
+        p {
+          width: 4.5rem;
+          text-align: center;
+        }
+      }
+    }
+
+    .boxStars {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 19rem;
     }
 
     h2 {
@@ -170,7 +187,7 @@ export const Main = styled.main`
     }
   }
 
-  .boxStars {
+  .boxScore {
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
@@ -325,12 +342,6 @@ export const Main = styled.main`
       > div {
         height: 5rem;
       }
-      
-      .boxStars {
-        bottom: -3rem;
-        top: 0;
-        left: 0;
-      }
 
       > h2 {
         position: absolute;
@@ -345,6 +356,12 @@ export const Main = styled.main`
       .outfit-size, .outfit-color {
         padding: 0;
       }
+    }
+
+    .boxStars {
+      bottom: -3rem;
+      top: 1rem !important;
+      left: 0;
     }
 
     .description {

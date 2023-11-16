@@ -35,7 +35,7 @@ export function EditCatalog({ ...rest }) {
       try {
         const product_id = await createProduct({ name, category, price, promotion, description });
         await AddAttributes(product_id);
-        await addDetailsDatabase(product_id); 
+        await addDetailsDatabase(product_id);
 
         createNotification("Produto criado com sucesso :)");
         clearPage();
@@ -48,7 +48,7 @@ export function EditCatalog({ ...rest }) {
 
   async function handleEditProduct() {
     try {
-      await updateProduct({ id: lastViewedProduct.id, name, category, price, description });
+      await updateProduct({ id: lastViewedProduct.id, name, category, price, promotion, description });
       await updateColors(lastViewedProduct);
       await updateTags(lastViewedProduct.id);
 
@@ -142,6 +142,7 @@ export function EditCatalog({ ...rest }) {
   }, [ description ]);
 
   useEffect(() => {
+    //definir os valores da page de Edicao;
     if(path == "/edit") {
       document.querySelector("#inputName input").value = lastViewedProduct.name;
       document.querySelector("#textarea").value = lastViewedProduct.description;
@@ -152,6 +153,11 @@ export function EditCatalog({ ...rest }) {
       setDescription(lastViewedProduct.description);
       setCategory(lastViewedProduct.category);
       setPrice((lastViewedProduct.price).replace(/[^0-9,]/g, ""));
+
+      if(lastViewedProduct.promotion) {
+        document.querySelector("#inputPromotion input").value = lastViewedProduct.promotion.percentage;
+        setPromotion(lastViewedProduct.promotion.percentage);
+      }
     }
 
   }, []);
