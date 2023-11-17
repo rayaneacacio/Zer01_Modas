@@ -14,6 +14,8 @@ function AuthProvider({ children }) {
   async function SignIn({ email, password }) {
     const response = await api.post("/sessions", { email, password });
 
+    api.defaults.headers.authorization = `Bearer ${ response.data.token }`;
+
     localStorage.setItem("@zer01modas:userData", JSON.stringify(response.data));
     setUserData(response.data);
 

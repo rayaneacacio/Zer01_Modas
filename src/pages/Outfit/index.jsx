@@ -25,8 +25,8 @@ import { Footer } from "../../components/Footer";
 import { Container, Main } from "./style";
 
 export function Outfit() {
-  const { isAdmin } = useAuth();
-  const { findProduct, setLastViewedProductStorage } = useProducts();
+  const { userData, isAdmin } = useAuth();
+  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite } = useProducts();
   const { allColorsOfProduct } = useProductAttributes();
 
   const [ isFavorite, setIsFavorite ] = useState(false);
@@ -59,13 +59,21 @@ export function Outfit() {
     navigate("/edit");
   }  
 
-  function handleFavorite() {
+  async function handleFavorite() {
+    if(!userData) {
+      document.querySelector(".modal-login").show();
+      sessionStorage.setItem("@zer01modas:modal", "open");
+      return;
+    }
+
     if(isFavorite) {
       setIsFavorite(false);
+      await removeFavorite(product);
       return;
     }
 
     setIsFavorite(true);
+    await insertFavorite(product);
   }
 
   function handleChangeSize(button) {
@@ -104,7 +112,7 @@ export function Outfit() {
   useEffect(() => {
     (async() => {
       try {
-        const { newProduct, error } = await findProduct(product_name, product_id);
+        const { newProduct, error } = await findProduct({ name: product_name, id: product_id });
 
         if(!newProduct) {
           throw new Error(error);
@@ -146,6 +154,19 @@ export function Outfit() {
 
   }, [ slides ]);
 
+  useEffect(() => {
+    if(userData) {
+      (async() => {
+        const fav = await findIfIsFavorite(product);
+    
+        if(fav) {
+          setIsFavorite(true);
+        }
+      })();
+    }
+    
+  }, [ product ]);
+
   return (
     <Container>
       <SecondHeader />
@@ -158,7 +179,7 @@ export function Outfit() {
         <h2> Home / { product.category } / { product.name } / ID: { product.id } </h2>
 
         <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
-          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
+          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeartFilled /> : <VscHeart /> } />
           {
             slides &&
             slides.map((image, index) => (

@@ -1,12 +1,13 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { api } from "../services/api";
 
 export const ProductsContext = createContext({});
 
 function ProductsProvider({ children }) {
-  const [ allProducts, setAllProducts ] = useState([]);
-  const [ lastViewedProduct, setLastViewedProduct ] = useState({});
+  const [ allProducts, setAllProducts ] = useState([]); //todos os produtos encontrados;
+  const [ lastViewedProduct, setLastViewedProduct ] = useState({}); //ultimo produto visualizado;
+  const [ favorites, setFavorites ] = useState([]); //produtos favoritos;
 
   async function createProduct({ name, category, price, promotion, description }) {
     try {
@@ -49,30 +50,7 @@ function ProductsProvider({ children }) {
     
   }
 
-  // async function findProductById(id) {
-  //   try {
-  //     const product = await api.get(`/products/show?id=${ id }`);
-  //     const images = await api.get(`/products_images/index?product_id=${ id }`);
-  //     const sizes = await api.get(`/products_sizes/index?product_id=${ id }`);
-  //     const details = await api.get(`/products_details/index?product_id=${ id }`);
-  //     const model_details = await api.get(`/products_model_details/index?product_id=${ id }`);
-
-  //     const response = {
-  //       ...product.data,
-  //       images: images.data,
-  //       sizes: sizes.data,
-  //       details: details.data,
-  //       model_details: model_details.data
-  //     };
-
-  //     return response;
-
-  //   } catch(error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  async function searchProducts(name, id) {
+  async function searchProducts({ name, id }) {
     //retorna uma lista de produtos;
       let response = null;
       let products = [];
@@ -102,7 +80,7 @@ function ProductsProvider({ children }) {
       return products;
   }
 
-  async function findProduct(name, id) {
+  async function findProduct({ name, id }) {
     //retorna um produto especifico;
     try {
       let products = null;
@@ -123,7 +101,7 @@ function ProductsProvider({ children }) {
         api.get(`/products_details/index?product_id=${ product.id }`),
         api.get(`/products_model_details/index?product_id=${ product.id }`)
       ]);
-
+    
       const response = {
         ...product,
         promotion: promotion.data,
@@ -206,6 +184,84 @@ function ProductsProvider({ children }) {
     }
   }
 
+  async function insertFavorite(product) {
+    try {
+      await api.post(`/products_favorites?product_id=${ product.id }&category=${ product.category }`);
+      await findAllFavorites();
+
+    } catch(error) {
+      if(error) {
+        alert(error);
+      } else {
+        alert("erro ao adicionar produto em favoritos");
+      }
+      
+    }
+  }
+
+  async function findIfIsFavorite(product) {
+    //verificar se um produto está na lista de favoritos do usuário;
+    try {
+      const response = await api.get(`/products_favorites/show?product_id=${ product.id }`);
+      
+      if(response.data == false) {
+        return false;
+      }
+
+      return true;
+
+    } catch(error) {
+      if(error) {
+        alert("erro ao buscar produto em products_favorites");
+      }
+      
+    }
+  }
+
+  async function removeFavorite(product) {
+    try {
+      await api.delete(`/products_favorites/delete?product_id=${ product.id }`);
+      await findAllFavorites();
+
+    } catch(error) {
+      if(error) {
+        alert(error);
+      } else {
+        alert("erro ao remover produto de favoritos");
+      }
+      
+    }
+  }
+
+  async function findAllFavorites() {
+    //buscar a lista de todos os produtos favoritos do user;
+    try {
+      const response = await api.get("/products_favorites/index");
+      const products = [];
+
+      for(let fav of response.data) {
+        const { newProduct } = await findProduct({ id: fav.product_id });
+        const imgs = await api.get(`/products_images/index?product_id=${ fav.product_id }`);
+
+        fav.name = newProduct[0].name;
+        fav.price = newProduct[0].price;
+        fav.img = imgs.data[0].image;
+
+        products.push(fav);
+      };
+
+      setFavorites(products);
+      return products;
+    
+    } catch(error) {
+      if(error) {
+        console.log(error)
+        alert("erro ao lista favoritos");
+      }
+          
+    }
+  }
+
   useEffect(() => {
     const product = JSON.parse(sessionStorage.getItem("@zer01modas:product"));
     if(product) {
@@ -215,7 +271,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions }}>
+    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites }}>
       { children }
     </ProductsContext.Provider>
   )

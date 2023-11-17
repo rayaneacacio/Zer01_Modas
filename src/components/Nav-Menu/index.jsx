@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { useProducts } from "../../hooks/products";
 import { createConfirmationMessage } from "../../scripts/notifications";
 
 import { FiHeart } from "react-icons/fi";
@@ -18,6 +19,7 @@ import { Container } from "./style";
 
 export function NavMenu({ ...rest }) {
   const { userData, isAdmin, SignOut } = useAuth();
+  const { setFavorites } = useProducts();
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -34,6 +36,7 @@ export function NavMenu({ ...rest }) {
 
   async function handleSignOut() {
     await SignOut();
+    setFavorites([]);
     handleCloseModalDisconnect();
   }
 

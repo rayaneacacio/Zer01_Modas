@@ -25,7 +25,7 @@ import { Container } from "./style";
 
 export function Header() {
   const { userData, isAdmin } = useAuth();
-  const { searchProducts } = useProducts();
+  const { searchProducts, findAllFavorites, favorites } = useProducts();
 
   const [ menuDesktop, setMenuDesktop ] = useState("close");
   const [ search, setSearch ] = useState("");
@@ -86,7 +86,7 @@ export function Header() {
   async function fetchDataDesktop(key) {
     if(key == "Enter") {
       const id = Number(search);
-      await searchProducts(search, id);
+      await searchProducts({ name: search, id });
       navigate("/catalog");
 
     }
@@ -112,7 +112,7 @@ export function Header() {
 
     (async() => {
       const id = Number(search);
-      const response = await searchProducts(search, id);
+      const response = await searchProducts({ name: search, id });
       setProducts(response);
     })();
     
@@ -123,7 +123,7 @@ export function Header() {
         boxResponseSearch.style.display = "flex";
       }
 
-    } else {
+    } else if(search != "") {
       const fetchDataDesktopWithEventKey = async(event) => await fetchDataDesktop(event.key);
       document.addEventListener("keydown", fetchDataDesktopWithEventKey);
 
@@ -134,6 +134,16 @@ export function Header() {
     }
 
   }, [ search ]);
+
+  useEffect(() => {
+    (async() => {
+      if(userData) {
+        await findAllFavorites();
+      }
+      
+    })();
+
+  }, [ userData ]);
 
   return (
     <Container $pathname={ route.pathname } $isAdmin={ isAdmin }>
@@ -192,7 +202,7 @@ export function Header() {
             !isAdmin &&
           <button className="buttonFavorites">
             <FiHeart size={ 25 } onClick={ navigateFavorites } />
-            <span> 0 </span>
+            <span> { favorites.length } </span>
           </button>
           }
           {
