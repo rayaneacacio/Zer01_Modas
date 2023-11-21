@@ -25,7 +25,7 @@ import { Container } from "./style";
 
 export function Header() {
   const { userData, isAdmin } = useAuth();
-  const { searchProducts, findAllFavorites, favorites } = useProducts();
+  const { searchProducts, findAllFavorites, favorites, cartBuy, findAllProductsShoppingCart } = useProducts();
 
   const [ menuDesktop, setMenuDesktop ] = useState("close");
   const [ search, setSearch ] = useState("");
@@ -83,15 +83,6 @@ export function Header() {
     handleCloseMenuMOBILE();
   }
 
-  async function fetchDataDesktop(key) {
-    if(key == "Enter") {
-      const id = Number(search);
-      await searchProducts({ name: search, id });
-      navigate("/catalog");
-
-    }
-  }
-
   useEffect(() => {
     const menu = document.querySelector(".boxButtons .nav-menu");
     const modal = sessionStorage.getItem("@zer01modas:modal");
@@ -111,12 +102,14 @@ export function Header() {
     const boxResponseSearch = document.querySelector(".responseSearch");
 
     (async() => {
+      //pesquisar produtos;
       const id = Number(search);
       const response = await searchProducts({ name: search, id });
       setProducts(response);
     })();
     
-    if(window.innerWidth < 1000) {
+    //adicionar imagem de erro caso se n encontrar produtos da pesquisa;
+    if(window.innerWidth < 1000) { //mobile;
       if(search == "") {
         boxResponseSearch.style.display = "none";
       } else {
@@ -124,12 +117,22 @@ export function Header() {
       }
 
     } else if(search != "") {
-      const fetchDataDesktopWithEventKey = async(event) => await fetchDataDesktop(event.key);
-      document.addEventListener("keydown", fetchDataDesktopWithEventKey);
+      //desktop;
+      const inputSearchDesktop = document.querySelector(".inputSearchDesktop input");
 
-      return () => {
-        document.removeEventListener("keydown", fetchDataDesktopWithEventKey);
+      function fetchDataDesktop(key) {
+        if(key == "Enter") {
+          navigate("/catalog");
+        }
       }
+
+      inputSearchDesktop.addEventListener('focus', () => {
+        document.addEventListener("keydown", event => fetchDataDesktop(event.key));
+
+        return () => {
+          document.removeEventListener("keydown", event => fetchDataDesktop(event.key));
+        }
+      });
 
     }
 
@@ -139,6 +142,7 @@ export function Header() {
     (async() => {
       if(userData) {
         await findAllFavorites();
+        await findAllProductsShoppingCart();
       }
       
     })();
@@ -209,12 +213,12 @@ export function Header() {
             !isAdmin &&
           <button>
             <RiShoppingBag2Line size={ 25 } onClick={ navigateShopping } />
-            <span> 0 </span>
+            <span> { cartBuy.products.length } </span>
           </button>
           }
         </div>
 
-        <InputBox className="input inputSearch" placeholder="O que vai querer hoje?" icon={ iconSearch } onChange={e => setSearch(e.target.value) } />
+        <InputBox className="input inputSearchDesktop" placeholder="O que vai querer hoje?" icon={ iconSearch } onChange={e => setSearch(e.target.value) } />
 
         <dialog className="modal-login">
         <div>

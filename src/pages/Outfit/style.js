@@ -176,7 +176,7 @@ export const Main = styled.main`
         border-radius: 2rem;
       }
 
-      .changeSize {
+      .chosenSize {
         font-weight: bold;
         border: 1.5px solid ${({ theme }) => theme.COLORS.BLACK};
       }

@@ -8,6 +8,7 @@ function ProductsProvider({ children }) {
   const [ allProducts, setAllProducts ] = useState([]); //todos os produtos encontrados;
   const [ lastViewedProduct, setLastViewedProduct ] = useState({}); //ultimo produto visualizado;
   const [ favorites, setFavorites ] = useState([]); //produtos favoritos;
+  const [ cartBuy, setCartBuy ] = useState({ products: [] }); //produtos no carrinho de compras;
 
   async function createProduct({ name, category, price, promotion, description }) {
     try {
@@ -255,10 +256,111 @@ function ProductsProvider({ children }) {
     
     } catch(error) {
       if(error) {
-        console.log(error)
+        console.log(error, error.response.data.message);
         alert("erro ao lista favoritos");
       }
-          
+    }
+  }
+
+  async function addShoppingCart(product_id, size, color) {
+    //adiciona o produto no carrinho de compras;
+    try {
+      const product = await checkExistsInTheShoppingCart(size, color);
+
+      if(product) {
+        await updateQuantityProductInShoppingCart(product, "increment");
+      } else {
+        await api.post("/shopping_cart", { product_id, size, color_name: color.name, color_hex: color.hex });
+      }
+      
+      findAllProductsShoppingCart();
+
+    } catch {
+      alert("erro ao adicionar produto no carrinho");
+    }
+  }
+
+  async function checkExistsInTheShoppingCart(size, color) {
+    //verifica se ja existe no carrinho de compras;
+    try {
+      const response = await api.post("/shopping_cart/show", { size, color_name: color.name, color_hex: color.hex });
+      
+      return response.data;
+
+    } catch {
+      alert("erro ao buscar produtos no carrinho rota /show");
+    }
+  }
+
+  async function updateQuantityProductInShoppingCart(product, params) {
+    //atualiza a quantidade de um produto no carrinho de compras;
+    try {
+      if(params == "increment") {
+        await api.patch("/shopping_cart/patch", { product, increment: params });
+      } else {
+        await api.patch("/shopping_cart/patch", { product, decrement: params });
+      }
+
+      await findAllProductsShoppingCart();
+
+    } catch {
+      alert("erro ao alterar quantidade do produto no carrinho de compras");
+    }
+  }
+
+  async function findAllProductsShoppingCart() {
+    //retorna todos os produtos do carrinho de compras;
+    try {
+      const response = await api.get("/shopping_cart/index");
+      const products = [];
+      let totalPrice = 0;
+      let shoppingCart = [];
+      let length = 0;
+
+      for(let index of response.data) {
+        const { newProduct } = await findProduct({ id: index.product_id });
+        const imgs = await api.get(`/products_images/index?product_id=${ index.product_id }`);
+
+        index.name = newProduct[0].name;
+        index.price = newProduct[0].price;
+        index.img = imgs.data[0].image;
+
+        let price = index.price.replace(/[^0-9,]/g, "");
+        price = parseFloat(price.replace(",", "."));
+        totalPrice = totalPrice + (Number(price) * index.quantity);
+
+        length = length + index.quantity;
+
+        products.push(index);
+      };
+
+      totalPrice = Number(totalPrice.toFixed(2));
+      totalPrice = Number(totalPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      shoppingCart = {
+        products: products,
+        totalPrice: totalPrice,
+        length: length
+      };
+
+      setCartBuy(shoppingCart);
+      return shoppingCart;
+
+    } catch(error) {
+      console.log(error);
+      alert("erro ao buscar produtos no carrinho rota /index");
+    }
+  }
+
+  async function removeShoppingCart(product_id, size, color_name, color_hex) {
+    //remove o produto do carrinho de compras;
+    try {
+      await api.post("/shopping_cart/delete", { product_id, size, color_name, color_hex });
+      findAllProductsShoppingCart();
+
+    } catch(error) {
+      console.log(error);
+      alert("erro ao remover produto do carrinho");
     }
   }
 
@@ -271,7 +373,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites }}>
+    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites, cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart }}>
       { children }
     </ProductsContext.Provider>
   )

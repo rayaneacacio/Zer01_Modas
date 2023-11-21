@@ -7,10 +7,10 @@ export const Container = styled.div`
 
   .mobile, .desktop {
     width: 120%;
+    height: 10rem;
     display: flex;
     align-items: flex-end;
     gap: 1rem;
-    cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -18,8 +18,10 @@ export const Container = styled.div`
 
     .select {
       background: none;
-      width: 1.6rem;
+      width: 1.8rem;
+      height: 100%;
       padding: 0;
+      align-self: center;
        
       svg {
         color: ${({ theme }) => theme.COLORS.BLACK};
@@ -27,7 +29,8 @@ export const Container = styled.div`
     }
 
     > img {
-      width: 7rem;
+      height: 100%;
+      cursor: pointer;
     }
 
     > div {
@@ -35,7 +38,19 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
+
+      > :last-child {
+        padding-top: 1rem;
+      }
     }
+  }
+
+  .title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
+    height: 3rem;
+    overflow: hidden;
   }
 
   .slide2 {
@@ -57,6 +72,32 @@ export const Container = styled.div`
     }
   }
 
+  .divCount {
+    display: flex;
+    justify-content: space-between;
+
+    > span {
+      display: flex;
+
+      > h3:nth-of-type(2) {
+        width: 3rem;
+        text-align: center;
+      }
+    }
+
+    button {
+      background: none;
+      width: 3rem;
+      height: 2rem;
+
+      svg {
+        color: ${({ theme }) => theme.COLORS.BLACK};
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
   .desktop {
     display: none;
   }
@@ -68,28 +109,26 @@ export const Container = styled.div`
 
     .desktop {
       width: 90%;
+      height: 11rem;
       display: flex;
       position: relative;
-
-      .select {
-        height: 11rem;
-      }
-
-      > img {
-        width: 8rem;
-      }
 
       > div {
         gap: 1rem;
 
-        > :first-child {
-          width: 25rem;
+        > :last-child {
+          padding: 0;
         }
       }
 
-      span {
-        display: flex;
-        justify-content: space-between;
+      .divCount button {
+        width: 5rem;
+        height: 2.5rem;
+      }
+
+      .title {
+        width: 45rem;
+        height: 2rem;
       }
 
       .remove {

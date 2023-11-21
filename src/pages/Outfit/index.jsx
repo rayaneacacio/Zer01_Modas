@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
 import { useProductAttributes } from "../../hooks/productAttributes";
 import { api } from "../../services/api";
+import { createNotification } from "../../scripts/notifications";
 
 import bermuda from "../../assets/bermuda.jpg";
 
@@ -26,19 +27,19 @@ import { Container, Main } from "./style";
 
 export function Outfit() {
   const { userData, isAdmin } = useAuth();
-  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite } = useProducts();
+  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite, addShoppingCart, productsShoppingCart } = useProducts();
   const { allColorsOfProduct } = useProductAttributes();
 
-  const [ isFavorite, setIsFavorite ] = useState(false);
-  const [ product, setProduct ] = useState({});
-  const [ colors, setColors ] = useState([]);
-  const [ colorName, setColorName ] = useState([]);
-  const [ slides, setSlides ] = useState([]);
-  const [ allSizes, setAllSizes ] = useState([]);
-  const [ sizesByColor, setSizesByColor ] = useState([]);
-  const [ productDetails, setProductDetails ] = useState([]);
-  const [ productModelDetails, setProductModelDetails ] = useState([]);
-  const [ loading, setLoading ] = useState(true);
+  const [ isFavorite, setIsFavorite ] = useState(false); //favoritar o produto;
+  const [ product, setProduct ] = useState({}); //produto;
+  const [ colors, setColors ] = useState([]); //cores disponiveis para a compra;
+  const [ chosenColor, setChosenColor ] = useState([]); //cor que está sendo visualizada (cor q foi selecionada);
+  const [ slides, setSlides ] = useState([]); //imagens do produto;
+  const [ allSizes, setAllSizes ] = useState([]); //todos tamanhos disponíveis;
+  const [ sizesByColor, setSizesByColor ] = useState([]); //tamanhos referentes a cada cor;
+  const [ productDetails, setProductDetails ] = useState([]); //detalhes do produto (tags descricao);
+  const [ productModelDetails, setProductModelDetails ] = useState([]); //detalhes do modelo (tags descricao);
+  const [ loading, setLoading ] = useState(true); //carregando a pagina;
 
   let urlSearch = (useLocation().search).split("?")[1];
   urlSearch = decodeURIComponent(urlSearch); 
@@ -57,12 +58,16 @@ export function Outfit() {
     });
 
     navigate("/edit");
-  }  
+  } 
+
+  function openLogin() {
+    document.querySelector(".modal-login").show();
+    sessionStorage.setItem("@zer01modas:modal", "open");
+  }
 
   async function handleFavorite() {
     if(!userData) {
-      document.querySelector(".modal-login").show();
-      sessionStorage.setItem("@zer01modas:modal", "open");
+      openLogin();
       return;
     }
 
@@ -80,10 +85,10 @@ export function Outfit() {
     const allButtons = document.querySelectorAll(".outfit-size button");
     const othersButtons = Array.from(allButtons).filter(btn => btn != button);
 
-    button.classList.toggle("changeSize");
+    button.classList.toggle("chosenSize");
 
     othersButtons.forEach(index => {
-      index.classList.remove("changeSize");
+      index.classList.remove("chosenSize");
     });
   }
 
@@ -103,10 +108,27 @@ export function Outfit() {
       }
     });
 
-    setColorName(color.name);
+    setChosenColor(color);
     setAllSizes(allProductSizes);
     setSlides(newSlides);
     setSizesByColor(newSizes);
+  }
+
+  async function handleAddToCart() {
+    const chosenSize = document.querySelector(".chosenSize");
+
+    if(!userData) {
+      openLogin();
+      return;
+    }
+
+    if(!chosenSize) {
+      createNotification("por favor escolha o tamanho");
+      return;
+    }
+
+    await addShoppingCart(product.id, chosenSize.value, chosenColor);
+    createNotification("Produto adicionado ao carrinho :)");
   }
 
   useEffect(() => {
@@ -212,7 +234,7 @@ export function Outfit() {
           <h2> { product.name } </h2>
 
           <div className="outfit-color">
-            <h2> COR: { colorName } </h2>
+            <h2> COR: { chosenColor.name } </h2>
             <div>
               {
                 colors.length > 0 &&
@@ -229,7 +251,7 @@ export function Outfit() {
               {
                 sizesByColor.length > 0 &&
                 sizesByColor.map((item, index) => (
-                  <button key={ index } onClick={(e) => handleChangeSize(e.target) }> { item } </button>
+                  <button key={ index } value={ item } onClick={(e) => handleChangeSize(e.target) }> { item } </button>
                 ))
               }
             </div>
@@ -239,7 +261,7 @@ export function Outfit() {
             isAdmin ?
             <Button className="buttonEdit" title="EDITAR" onClick={ navigateEdit } />
             :
-            <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
+            <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" onClick={ handleAddToCart } />
           }
         </div>
 
@@ -307,8 +329,8 @@ export function Outfit() {
         <Button className="buttons buttonEdit" title="EDITAR" onClick={ navigateEdit } />
         :
         <div className="buttons">
-          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeart /> : <VscHeartFilled /> } />
-          <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" />
+          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeartFilled /> : <VscHeart /> } />
+          <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" onClick={ handleAddToCart } />
         </div>
       }
     </Container>
