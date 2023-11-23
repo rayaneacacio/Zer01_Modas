@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { useMenu } from "../../hooks/menu";
 import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
 import { api } from "../../services/api";
@@ -24,10 +25,10 @@ import { ShowOutfit } from "../ShowOutfit";
 import { Container } from "./style";
 
 export function Header() {
+  const { openMenuDesktop, closenMenuDesktop } = useMenu();
   const { userData, isAdmin } = useAuth();
   const { searchProducts, findAllFavorites, favorites, cartBuy, findAllProductsShoppingCart } = useProducts();
 
-  const [ menuDesktop, setMenuDesktop ] = useState("close");
   const [ search, setSearch ] = useState("");
   const [ products, setProducts ] = useState([]);
 
@@ -47,7 +48,7 @@ export function Header() {
 
   function handleOpenMenuDESKTOP() {
     if(window.innerWidth >= 1000) {
-      setMenuDesktop("open");
+      openMenuDesktop();
     }
 
     document.querySelector(".firstButton svg").style.animation = "rotate180 0.3s forwards";
@@ -55,7 +56,7 @@ export function Header() {
 
   function handleCloseMenuDESKTOP() {
     if(window.innerWidth >= 1000) {
-      setMenuDesktop("close");
+      closenMenuDesktop();
     }
 
     document.querySelector(".firstButton svg").style.animation = "rotate180 reverse 0.3s forwards";
@@ -74,29 +75,14 @@ export function Header() {
 
   function handleCloseModalLogin() {
     document.querySelector(".modal-login").close();
-    sessionStorage.removeItem("@zer01modas:modal");
     document.querySelector(".boxButtons .nav-menu").style.display = "none";
+    closenMenuDesktop();
   }
 
   function handleNavigateOutfit(product_name) {
     navigate(`/outfit?${product_name}`);
     handleCloseMenuMOBILE();
   }
-
-  useEffect(() => {
-    const menu = document.querySelector(".boxButtons .nav-menu");
-    const modal = sessionStorage.getItem("@zer01modas:modal");
-
-    if(menu) {
-      if(menuDesktop == "open") {
-        menu.style.display = "flex";
-      } else if(!modal) {
-        menu.style.display = "none";
-
-      }
-    }
-
-  }, [ menuDesktop ]);
 
   useEffect(() => {
     const boxResponseSearch = document.querySelector(".responseSearch");

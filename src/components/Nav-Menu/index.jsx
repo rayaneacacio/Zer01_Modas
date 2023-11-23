@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { useMenu } from "../../hooks/menu";
 import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
 import { createConfirmationMessage } from "../../scripts/notifications";
@@ -18,6 +19,7 @@ import { Button } from "../Button";
 import { Container } from "./style";
 
 export function NavMenu({ ...rest }) {
+  const { openMenuDesktop, closenMenuDesktop } = useMenu();
   const { userData, isAdmin, SignOut } = useAuth();
   const { setFavorites } = useProducts();
 
@@ -31,7 +33,7 @@ export function NavMenu({ ...rest }) {
     }
 
     document.querySelector(".modal-login").show();
-    sessionStorage.setItem("@zer01modas:modal", "open");
+    openMenuDesktop();
   }
 
   async function handleSignOut() {
@@ -67,18 +69,25 @@ export function NavMenu({ ...rest }) {
   function handleOpenModalDisconnect() {
     const buttonConfirm = createConfirmationMessage("Desconectar? :(");
     buttonConfirm.addEventListener("click", handleSignOut);
-    sessionStorage.setItem("@zer01modas:modal", "open");
+
+    document.querySelectorAll(".confirmationModal button")[1].addEventListener("click", closenMenuDesktop);
+
+    openMenuDesktop();
   }
 
   function handleCloseModalDisconnect() {
     document.querySelector(".confirmationModal").remove();
-    sessionStorage.removeItem("@zer01modas:modal");
     document.querySelector(".boxButtons .nav-menu").style.display = "none";
+    closenMenuDesktop();
   }
 
   useEffect(() => {
     handleWindowResize();
-    window.onresize = handleWindowResize;
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+        window.removeEventListener("resize", handleWindowResize);
+    };
 
   }, []);
 

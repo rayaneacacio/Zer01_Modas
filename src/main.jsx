@@ -12,6 +12,7 @@ import "swiper/css/scrollbar";
 
 import { Zer01ModasRoutes } from './routes';
 
+import { MenuProvider } from './hooks/menu';
 import { AuthProvider } from "./hooks/auth";
 import { ProductsProvider } from "./hooks/products";
 import { ProductAttributesProvider } from './hooks/productAttributes';
@@ -23,15 +24,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={ theme }>
       <GlobalStyles />
-      <AuthProvider>
-        <ProductsProvider>
-          <ProductAttributesProvider>
-            <ProductDetailProvider>
-              <Zer01ModasRoutes />
-            </ProductDetailProvider>
-          </ProductAttributesProvider>
-        </ProductsProvider>
-      </AuthProvider>
+      <MenuProvider>
+        <AuthProvider>
+          <ProductsProvider>
+            <ProductAttributesProvider>
+              <ProductDetailProvider>
+                <Zer01ModasRoutes />
+              </ProductDetailProvider>
+            </ProductAttributesProvider>
+          </ProductsProvider>
+        </AuthProvider>
+      </MenuProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )
