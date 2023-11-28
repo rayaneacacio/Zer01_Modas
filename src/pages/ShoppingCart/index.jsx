@@ -80,11 +80,8 @@ export function ShoppingCart() {
   }, [ cartBuy ]);
 
   useEffect(() => {
-    let array = chosenProductsInCart;
-
     if(chosenProductsInCart.length < cartBuy.products.length) {
       setSelectAll(false);
-      setChosenProductsInCart(array);
 
     } else if(chosenProductsInCart.length > 0){
       setSelectAll(true);
@@ -130,7 +127,7 @@ export function ShoppingCart() {
           <h3> Resumo da compra </h3>
           <div>
             <span> 
-              <p> Subtotal { `(${cartBuy.length} itens)` } </p> 
+              <p> Subtotal { cartBuy.length == 1 ? "(1 item)" : `(${cartBuy.length} itens)` } </p> 
               <p> <strong> { cartBuy.price } </strong> </p> 
             </span>
 

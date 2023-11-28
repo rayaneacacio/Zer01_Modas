@@ -319,11 +319,11 @@ function ProductsProvider({ children }) {
 
       for(let index of response.data) {
         const { newProduct } = await findProduct({ id: index.product_id });
-        const imgs = await api.get(`/products_images/index?product_id=${ index.product_id }`);
+        const img = await api.get(`/products_images/show?product_id=${ index.product_id }&color_hex=${ index.color_hex.replace("#", "") }`);
 
         index.name = newProduct[0].name;
         index.price = newProduct[0].price;
-        index.img = imgs.data[0].image;
+        index.img = img.data.image;
 
         products.push(index);
       };
@@ -342,12 +342,16 @@ function ProductsProvider({ children }) {
     try {
       await api.post("/shopping_cart/delete", { product_id, size, color_name, color_hex }); //remover no banco de dados
 
-      const newArrayProductsInCart = chosenProductsInCart.filter(product => product.id != product_id && product.size != size && product.color_name != color_name && product.color_hex != color_hex
-      ); //remover na lista de compras;
+      const newArrayProductsInCart = [];
 
-      setChosenProductsInCart(newArrayProductsInCart);
+      for(const product of chosenProductsInCart) {
+        if(product.color_hex != color_hex && product.size != size) {
+          newArrayProductsInCart.push(product);
+        }
+      } //remover na lista de compras;
 
       await findAllProductsShoppingCart();
+      setChosenProductsInCart(newArrayProductsInCart);
 
     } catch(error) {
       console.log(error);

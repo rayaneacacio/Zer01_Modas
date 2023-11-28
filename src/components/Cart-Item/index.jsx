@@ -21,13 +21,9 @@ export function CartItem({ product, ...rest }) {
   const [ isSelected, setIsSelected ] = useState(false);
 
   function handleSelect() {
-    if(isSelected === true) {
+    if(isSelected) {
       setIsSelected(false);
-      const newProducts = chosenProductsInCart.filter(index => {
-        if(index != product) {
-          return index;
-        }
-      });
+      const newProducts = chosenProductsInCart.filter(index => index.id != product.id);
       
       setChosenProductsInCart(newProducts);
       return;
@@ -56,9 +52,9 @@ export function CartItem({ product, ...rest }) {
     await updateQuantityProductInShoppingCart(product, "increment");
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     //verifica se o produto foi selecionado;
-    const isChosenProduct = chosenProductsInCart.filter(index => { return index == product });
+    const isChosenProduct = chosenProductsInCart.filter(index => index.id == product.id);
 
     if(isChosenProduct.length > 0) {
       setIsSelected(true);
