@@ -17,6 +17,7 @@ import { AuthProvider } from "./hooks/auth";
 import { ProductsProvider } from "./hooks/products";
 import { ProductAttributesProvider } from './hooks/productAttributes';
 import { ProductDetailProvider } from './hooks/productDetails';
+import { ShoppingProvider } from './hooks/shopping';
 
 register();
 
@@ -29,7 +30,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <ProductsProvider>
             <ProductAttributesProvider>
               <ProductDetailProvider>
-                <Zer01ModasRoutes />
+                <ShoppingProvider>
+                  <Zer01ModasRoutes />
+                </ShoppingProvider>
               </ProductDetailProvider>
             </ProductAttributesProvider>
           </ProductsProvider>

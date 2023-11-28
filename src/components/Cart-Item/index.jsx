@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useProducts } from "../../hooks/products";
+import { useShopping } from "../../hooks/shopping";
 import { api } from "../../services/api";
 import { createConfirmationMessage } from "../../scripts/notifications";
 
@@ -16,7 +16,7 @@ import { Button } from "../../components/Button";
 import { Container } from "./style";
 
 export function CartItem({ product, ...rest }) {
-  const { removeShoppingCart, updateQuantityProductInShoppingCart, setChosenProductsInCart, chosenProductsInCart } = useProducts();
+  const { removeShoppingCart, updateQuantityProductInShoppingCart, setChosenProductsInCart, chosenProductsInCart } = useShopping();
 
   const [ isSelected, setIsSelected ] = useState(false);
 

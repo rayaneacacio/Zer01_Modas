@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useMenu } from "../../hooks/menu";
 import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
+import { useShopping } from "../../hooks/shopping";
 import { api } from "../../services/api";
 
 import { HiOutlineViewList } from "react-icons/hi";
@@ -27,7 +28,8 @@ import { Container } from "./style";
 export function Header() {
   const { openMenuDesktop, closenMenuDesktop } = useMenu();
   const { userData, isAdmin } = useAuth();
-  const { searchProducts, findAllFavorites, favorites, cartBuy, findAllProductsShoppingCart } = useProducts();
+  const { searchProducts, findAllFavorites, favorites } = useProducts();
+  const { cartBuy, findAllProductsShoppingCart } = useShopping();
 
   const [ search, setSearch ] = useState("");
   const [ products, setProducts ] = useState([]);

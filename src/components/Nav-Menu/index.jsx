@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useMenu } from "../../hooks/menu";
 import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
+import { useShopping } from "../../hooks/shopping";
 import { createConfirmationMessage } from "../../scripts/notifications";
 
 import { FiHeart } from "react-icons/fi";
@@ -21,7 +22,8 @@ import { Container } from "./style";
 export function NavMenu({ ...rest }) {
   const { openMenuDesktop, closenMenuDesktop } = useMenu();
   const { userData, isAdmin, SignOut } = useAuth();
-  const { setFavorites, setCartBuy } = useProducts();
+  const { setFavorites } = useProducts();
+  const { setCartBuy } = useShopping();
 
   const navigate = useNavigate();
   const route = useLocation();

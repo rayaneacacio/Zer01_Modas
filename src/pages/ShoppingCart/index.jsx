@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useProducts } from "../../hooks/products";
+import { useShopping } from "../../hooks/shopping";
 import { createConfirmationMessage } from "../../scripts/notifications";
 
 import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
@@ -18,7 +18,7 @@ import { Footer } from "../../components/Footer";
 import { Container, Main } from "./style";
 
 export function ShoppingCart() {
-  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart } = useProducts();
+  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart } = useShopping();
 
   const [ selectAll, setSelectAll ] = useState(false);
 
