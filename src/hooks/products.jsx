@@ -8,7 +8,8 @@ function ProductsProvider({ children }) {
   const [ allProducts, setAllProducts ] = useState([]); //todos os produtos encontrados;
   const [ lastViewedProduct, setLastViewedProduct ] = useState({}); //ultimo produto visualizado;
   const [ favorites, setFavorites ] = useState([]); //produtos favoritos;
-  const [ cartBuy, setCartBuy ] = useState({ products: [] }); //produtos no carrinho de compras;
+  const [ cartBuy, setCartBuy ] = useState({ products: [], length: 0, price: "R$ 00,00" }); //produtos no carrinho de compras;
+  const [ chosenProductsInCart, setChosenProductsInCart ] = useState([]); //produtos do carrinho selecionado pelos user;
 
   async function createProduct({ name, category, price, promotion, description }) {
     try {
@@ -302,8 +303,10 @@ function ProductsProvider({ children }) {
       }
 
       await findAllProductsShoppingCart();
+      await calculateValueShoppingCart(chosenProductsInCart);
 
-    } catch {
+    } catch(error) {
+      console.log(error);
       alert("erro ao alterar quantidade do produto no carrinho de compras");
     }
   }
@@ -313,9 +316,6 @@ function ProductsProvider({ children }) {
     try {
       const response = await api.get("/shopping_cart/index");
       const products = [];
-      let totalPrice = 0;
-      let shoppingCart = [];
-      let length = 0;
 
       for(let index of response.data) {
         const { newProduct } = await findProduct({ id: index.product_id });
@@ -325,26 +325,11 @@ function ProductsProvider({ children }) {
         index.price = newProduct[0].price;
         index.img = imgs.data[0].image;
 
-        let price = index.price.replace(/[^0-9,]/g, "");
-        price = parseFloat(price.replace(",", "."));
-        totalPrice = totalPrice + (Number(price) * index.quantity);
-
-        length = length + index.quantity;
-
         products.push(index);
       };
 
-      totalPrice = Number(totalPrice.toFixed(2));
-      totalPrice = Number(totalPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-      shoppingCart = {
-        products: products,
-        totalPrice: totalPrice,
-        length: length
-      };
-
-      setCartBuy(shoppingCart);
-      return shoppingCart;
+      setCartBuy(prevState => { return {...prevState, products: products }});
+      return products;
 
     } catch(error) {
       console.log(error);
@@ -355,13 +340,45 @@ function ProductsProvider({ children }) {
   async function removeShoppingCart(product_id, size, color_name, color_hex) {
     //remove o produto do carrinho de compras;
     try {
-      await api.post("/shopping_cart/delete", { product_id, size, color_name, color_hex });
-      findAllProductsShoppingCart();
+      await api.post("/shopping_cart/delete", { product_id, size, color_name, color_hex }); //remover no banco de dados
+
+      const newArrayProductsInCart = chosenProductsInCart.filter(product => product.id != product_id && product.size != size && product.color_name != color_name && product.color_hex != color_hex
+      ); //remover na lista de compras;
+
+      setChosenProductsInCart(newArrayProductsInCart);
+
+      await findAllProductsShoppingCart();
 
     } catch(error) {
       console.log(error);
       alert("erro ao remover produto do carrinho");
     }
+  }
+
+  async function calculateValueShoppingCart(products) {
+    //calcular valor da compra;
+    let totalPrice = 0;
+    let length = 0;
+
+    for(const product of products) {
+      const product_color = {
+        name: product.color_name,
+        hex: product.color_hex
+      }
+
+      const response = await checkExistsInTheShoppingCart(product.size, product_color);
+
+      let price = product.price.replace(/[^0-9,]/g, "");
+      price = parseFloat(price.replace(",", "."));
+      totalPrice = totalPrice + (Number(price) * response.quantity);
+
+      length = length + response.quantity;
+    }
+
+    totalPrice = Number(totalPrice.toFixed(2));
+    totalPrice = Number(totalPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    setCartBuy(prevState => { return {...prevState, price: totalPrice, length: length }});
   }
 
   useEffect(() => {
@@ -372,8 +389,15 @@ function ProductsProvider({ children }) {
 
   }, []);
 
+  useEffect(() => {
+    (async() => {
+  	  await calculateValueShoppingCart(chosenProductsInCart);
+    })();
+
+  }, [ chosenProductsInCart ]);
+
   return (
-    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites, cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart }}>
+    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites, cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart }}>
       { children }
     </ProductsContext.Provider>
   )

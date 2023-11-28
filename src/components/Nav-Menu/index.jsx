@@ -21,7 +21,7 @@ import { Container } from "./style";
 export function NavMenu({ ...rest }) {
   const { openMenuDesktop, closenMenuDesktop } = useMenu();
   const { userData, isAdmin, SignOut } = useAuth();
-  const { setFavorites } = useProducts();
+  const { setFavorites, setCartBuy } = useProducts();
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -39,6 +39,7 @@ export function NavMenu({ ...rest }) {
   async function handleSignOut() {
     await SignOut();
     setFavorites([]);
+    setCartBuy({ products: [] });
     handleCloseModalDisconnect();
   }
 

@@ -15,18 +15,26 @@ import { Button } from "../../components/Button";
 
 import { Container } from "./style";
 
-export function CartItem({ product, select = false, ...rest }) {
-  const { removeShoppingCart, updateQuantityProductInShoppingCart } = useProducts();
+export function CartItem({ product, ...rest }) {
+  const { removeShoppingCart, updateQuantityProductInShoppingCart, setChosenProductsInCart, chosenProductsInCart } = useProducts();
 
-  const [ isSelected, setIsSelected ] = useState(select);
+  const [ isSelected, setIsSelected ] = useState(false);
 
   function handleSelect() {
     if(isSelected === true) {
       setIsSelected(false);
+      const newProducts = chosenProductsInCart.filter(index => {
+        if(index != product) {
+          return index;
+        }
+      });
+      
+      setChosenProductsInCart(newProducts);
       return;
     }
 
     setIsSelected(true);
+    setChosenProductsInCart(prevState => { return [...prevState, product]});
   }
 
   function handleRemoveShoppingCart() {
@@ -49,9 +57,16 @@ export function CartItem({ product, select = false, ...rest }) {
   }
 
   useEffect(() => {
-    setIsSelected(select);
+    //verifica se o produto foi selecionado;
+    const isChosenProduct = chosenProductsInCart.filter(index => { return index == product });
 
-  }, [ select ]);
+    if(isChosenProduct.length > 0) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+
+  }, [ chosenProductsInCart ]);
 
   return (
     <Container className="box">

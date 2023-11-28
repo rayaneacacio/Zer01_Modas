@@ -124,6 +124,25 @@ export const Main = styled.main`
     }
   }
 
+  .img-carrinho-vazio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: img-carrinho-vazio;
+    margin: 10rem 0;
+
+    > img {
+      width: 40rem;
+      height: 40rem;
+    }
+  }
+
+  .inputCupom {
+    width: 50%;
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_700};
+    padding: 0.5rem;
+  }
+
   @media(min-width: 1000px) {
     height: calc(100% - 23rem);
     margin-top: 6rem;
@@ -215,6 +234,10 @@ export const Main = styled.main`
         height: 5rem;
         margin: 0;
       }
+    }
+
+    .img-carrinho-vazio {
+      margin: 5rem 0;
     }
     
     > footer {

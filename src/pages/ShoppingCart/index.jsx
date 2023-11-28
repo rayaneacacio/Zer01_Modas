@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useProducts } from "../../hooks/products";
@@ -6,6 +6,8 @@ import { createConfirmationMessage } from "../../scripts/notifications";
 
 import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 import { BsTruck } from "react-icons/bs";
+
+import img_carrinho_vazio from "../../assets/não_encontrado2.png";
 
 import { SecondHeader } from "../../components/SecondHeader";
 import { Nav } from "../../components/Nav";
@@ -16,9 +18,9 @@ import { Footer } from "../../components/Footer";
 import { Container, Main } from "./style";
 
 export function ShoppingCart() {
-  const { cartBuy, removeShoppingCart } = useProducts();
+  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart } = useProducts();
 
-  const [ isSelect, setIsSelect ] = useState(false);
+  const [ selectAll, setSelectAll ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,26 +33,64 @@ export function ShoppingCart() {
   }
 
   function handleSelectAll() {
-    if(isSelect) {
-      setIsSelect(false);
+    if(selectAll) {
+      setSelectAll(false);
+      setChosenProductsInCart([]);
     } else {
-      setIsSelect(true);
+      setSelectAll(true);
+      setChosenProductsInCart(cartBuy.products);
     }
     
   }
 
   async function handleRemoveAll() {
-    const buttonConfirm = createConfirmationMessage("Tem certeza que deseja remover tudo? ;-;");
+    const buttonConfirm = createConfirmationMessage("Remover produtos? ;-;");
 
     buttonConfirm.addEventListener("click", () => {
-      cartBuy.products.map(async(product) => {
+      chosenProductsInCart.map(async(product) => {
         await removeShoppingCart(product.product_id, product.size, product.color_name, product.color_hex);
       });
 
       document.querySelector(".confirmationModal").remove();
-      setIsSelect(false);
+      setSelectAll(false);
+      setChosenProductsInCart([]);
     });
   }
+
+  useEffect(() => {
+    if(cartBuy.products.length == 0) {
+      document.querySelector(".boxCards").style.display = "none";
+      document.querySelector(".compra").style.display = "none";
+      document.querySelector("main").style.gridTemplateAreas = `
+      "info info" 
+      "img-carrinho-vazio img-carrinho-vazio" 
+      "footer footer"`;
+    } else {
+      document.querySelector(".boxCards").style.display = "block";
+      document.querySelector(".compra").style.display = "flex";
+
+      if(window.innerWidth >= 1000) {
+        document.querySelector("main").style.gridTemplateAreas = `
+        "info info"
+        "cards text"
+        "footer footer"`;
+      }
+    }
+
+  }, [ cartBuy ]);
+
+  useEffect(() => {
+    let array = chosenProductsInCart;
+
+    if(chosenProductsInCart.length < cartBuy.products.length) {
+      setSelectAll(false);
+      setChosenProductsInCart(array);
+
+    } else if(chosenProductsInCart.length > 0){
+      setSelectAll(true);
+    }
+
+  }, [ chosenProductsInCart ]);
 
   return (
     <Container>
@@ -75,13 +115,13 @@ export function ShoppingCart() {
 
         <div className="boxCards">
           <div>
-            <Button icon={ isSelect ? <MdRadioButtonChecked /> : <MdRadioButtonUnchecked /> } title="Selecionar tudo" onClick={ handleSelectAll } />
+            <Button icon={ selectAll ? <MdRadioButtonChecked /> : <MdRadioButtonUnchecked /> } title="Selecionar tudo" onClick={ handleSelectAll } />
             <Button title="Remover" onClick={ handleRemoveAll } />
           </div>
           {
             cartBuy.products.length > 0 &&
             cartBuy.products.map((product, index) => (
-              <CartItem key={ index } product={ product } select={ isSelect } onClick={() =>  handleNavigateToOutfit(product.name) } />
+              <CartItem key={ index } product={ product } onClick={() =>  handleNavigateToOutfit(product.name) } />
             ))
           }
         </div>
@@ -91,16 +131,27 @@ export function ShoppingCart() {
           <div>
             <span> 
               <p> Subtotal { `(${cartBuy.length} itens)` } </p> 
-              <p> <strong> { cartBuy.totalPrice } </strong> </p> 
+              <p> <strong> { cartBuy.price } </strong> </p> 
             </span>
-            {/* <span> <p> Frete </p> <p> Grátis </p> </span>
-            <span> <p> Cupom de Desconto </p> <p> <strong> BEMVINDO10 </strong> </p> </span>
-            <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span> */}
+
+            {/* <span> <p> Frete </p> <p> Grátis </p> </span> */}
+
+            <span> <p> Cupom de Desconto: </p> <input type="text" className="inputCupom" placeholder="APLICAR CUPOM" /> </span>
+
+            {/* <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span> */}
+
           </div>
-          <span className="value"> <h3> Valor Total </h3> <h3> { cartBuy.totalPrice } </h3> </span>
+          <span className="value"> <h3> Valor Total </h3> <h3> { cartBuy.price } </h3> </span>
           <Button title="FINALIZAR COMPRA" onClick={ handleNavigatePayment } />
         </div>
 
+        {
+          cartBuy.products.length == 0 &&
+          <div className="img-carrinho-vazio">
+            <img src={ img_carrinho_vazio } alt="" />
+          </div>
+        }
+        
         <Footer />
       </Main>
 

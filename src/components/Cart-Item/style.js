@@ -114,6 +114,7 @@ export const Container = styled.div`
       position: relative;
 
       > div {
+        width: 50%;
         gap: 1rem;
 
         > :last-child {
@@ -127,7 +128,6 @@ export const Container = styled.div`
       }
 
       .title {
-        width: 45rem;
         height: 2rem;
       }
 
@@ -144,6 +144,12 @@ export const Container = styled.div`
           color: ${({ theme }) => theme.COLORS.BLACK};
         }
       }
+    }
+  }
+
+  @media(min-width: 1400px) {
+    .desktop > div {
+      width: 80%;
     }
   }
 `;
