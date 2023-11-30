@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useShopping } from "../../hooks/shopping";
 import { createConfirmationMessage } from "../../scripts/notifications";
+import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
 
 import { MdRadioButtonUnchecked, MdRadioButtonChecked } from "react-icons/md";
 import { BsTruck } from "react-icons/bs";
@@ -16,11 +17,14 @@ import { CartItem } from "../../components/Cart-Item";
 import { Footer } from "../../components/Footer";
 
 import { Container, Main } from "./style";
+import { Input } from "../../components/Input";
 
 export function ShoppingCart() {
-  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart } = useShopping();
+  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart, searchCupom } = useShopping();
 
   const [ selectAll, setSelectAll ] = useState(false);
+  const [ cupom, setCupom ] = useState({ name: "", discount: "0%", discountValue: "R$ 0,00" });
+  const [ buyPrice, setBuyPrice ] = useState(cartBuy.price);
 
   const navigate = useNavigate();
 
@@ -57,6 +61,42 @@ export function ShoppingCart() {
     });
   }
 
+  async function handleAddCupom() {
+    if(cupom.name != "") {
+        let { discount, message } = await searchCupom((cupom.name).toLocaleUpperCase());
+
+        if(discount) {
+          calculateValueBuy(discount);
+        } else {
+          calculateValueBuy();
+          createErrorMessage(document.querySelector(".divInputCupom"), message);
+        }
+    }
+  }
+
+  function calculateValueBuy(discount) {
+    //calcular o desconto;
+    if(discount) {
+      let price = cartBuy.price.replace("R$", "");
+      price = parseFloat(price.replace(",", "."));
+
+      let discountValue = (discount.replace("%", "")/100) * price;
+      let newPrice = price - discountValue;
+      
+      newPrice = Number(newPrice.toFixed(2));
+      newPrice = Number(newPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      discountValue = Number(discountValue.toFixed(2));
+      discountValue = Number(discountValue).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      setCupom(prevState => { return {...prevState, discount: discount, discountValue: discountValue }});
+      setBuyPrice(newPrice);
+
+    } else {
+      setBuyPrice(cartBuy.price);
+    }
+  }
+
   useEffect(() => {
     if(cartBuy.products.length == 0) {
       document.querySelector(".boxCards").style.display = "none";
@@ -75,6 +115,12 @@ export function ShoppingCart() {
         "cards text"
         "footer footer"`;
       }
+
+      setBuyPrice(cartBuy.price);
+
+      (async() => {
+        await handleAddCupom();
+      })();
     }
 
   }, [ cartBuy ]);
@@ -88,6 +134,11 @@ export function ShoppingCart() {
     }
 
   }, [ chosenProductsInCart ]);
+
+  useEffect(() => {
+    removeErrorMessage(document.querySelector(".divInputCupom"));
+
+  }, [ cupom ]);
 
   return (
     <Container>
@@ -131,14 +182,27 @@ export function ShoppingCart() {
               <p> <strong> { cartBuy.price } </strong> </p> 
             </span>
 
-            {/* <span> <p> Frete </p> <p> Grátis </p> </span> */}
+            <div className="divCupom"> 
+              <p> Cupom de Desconto: </p>
+              <span>
+                <Input type="text" className="divInputCupom" placeholder="CUPOM" onChange={e => setCupom({ name: e.target.value })} />
+                <Button title="APLICAR" onClick={ handleAddCupom } />
+              </span>
+              
+            </div>
 
-            <span> <p> Cupom de Desconto: </p> <input type="text" className="inputCupom" placeholder="APLICAR CUPOM" /> </span>
-
-            {/* <span> <p> Descontos </p> <p> -R$10 <strong> R$ 269,97 </strong> </p> </span> */}
+            <span> 
+              <p> Descontos </p>
+              {
+                cupom.discount ? 
+                <p> <strong> -{ cupom.discountValue } ({ cupom.discount }) </strong> </p>
+                :
+                <p> <strong> - R$ 0,00 (0%) </strong> </p>
+              }
+            </span>
 
           </div>
-          <span className="value"> <h3> Valor Total </h3> <h3> { cartBuy.price } </h3> </span>
+          <span className="value"> <h3> Valor Total </h3> <h3> { buyPrice } </h3> </span>
           <Button title="FINALIZAR COMPRA" onClick={ handleNavigatePayment } />
         </div>
 

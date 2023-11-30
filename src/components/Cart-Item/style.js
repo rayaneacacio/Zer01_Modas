@@ -49,7 +49,7 @@ export const Container = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 90%;
-    height: 3rem;
+    height: 2.5rem;
     overflow: hidden;
   }
 
@@ -88,7 +88,7 @@ export const Container = styled.div`
     button {
       background: none;
       width: 3rem;
-      height: 2rem;
+      height: 2.5rem;
 
       svg {
         color: ${({ theme }) => theme.COLORS.BLACK};

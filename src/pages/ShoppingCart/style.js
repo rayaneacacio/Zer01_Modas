@@ -42,6 +42,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
+  font-size: 1.5rem;
   width: 100%;
   height: calc(100% - 15rem);
   margin-top: 15rem;
@@ -97,10 +98,10 @@ export const Main = styled.main`
     > div {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2rem;
     }
     
-    span {
+    span, .divCupom {
       display: flex;
       justify-content: space-between;
     }
@@ -111,6 +112,7 @@ export const Main = styled.main`
 
     .value {
       color: ${({ theme }) => theme.COLORS.PURPLE};
+      margin-top: 4rem;
       display: flex;
       justify-content: space-between;
     }
@@ -121,6 +123,32 @@ export const Main = styled.main`
       width: 95%;
       padding: 1rem;
       margin: 1rem;
+    }
+  }
+
+  .divCupom {
+    padding-left: 1rem;
+
+    span {
+      gap: 2rem;
+    }
+
+    button {
+      background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      height: 3rem;
+      padding: 0 1.5rem;
+    }
+  }
+
+  .divInputCupom {
+    height: 3rem;
+    padding: 0.5rem;
+    border: none;
+    position: relative;
+
+    input {
+      padding: 0;
     }
   }
 
@@ -135,12 +163,6 @@ export const Main = styled.main`
       width: 40rem;
       height: 40rem;
     }
-  }
-
-  .inputCupom {
-    width: 50%;
-    border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_700};
-    padding: 0.5rem;
   }
 
   @media(min-width: 1000px) {
@@ -234,6 +256,10 @@ export const Main = styled.main`
         height: 5rem;
         margin: 0;
       }
+    }
+
+    .divCupom {
+      padding-left: 2rem;
     }
 
     .img-carrinho-vazio {

@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useProducts } from "../../hooks/products";
 import { useProductAttributes } from "../../hooks/productAttributes";
+import { useShopping } from "../../hooks/shopping";
 import { api } from "../../services/api";
 import { createNotification } from "../../scripts/notifications";
 
@@ -27,8 +28,9 @@ import { Container, Main } from "./style";
 
 export function Outfit() {
   const { userData, isAdmin } = useAuth();
-  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite, addShoppingCart, productsShoppingCart } = useProducts();
+  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite } = useProducts();
   const { allColorsOfProduct } = useProductAttributes();
+  const { addShoppingCart, productsShoppingCart } = useShopping();
 
   const [ isFavorite, setIsFavorite ] = useState(false); //favoritar o produto;
   const [ product, setProduct ] = useState({}); //produto;
