@@ -8,6 +8,7 @@ export const ShoppingContext = createContext({});
 function ShoppingProvider({ children }) {
   const [ cartBuy, setCartBuy ] = useState({ products: [], length: 0, price: "R$ 00,00" }); //produtos no carrinho de compras;
   const [ chosenProductsInCart, setChosenProductsInCart ] = useState([]); //produtos do carrinho selecionado pelos user;
+  // const [ cupom, setCupom ] = useState("");
   
   const { findProduct } = useProducts();
 
@@ -133,6 +134,25 @@ function ShoppingProvider({ children }) {
     setCartBuy(prevState => { return {...prevState, price: totalPrice, length: length }});
   }
 
+  async function searchCupom(name) {
+    try {
+      const response = await api.get(`/cupons/show?name=${ name }`);
+      let discount = 0; //em porcentagem;
+      let message = "";
+
+      if(response.data) {
+        discount = response.data.discount;
+      } else {
+        message = "cupom inválido";
+      }
+
+      return { discount, message };
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     (async() => {
   	  await calculateValueShoppingCart(chosenProductsInCart);
@@ -141,7 +161,7 @@ function ShoppingProvider({ children }) {
   }, [ chosenProductsInCart ]);
 
   return (
-    <ShoppingContext.Provider value={{ cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart }}>
+    <ShoppingContext.Provider value={{ cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart, searchCupom }}>
       { children }
     </ShoppingContext.Provider>
   )
