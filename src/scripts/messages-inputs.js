@@ -1,4 +1,4 @@
-function createErrorMessage(input, error) {
+function createErrorMessage(element, error) {
   //cria mensagens de erro referente aos INPUTS;
   const ErrorMessage = document.createElement("div");
   ErrorMessage.classList.add("divMessage");
@@ -11,10 +11,10 @@ function createErrorMessage(input, error) {
   ErrorMessage.style.position = "absolute";
   ErrorMessage.style.bottom = "-1rem";
 
-  if(input) {
-    input.style.borderBottom = `1px solid red`;
-    if(!input.querySelector(".divMessage")) {
-      input.appendChild(ErrorMessage);
+  if(element) {
+    element.style.borderBottom = `1px solid red`;
+    if(!element.querySelector(".divMessage")) {
+      element.appendChild(ErrorMessage);
     }
   }
 
@@ -38,10 +38,10 @@ function createAlert(error) {
   }
 }
 
-function removeErrorMessage(input) {
-  const error = input.querySelector(".divMessage");
+function removeErrorMessage(element) {
+  const error = element.querySelector(".divMessage");
 
-  input.style.borderBottom = `1px solid black`;
+  element.style.borderBottom = `1px solid black`;
 
   if(error) {
     error.remove();

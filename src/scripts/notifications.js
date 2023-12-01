@@ -64,6 +64,7 @@ function createConfirmationMessage(message) {
       <button>CANCELAR</button>    
     </div>
   `;
+  div.style.textAlign = "center";
   
   const boxButtons = div.querySelector("div");
   const buttons = div.querySelectorAll("button");

@@ -8,7 +8,7 @@ export const ShoppingContext = createContext({});
 function ShoppingProvider({ children }) {
   const [ cartBuy, setCartBuy ] = useState({ products: [], length: 0, price: "R$ 00,00" }); //produtos no carrinho de compras;
   const [ chosenProductsInCart, setChosenProductsInCart ] = useState([]); //produtos do carrinho selecionado pelos user;
-  // const [ cupom, setCupom ] = useState("");
+  const [ allCupons, setAllCupons ] = useState([]);
   
   const { findProduct } = useProducts();
 
@@ -134,6 +134,36 @@ function ShoppingProvider({ children }) {
     setCartBuy(prevState => { return {...prevState, price: totalPrice, length: length }});
   }
 
+  async function createCupom(newCupom) {
+    //criar cupons de desconto;
+    try {
+      let name = newCupom.name.toUpperCase();
+      let discount = newCupom.discount;
+
+      if(!discount.endsWith("%")) {
+        discount = discount + "%";
+      }
+
+      await api.post("/cupons/", { cupom: name, discount });
+      await findAllCupons();
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  async function findAllCupons() {
+    try {
+      const response = await api.get("/cupons/index");
+
+      setAllCupons(response.data);
+      return response.data;
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   async function searchCupom(name) {
     try {
       const response = await api.get(`/cupons/show?name=${ name }`);
@@ -153,6 +183,17 @@ function ShoppingProvider({ children }) {
     }
   }
 
+  async function deleteCupom(name, discount) {
+    try {
+      await api.delete(`/cupons/delete?name=${ name }&discount=${ discount }`);
+
+      await findAllCupons();
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     (async() => {
   	  await calculateValueShoppingCart(chosenProductsInCart);
@@ -161,7 +202,7 @@ function ShoppingProvider({ children }) {
   }, [ chosenProductsInCart ]);
 
   return (
-    <ShoppingContext.Provider value={{ cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart, searchCupom }}>
+    <ShoppingContext.Provider value={{ cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart, createCupom, findAllCupons, allCupons, searchCupom, deleteCupom }}>
       { children }
     </ShoppingContext.Provider>
   )
