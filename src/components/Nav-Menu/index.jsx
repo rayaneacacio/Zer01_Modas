@@ -10,10 +10,10 @@ import { createConfirmationMessage } from "../../scripts/notifications";
 import { FiHeart } from "react-icons/fi";
 import { RiHomeLine} from "react-icons/ri";
 import { IoMdContact } from "react-icons/io";
-import { SlLocationPin } from "react-icons/sl";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { LuBox } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
+import { RiCoupon3Line } from "react-icons/ri";
 
 import { Button } from "../Button";
 
@@ -84,6 +84,18 @@ export function NavMenu({ ...rest }) {
     closenMenuDesktop();
   }
 
+  function handleNavigateProfile() {
+    navigate("/profile");
+  }
+
+  function handleNavigateCupons() {
+    if(window.innerWidth >= 1000) {
+      navigate("/profile?cupons");
+    } else {
+      navigate("/cupons");
+    }
+  }
+
   useEffect(() => {
     handleWindowResize();
     window.addEventListener("resize", handleWindowResize);
@@ -97,14 +109,15 @@ export function NavMenu({ ...rest }) {
   return (
     <Container className="nav-menu" {...rest}>
       <Button icon={ <RiHomeLine /> } title="Início" onClick={ navigateHome } />
-      <Button icon={ <IoMdContact /> } title="Minha Conta" />
+      <Button icon={ <IoMdContact /> } title="Minha Conta" onClick={ handleNavigateProfile } />
 
       { !isAdmin && <Button icon={ <FiHeart /> } title="Favoritos" className="buttonsOnlyMobile" onClick={ navigateFavorites } /> }
 
-      { !isAdmin && <Button icon={ <LuBox /> } title="Meus pedidos" /> }
-      { !isAdmin && <Button icon={ <SlLocationPin /> } title="Meus Endereços" /> }
+      <Button icon={ <LuBox /> } title="Meus pedidos" onClick={ handleNavigateProfile } />
 
       { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo produto" onClick={ navigateNew } /> }
+
+      { isAdmin && <Button className="buttonNavigateCupons" icon={ <RiCoupon3Line /> } title="Cupons" onClick={ handleNavigateCupons } /> }
 
       <Button icon={ <MdLogout /> } title={ userData ? "Sair" : "Entrar" } onClick={ userData ? handleOpenModalDisconnect : handleOpenModalLogin } />
     </Container>
