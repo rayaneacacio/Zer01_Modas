@@ -50,7 +50,7 @@ export function Outfit() {
   
   const navigate = useNavigate();
 
-  function navigateEdit() {
+  function handleNavigateEditProduct() {
     setLastViewedProductStorage({
       ...product,
       colors: colors,
@@ -59,7 +59,7 @@ export function Outfit() {
       productModelDetails: productModelDetails
     });
 
-    navigate("/edit");
+    navigate("/edit_product");
   } 
 
   function openLogin() {
@@ -261,7 +261,7 @@ export function Outfit() {
 
           {
             isAdmin ?
-            <Button className="buttonEdit" title="EDITAR" onClick={ navigateEdit } />
+            <Button className="buttonEdit" title="EDITAR" onClick={ handleNavigateEditProduct } />
             :
             <Button className="buttonBuy" title="ADICIONAR AO CARRINHO" onClick={ handleAddToCart } />
           }
@@ -328,7 +328,7 @@ export function Outfit() {
 
       {
         isAdmin ?
-        <Button className="buttons buttonEdit" title="EDITAR" onClick={ navigateEdit } />
+        <Button className="buttons buttonEdit" title="EDITAR" onClick={ handleNavigateEditProduct } />
         :
         <div className="buttons">
           <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeartFilled /> : <VscHeart /> } />

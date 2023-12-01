@@ -7,7 +7,7 @@ import { Catalog } from "../pages/Catalog";
 import { Outfit } from "../pages/Outfit";
 import { Favorites } from "../pages/Favorites";
 import { New } from "../pages/New";
-import { Edit } from "../pages/Edit";
+import { EditProduct } from "../pages/EditProduct";
 import { Signature } from "../pages/Signature";
 import { ShoppingCart } from "../pages/ShoppingCart";
 import { Payment } from "../pages/Payment";
@@ -38,7 +38,7 @@ export function Zer01ModasRoutes() {
         }
         
         {
-          isAdmin && <Route path="/edit" element={ <Edit /> } />
+          isAdmin && <Route path="/edit_product" element={ <EditProduct /> } />
         }
 
         <Route path="/shopping-cart" element={ <ShoppingCart /> } />
