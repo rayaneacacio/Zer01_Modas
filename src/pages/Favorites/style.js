@@ -6,8 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
 
   > h3 {
-    color: ${({ theme }) => theme.COLORS.GRAY_700};
-    font-size: 1.5rem; 
+    color: ${({ theme }) => theme.COLORS.PURPLE};
+    font-size: 2rem; 
     width: 100%;
     
     padding: 1rem;
@@ -21,9 +21,7 @@ export const Container = styled.div`
 
   @media(min-width: 1000px) {
     > h3 {
-      font-size: 1.6rem;
       text-align: center;
-      letter-spacing: 1px;
       box-shadow: none;
       border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
       margin-top: 12rem;
@@ -55,6 +53,20 @@ export const Main = styled.main`
     animation: toRight 0.5s forwards;
   }
 
+  .div_img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
+
+    > img {
+      width: 30rem;
+      height: 30rem;
+    }
+  }
+
   @media(min-width: 1000px) {
     display: flex;
     flex-direction: column;
@@ -68,6 +80,11 @@ export const Main = styled.main`
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       row-gap: 2rem;
       column-gap: 3rem;
+    }
+
+    .div_img > img {
+      width: 40rem;
+      height: 40rem;
     }
   }
 `;

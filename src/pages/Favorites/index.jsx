@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../hooks/products";
 import { api } from "../../services/api";
 
+import img_produto_nao_encontrado from "../../assets/favoritos2.png";
+
 import { SecondHeader } from "../../components/SecondHeader";
 import { BoxCupom } from "../../components/BoxCupom";
 import { ShowOutfit } from "../../components/ShowOutfit";
@@ -25,6 +27,14 @@ export function Favorites() {
 
       <Main>
         <BoxCupom />
+
+        {
+          favorites.length == 0 &&
+          <div className="div_img">
+            <img src={ img_produto_nao_encontrado } alt="" />
+          </div>
+        }
+
         <div className="DivCatalog">
           {
             favorites.length > 0 &&
@@ -32,6 +42,7 @@ export function Favorites() {
               <ShowOutfit key={ index } image={ `${ api.defaults.baseURL }/files/${ product.img }` } title={ product.name } price={ product.price } onClick={() => handleNavigateOutfit(product.name) } />
             )).reverse()
           }
+
         </div>
 
         <Footer />

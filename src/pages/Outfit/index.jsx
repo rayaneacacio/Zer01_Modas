@@ -9,8 +9,6 @@ import { useShopping } from "../../hooks/shopping";
 import { api } from "../../services/api";
 import { createNotification } from "../../scripts/notifications";
 
-import bermuda from "../../assets/bermuda.jpg";
-
 import { VscHeartFilled, VscHeart } from "react-icons/vsc";
 import { BsChevronDown } from "react-icons/bs";
 
@@ -28,7 +26,7 @@ import { Container, Main } from "./style";
 
 export function Outfit() {
   const { userData, isAdmin } = useAuth();
-  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite } = useProducts();
+  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite, allProducts } = useProducts();
   const { allColorsOfProduct } = useProductAttributes();
   const { addShoppingCart, productsShoppingCart } = useShopping();
 
@@ -313,11 +311,12 @@ export function Outfit() {
         <div className="recommended">
           <Section title="RECOMENDADOS" />
           <div>
-            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
-            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
-            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
-            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
-            <ShowOutfit title="Bermuda de Marca" image={ bermuda } promotion="99,00" price="99,00" />
+            {
+              allProducts.length > 0 &&
+              allProducts.map((product, index) => (
+                <ShowOutfit key={ index } title={ product.title } image={ `${ api.defaults.baseURL }/files/${ product.img }` } promotion={ product.promotion } price={ product.price } />
+              ))
+            }
           </div>
         </div>
 

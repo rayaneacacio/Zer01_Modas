@@ -42,6 +42,7 @@ export const Main = styled.main`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 10rem;
 
     > img {
       width: 31rem;
@@ -63,10 +64,6 @@ export const Main = styled.main`
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       row-gap: 2rem;
       column-gap: 3rem;
-    }
-
-    .div_img {
-      margin-top: 10rem;
     }
 
     .div_img > img {

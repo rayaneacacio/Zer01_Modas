@@ -10,6 +10,7 @@ function createErrorMessage(element, error) {
   ErrorMessage.style.fontSize = "1.6rem";
   ErrorMessage.style.position = "absolute";
   ErrorMessage.style.bottom = "-1rem";
+  ErrorMessage.style.whiteSpace = "nowrap";
 
   if(element) {
     element.style.borderBottom = `1px solid red`;

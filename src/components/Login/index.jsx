@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import { createErrorMessage, createAlert, removeErrorMessage, removeAlertMessage } from "../../scripts/messages-inputs.js";
+import { createNotification } from "../../scripts/notifications.js";
 
 import { Input } from "../Input";
 import { Button } from "../../components/Button";
@@ -39,7 +40,7 @@ export function Login() {
 
       try {
         await SignUp({ name, email, password });
-        createAlert("Usuário cadastrado com sucesso");
+        createNotification("Usuário cadastrado com sucesso :)");
 
       } catch(error) {
         if(error) {
