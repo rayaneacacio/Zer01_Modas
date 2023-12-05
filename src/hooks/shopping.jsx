@@ -8,7 +8,8 @@ export const ShoppingContext = createContext({});
 function ShoppingProvider({ children }) {
   const [ cartBuy, setCartBuy ] = useState({ products: [], length: 0, price: "R$ 00,00" }); //produtos no carrinho de compras;
   const [ chosenProductsInCart, setChosenProductsInCart ] = useState([]); //produtos do carrinho selecionado pelos user;
-  const [ allCupons, setAllCupons ] = useState([]);
+  const [ allCupons, setAllCupons ] = useState([]); //todos os cupons disponiveis;
+  const [ buyPrice, setBuyPrice ] = useState(cartBuy.price); //preco final do pedido;
   
   const { findProduct } = useProducts();
 
@@ -202,7 +203,7 @@ function ShoppingProvider({ children }) {
   }, [ chosenProductsInCart ]);
 
   return (
-    <ShoppingContext.Provider value={{ cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart, createCupom, findAllCupons, allCupons, searchCupom, deleteCupom }}>
+    <ShoppingContext.Provider value={{ cartBuy, setCartBuy, addShoppingCart, findAllProductsShoppingCart, removeShoppingCart, updateQuantityProductInShoppingCart, chosenProductsInCart, setChosenProductsInCart, createCupom, findAllCupons, allCupons, searchCupom, deleteCupom, buyPrice, setBuyPrice }}>
       { children }
     </ShoppingContext.Provider>
   )

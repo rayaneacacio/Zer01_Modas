@@ -59,7 +59,11 @@ export const Container = styled.div`
       padding-bottom: 10rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 4rem;
+
+      > div {
+        position: relative ;
+      }
 
       > button {
         background: ${({ theme }) => theme.COLORS.BLACK};
@@ -97,8 +101,8 @@ export const Container = styled.div`
 
     .body-modal-address > form {
       width: 70rem;
-      height: 50rem;
-      padding: 4.5rem 8rem 5rem 8rem;
+      height: 60%;
+      padding: 4.5rem 8rem;
       overflow: auto;
       display: grid;
       grid-template-areas:
@@ -108,7 +112,7 @@ export const Container = styled.div`
         "city landmark none"
         "button button button";
       column-gap: 4rem;
-    	row-gap: 2rem;
+    	row-gap: 3rem;
       
       > div:first-of-type {
         grid-area: addresse;
@@ -189,6 +193,14 @@ export const Main = styled.main`
 
   #frete {
     color: ${({ theme }) => theme.COLORS.GREEN};
+  }
+
+  .boxAddresses {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
   }
 
   @media(min-width: 1000px) {

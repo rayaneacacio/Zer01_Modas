@@ -20,11 +20,10 @@ import { Container, Main } from "./style";
 import { Input } from "../../components/Input";
 
 export function ShoppingCart() {
-  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart, searchCupom } = useShopping();
+  const { cartBuy, removeShoppingCart, chosenProductsInCart, setChosenProductsInCart, searchCupom, buyPrice, setBuyPrice } = useShopping();
 
   const [ selectAll, setSelectAll ] = useState(false);
   const [ cupom, setCupom ] = useState({ name: "", discount: "0%", discountValue: "R$ 0,00" });
-  const [ buyPrice, setBuyPrice ] = useState(cartBuy.price);
 
   const navigate = useNavigate();
 
@@ -63,7 +62,7 @@ export function ShoppingCart() {
 
   async function handleAddCupom() {
     if(cupom.name != "") {
-        let { discount, message } = await searchCupom((cupom.name).toLocaleUpperCase());
+        let { discount, message } = await searchCupom((cupom.name).toUpperCase());
 
         if(discount) {
           calculateValueBuy(discount);

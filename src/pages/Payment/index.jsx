@@ -1,3 +1,11 @@
+import { useEffect, useState } from "react";
+
+import { useAuth } from "../../hooks/auth";
+import { useAddresses } from "../../hooks/addresses";
+import { useShopping } from "../../hooks/shopping";
+import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
+import { createNotification } from "../../scripts/notifications";
+
 import { TfiClose } from "react-icons/tfi";
 
 import { SecondHeader } from "../../components/SecondHeader";
@@ -11,14 +19,95 @@ import { Footer } from "../../components/Footer";
 import { Container, Main } from "./style";
 
 export function Payment() {
+  const { userData } = useAuth();
+  const { createAddress, findCep, findAllAddresses, allAddresses } = useAddresses();
+  const { chosenProductsInCart, buyPrice } = useShopping();
 
-  function handleNewAddress() {
+  const [ destinatario, setDestinatario ] = useState("");
+  const [ cep, setCep ] = useState(0);
+  const [ rua, setRua ] = useState("");
+  const [ numeroCasa, setNumeroCasa ] = useState(0);
+  const [ complemento, setComplemento ] = useState("");
+  const [ bairro, setBairro ] = useState("");
+  const [ cidade, setCidade ] = useState("");
+  const [ estado, setEstado ] = useState("");
+  const [ pontoDeReferencia, setPontoDeReferencia ] = useState("");
+
+  function handleOpenModalAddress() {
     document.querySelector(".modal-address").show();
   }
 
-  function handleCloseModal() {
+  function handleCloseModalAddress() {
     document.querySelector(".modal-address").close();
   }
+
+  async function handleSaveNewAddress(event) {
+    event.preventDefault();
+
+    if(destinatario == "") {
+      createErrorMessage(document.querySelector(".input_destinatario"));
+    }
+
+    if(cep == 0) {
+      createErrorMessage(document.querySelector(".input_cep"));
+    }
+
+    if(rua == "") {
+      createErrorMessage(document.querySelector(".input_rua"));
+    }
+
+    if(numeroCasa == 0) {
+      createErrorMessage(document.querySelector(".input_numero"));
+    }
+
+    if(destinatario != "" && cep != 0 && rua != "" && numeroCasa != 0) {
+      await createAddress({ destinatario, cep, rua, numeroCasa, complemento, bairro, cidade, estado, pontoDeReferencia });
+      createNotification("Endereço salvo :)");
+      handleCloseModalAddress();
+    }
+
+  }
+
+  useEffect(() => {
+    Array.from(document.querySelectorAll(".input_address")).map(element => {
+      removeErrorMessage(element);
+    });
+    
+  }, [ destinatario, cep, rua, numeroCasa ]);
+
+  useEffect(() => {
+    if(cep.toString().length == 8) {
+      (async() => {
+        const response = await findCep(cep);
+
+        document.querySelector(".input_rua input").value = response.data.logradouro;
+        document.querySelector(".input_bairro input").value = response.data.bairro;
+        document.querySelector(".input_cidade input").value = response.data.localidade;
+        document.querySelector(".input_estado input").value = response.data.uf;
+
+        setRua(response.data.logradouro);
+        setBairro(response.data.bairro);
+        setCidade(response.data.localidade);
+        setEstado(response.data.uf);
+      })();
+    }
+    
+  }, [ cep ]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    if(userData) {
+      (async() => {
+        await findAllAddresses({ signal: controller.signal });
+      })();
+    }
+
+    return () => {
+      controller.abort();
+    }
+
+  }, [ userData ]);
 
   return (
     <Container>
@@ -45,25 +134,31 @@ export function Payment() {
 
           <div className="address">
             <h3>ENDEREÇO DE ENTREGA</h3>
-            <Address addresse="nane" cep="62640000" street="rua fwrgfyw aehfuaf" number="000" district="Centro" state="CE" city="Pentecoste"  />
-            <Address addresse="nane" cep="62640000" street="rua arefuiifg" number="000" district="Centro" state="CE" city="Pentecoste"  />
-            <Button title="CADASTRAR NOVO ENDEREÇO" onClick={ handleNewAddress } />
+            <div className="boxAddresses">
+              {
+                allAddresses.length > 0 &&
+                allAddresses.map((address, index) => (
+                  <Address key={ index } destinatario={ address.destinatário } cep={ address.cep } street={ address.rua } number={ address.numero } district={ address.bairro } state={ address.estado } city={ address.cidade } address={ address }  />
+                ))
+              }
+            </div>
+            
+            <Button title="CADASTRAR NOVO ENDEREÇO" onClick={ handleOpenModalAddress } />
           </div>
 
           <div className="items">
             <h3>ITENS DO PEDIDO</h3>
 
-            <div>
-              <p>Camisa Polo John John Frisos Masculina</p>
-              <p>1</p>
-              <p>R$ 59,99</p>
-            </div>
-
-            <div>
-              <p>Hang Loose</p>
-              <p>1</p>
-              <p>R$ 59,99</p>
-            </div>
+            {
+              chosenProductsInCart.length > 0 &&
+              chosenProductsInCart.map((product, index) => (
+                <div key={ index }>
+                  <p>{ product.name } ({ product.color_name })</p>
+                  <p>{ product.quantity }</p>
+                  <p>{ product.price }</p>
+                </div>
+              ))
+            }
           </div>
 
           <div className="total">
@@ -72,7 +167,7 @@ export function Payment() {
             </div>
             <div>
               <p>TOTAL</p>
-              <p>R$ 269,97</p>
+              <p>{ buyPrice }</p>
             </div>
           </div>
         </div>
@@ -84,21 +179,21 @@ export function Payment() {
         <div className="body-modal-address">
           <div>
             <h3>CADASTRAR NOVO ENDEREÇO</h3>
-            <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModal } />
+            <Button icon={ <TfiClose size={ 20 } /> } onClick={ handleCloseModalAddress } />
           </div>
 
           <form>
-            <Input title="Nome do destinatario" placeholder="Digite aqui :)" />
-            <Input title="Seu cep" placeholder="Digite aqui :)" />
-            <Input title="Nome da rua" placeholder="Digite aqui :)" />
-            <Input title="Número" placeholder="Digite aqui :)" />
-            <Input title="Complemento" placeholder="Digite aqui :)" />
-            <Input title="Bairro" placeholder="Digite aqui :)" />
-            <Input title="Cidade" placeholder="Digite aqui :)" />
-            <Input title="Estado" placeholder="Digite aqui :)" />
-            <Input title="Ponto de refêrencia" placeholder="Digite aqui :)" />
+            <Input title="Nome do destinatario" placeholder="Digite aqui :)" className="input_address input_destinatario" onChange={e => setDestinatario(e.target.value)} />
+            <Input title="Seu cep" placeholder="Digite aqui :)" type="number" className="input_address input_cep" onChange={e => setCep(e.target.value)} />
+            <Input title="Nome da rua" placeholder="Digite aqui :)" className="input_address input_rua" onChange={e => setRua(e.target.value)} />
+            <Input title="Número" placeholder="Digite aqui :)" className="input_address input_numero" onChange={e => setNumeroCasa(e.target.value)} />
+            <Input title="Complemento" placeholder="Digite aqui :) (opcional)" onChange={e => setComplemento(e.target.value)} />
+            <Input title="Bairro" placeholder="Digite aqui :)" className="input_address input_bairro" onChange={e => setBairro(e.target.value)} />
+            <Input title="Cidade" placeholder="Digite aqui :)" className="input_address input_cidade" onChange={e => setCidade(e.target.value)} readOnly />
+            <Input title="Estado" placeholder="Digite aqui :)" className="input_address input_estado" onChange={e => setEstado(e.target.value)} readOnly />
+            <Input title="Ponto de refêrencia" placeholder="Digite aqui :) (opcional)" onChange={e => setPontoDeReferencia(e.target.value)} />
 
-            <Button title="SALVAR" />
+            <Button title="SALVAR" onClick={event => handleSaveNewAddress(event) } />
           </form>
         </div>
       </dialog>
