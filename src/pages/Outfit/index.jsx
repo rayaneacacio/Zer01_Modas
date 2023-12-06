@@ -67,7 +67,12 @@ export function Outfit() {
 
   async function handleFavorite() {
     if(!userData) {
-      openLogin();
+      if(window.innerWidth >= 1000) {
+        openLogin();
+      } else {
+        navigate("/login");
+      }
+      
       return;
     }
 
@@ -118,7 +123,12 @@ export function Outfit() {
     const chosenSize = document.querySelector(".chosenSize");
 
     if(!userData) {
-      openLogin();
+      if(window.innerWidth >= 1000) {
+        openLogin();
+      } else {
+        navigate("/login");
+      }
+      
       return;
     }
 
