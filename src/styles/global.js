@@ -92,10 +92,10 @@ export default createGlobalStyle`
   }
 
   .divLoading {
-    background: linear-gradient(to right, ${({ theme }) => theme.COLORS.WHITE}, rgb(15 32 40 / 0.44), ${({ theme }) => theme.COLORS.GRAY_200} );
+    background: linear-gradient(to right, ${({ theme }) => theme.COLORS.WHITE}, rgb(15 32 40 / 0.44), ${({ theme }) => theme.COLORS.GRAY_700} );
     background-size: 400% 400%;
 
-    animation: loading 2s ease infinite;
+    animation: spinLoading 2s ease infinite;
     
     cursor: progress;
   }
@@ -141,21 +141,22 @@ export default createGlobalStyle`
   }
 
   @keyframes loading {
-    
-    /* from {
-      opacity: 1;
-    }
-
-    to {
-      opacity: 0.5;
-    } */
-
     to {
       background-position: 0% 0%;
     }
 
     from {
       background-position: 135% 0%;
+    }
+  }
+
+  @keyframes spinLoading {
+    to { 
+      transform: rotate(0deg); 
+    }
+
+    from { 
+      transform: rotate(360deg); 
     }
   }
 `;

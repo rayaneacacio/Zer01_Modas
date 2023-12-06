@@ -146,6 +146,23 @@ export function Outfit() {
     window.location.reload();
   }
 
+  function cssPaginationSwiper() {
+    //estilizar os paginations do swiper;
+    const allBulletsPagination = document.querySelectorAll(".swiper-pagination-bullet");
+    if(allBulletsPagination) {
+      for(let index = 0; index < allBulletsPagination.length; index++) {
+        allBulletsPagination[index].style.flex = 1;
+        allBulletsPagination[index].style.background = `url(${ `${ api.defaults.baseURL }/files/${ slides[index] }` }) no-repeat center center`;
+        allBulletsPagination[index].style.backgroundSize = "cover";
+        allBulletsPagination[index].style.borderRadius = 0;
+
+        if(allBulletsPagination.length > 4) {
+          document.querySelector(".swiper-pagination").style.height = "35rem";
+        }
+      }
+    }
+  }
+
   useEffect(() => {
     (async() => {
       try {
@@ -166,6 +183,8 @@ export function Outfit() {
 
         handleChangeSlides(newProduct.images, newProduct.sizes, colorsList[0]);
 
+        cssPaginationSwiper();
+
         setLoading(false);
 
       } catch(error) {
@@ -176,20 +195,7 @@ export function Outfit() {
   }, [ urlSearch ]);
 
   useEffect(() => {
-    //estilizar os paginations do swiper;
-    const allBulletsPagination = document.querySelectorAll(".swiper-pagination-bullet");
-    if(allBulletsPagination) {
-      for(let index = 0; index < allBulletsPagination.length; index++) {
-        allBulletsPagination[index].style.flex = 1;
-        allBulletsPagination[index].style.background = `url(${ `${ api.defaults.baseURL }/files/${ slides[index] }` }) no-repeat center center`;
-        allBulletsPagination[index].style.backgroundSize = "cover";
-        allBulletsPagination[index].style.borderRadius = 0;
-
-        if(allBulletsPagination.length > 4) {
-          document.querySelector(".swiper-pagination").style.height = "35rem";
-        }
-      }
-    }
+    cssPaginationSwiper();
 
   }, [ slides ]);
 
@@ -217,17 +223,40 @@ export function Outfit() {
 
         {
           loading ? 
-          <div className="divLoading" style={{ height: "42rem" }}></div>
+          <div style={{ 
+            height: "42rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gridArea: "swiper"
+            }}>
+            <div className="divLoading" style={{ 
+              width: "7rem", 
+              height: "7rem", 
+              borderRadius: "9999px", 
+              border: "10px solid white",
+              display: "flex", 
+              alignItems: "center",
+              justifyContent: "center"
+            }}>
+              <div style={{ 
+                  width: "3rem", 
+                  height: "3rem", 
+                  background: "white", 
+                  borderRadius: "9999px" 
+                }}></div>
+            </div>
+          </div>
           :
-        <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
-          <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeartFilled /> : <VscHeart /> } />
-          {
-            slides &&
-            slides.map((image, index) => (
-              <SwiperSlide key={ index }> <img src={ `${ api.defaults.baseURL }/files/${ image }` } alt="" /> </SwiperSlide>
-            ))
-          }
-        </Swiper>
+          <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
+            <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeartFilled /> : <VscHeart /> } />
+            {
+              slides &&
+              slides.map((image, index) => (
+                <SwiperSlide key={ index }> <img src={ `${ api.defaults.baseURL }/files/${ image }` } alt="" /> </SwiperSlide>
+              ))
+            }
+          </Swiper>
         }
 
         <div className="about">
