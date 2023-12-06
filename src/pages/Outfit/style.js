@@ -251,7 +251,6 @@ export const Main = styled.main`
 
     > div {
       display: flex;
-      justify-content: center;
       gap: 2rem;
       overflow-x: auto;
 

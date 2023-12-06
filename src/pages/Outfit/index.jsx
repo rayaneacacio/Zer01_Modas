@@ -26,7 +26,7 @@ import { Container, Main } from "./style";
 
 export function Outfit() {
   const { userData, isAdmin } = useAuth();
-  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite, allProducts } = useProducts();
+  const { findProduct, setLastViewedProductStorage, insertFavorite, findIfIsFavorite, removeFavorite, allProducts, findProductsByCategory } = useProducts();
   const { allColorsOfProduct } = useProductAttributes();
   const { addShoppingCart, productsShoppingCart } = useShopping();
 
@@ -131,6 +131,11 @@ export function Outfit() {
     createNotification("Produto adicionado ao carrinho :)");
   }
 
+  function handleNavigateOutfit(product_name) {
+    navigate(`/outfit?${product_name}`);
+    window.location.reload();
+  }
+
   useEffect(() => {
     (async() => {
       try {
@@ -139,6 +144,9 @@ export function Outfit() {
         if(!newProduct) {
           throw new Error(error);
         }
+
+        await findProductsByCategory(newProduct.category);
+
         const colorsList = await allColorsOfProduct(newProduct.id);
 
         setProduct(newProduct);
@@ -149,7 +157,6 @@ export function Outfit() {
         handleChangeSlides(newProduct.images, newProduct.sizes, colorsList[0]);
 
       } catch(error) {
-        document.querySelector("main").innerHTML = error;
       }
 
     })();
@@ -196,7 +203,11 @@ export function Outfit() {
       <BoxCupom />
 
   	  {
-        !loading &&
+        loading ?
+        <div>
+          <h1> CARREGANDO... </h1>
+        </div>
+        :
       <Main>
         <h2> Home / { product.category } / { product.name } / ID: { product.id } </h2>
 
@@ -234,7 +245,7 @@ export function Outfit() {
           <h2> { product.name } </h2>
 
           <div className="outfit-color">
-            <h2> COR: { chosenColor.name } </h2>
+            <h2> COR: { chosenColor && chosenColor.name } </h2>
             <div>
               {
                 colors.length > 0 &&
@@ -314,7 +325,7 @@ export function Outfit() {
             {
               allProducts.length > 0 &&
               allProducts.map((product, index) => (
-                <ShowOutfit key={ index } title={ product.title } image={ `${ api.defaults.baseURL }/files/${ product.img }` } promotion={ product.promotion } price={ product.price } />
+                <ShowOutfit key={ index } title={ product.title } image={ `${ api.defaults.baseURL }/files/${ product.img }` } promotion={ product.promotion } price={ product.price } onClick={() => handleNavigateOutfit(product.name)} />
               ))
             }
           </div>

@@ -97,11 +97,11 @@ export function EditCatalog({ ...rest }) {
       input.value = "";
     });
 
-    select.value = "Feminino";
+    select.value = "FEMININO";
     textarea.value = "";
 
     setName("");
-    setCategory("Feminino");
+    setCategory("FEMININO");
     setPrice("");
     setPromotion("");
     setDescription("");
@@ -143,7 +143,7 @@ export function EditCatalog({ ...rest }) {
 
   useEffect(() => {
     //definir os valores da page de Edicao;
-    if(path == "/edit") {
+    if(path == "/edit_product") {
       document.querySelector("#inputName input").value = lastViewedProduct.name;
       document.querySelector("#textarea").value = lastViewedProduct.description;
       document.querySelector("#categoryLabel select").value = lastViewedProduct.category;

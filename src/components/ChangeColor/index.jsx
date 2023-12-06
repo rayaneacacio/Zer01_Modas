@@ -102,7 +102,7 @@ export function ChangeColor({ ...rest }) {
 
   useEffect(() => {
     //definir os valores caso esteja na pag de edicao;
-    if(path == "/edit") {
+    if(path == "/edit_product") {
       const newSections = [];
 
       for(let color of lastViewedProduct.colors) {

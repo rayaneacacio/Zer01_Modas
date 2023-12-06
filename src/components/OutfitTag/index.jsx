@@ -56,7 +56,7 @@ export function OutfitTag({ $detail, $modelDetail }) {
   }, [ productDetails, modelDetails ]);
 
   useEffect(() => {
-    if(path == "/edit") {
+    if(path == "/edit_product") {
       if($detail && lastViewedProduct.details.length > 0) {
         const newDetails = [];
         lastViewedProduct.details.map(detail => {
