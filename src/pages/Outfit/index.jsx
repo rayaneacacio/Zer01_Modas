@@ -166,6 +166,8 @@ export function Outfit() {
 
         handleChangeSlides(newProduct.images, newProduct.sizes, colorsList[0]);
 
+        setLoading(false);
+
       } catch(error) {
       }
 
@@ -189,8 +191,6 @@ export function Outfit() {
       }
     }
 
-    setLoading(false);
-
   }, [ slides ]);
 
   useEffect(() => {
@@ -212,15 +212,13 @@ export function Outfit() {
       <Nav />
       <BoxCupom />
 
-  	  {
-        loading ?
-        <div>
-          <h1> CARREGANDO... </h1>
-        </div>
-        :
       <Main>
         <h2> Home / { product.category } / { product.name } / ID: { product.id } </h2>
 
+        {
+          loading ? 
+          <div className="divLoading" style={{ height: "42rem" }}></div>
+          :
         <Swiper slidesPerView={ 1 } pagination={{ clickable: true }} >
           <Button className="buttonHeart" onClick={ handleFavorite } icon={ isFavorite ? <VscHeartFilled /> : <VscHeart /> } />
           {
@@ -230,6 +228,7 @@ export function Outfit() {
             ))
           }
         </Swiper>
+        }
 
         <div className="about">
           <div>
@@ -343,8 +342,6 @@ export function Outfit() {
 
         <Footer />
       </Main>
-
-      }
 
       {
         isAdmin ?

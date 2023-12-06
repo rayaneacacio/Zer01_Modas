@@ -87,6 +87,19 @@ export default createGlobalStyle`
     border: 0.3rem solid white;
   }
 
+  dialog {
+    background: rgba(8, 8, 8, 0.64);
+  }
+
+  .divLoading {
+    background: linear-gradient(to right, ${({ theme }) => theme.COLORS.WHITE}, rgb(15 32 40 / 0.44), ${({ theme }) => theme.COLORS.GRAY_200} );
+    background-size: 400% 400%;
+
+    animation: loading 2s ease infinite;
+    
+    cursor: progress;
+  }
+
   @keyframes toTop {
     to {
       opacity: 1;
@@ -127,7 +140,22 @@ export default createGlobalStyle`
     }
   }
 
-  dialog {
-    background: rgba(8, 8, 8, 0.64);
+  @keyframes loading {
+    
+    /* from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0.5;
+    } */
+
+    to {
+      background-position: 0% 0%;
+    }
+
+    from {
+      background-position: 135% 0%;
+    }
   }
 `;
