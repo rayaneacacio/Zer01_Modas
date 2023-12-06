@@ -240,8 +240,8 @@ export function Outfit() {
               justifyContent: "center"
             }}>
               <div style={{ 
-                  width: "3rem", 
-                  height: "3rem", 
+                  width: "4rem", 
+                  height: "4rem", 
                   background: "white", 
                   borderRadius: "9999px" 
                 }}></div>
