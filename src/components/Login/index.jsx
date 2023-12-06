@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
-import { createErrorMessage, createAlert, removeErrorMessage, removeAlertMessage } from "../../scripts/messages-inputs.js";
+import { createErrorMessage, removeErrorMessage, removeAlertMessage } from "../../scripts/messages-inputs.js";
 import { createNotification } from "../../scripts/notifications.js";
 
 import { Input } from "../Input";
@@ -36,20 +36,13 @@ export function Login() {
     }
 
     if(name != "" && email != "" && password != "") {
-      let registerError = null;
-
       try {
         await SignUp({ name, email, password });
         createNotification("Usuário cadastrado com sucesso :)");
 
       } catch(error) {
         if(error) {
-          registerError = error.response.data.message;
-          const emailInput = document.querySelectorAll(".registerInput")[1];
-          createErrorMessage(emailInput, registerError);
-
-        } else {
-          createAlert();
+          createNotification(error.response.data.message);
         }
       }
     }
@@ -80,9 +73,7 @@ export function Login() {
 
       } catch(error) {
         if(error) {
-          createAlert(error.response.data.message);
-        } else {
-          createAlert();
+          createNotification(error.response.data.message);
         }
       }
     }

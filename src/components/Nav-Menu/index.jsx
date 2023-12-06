@@ -14,6 +14,7 @@ import { TbShoppingCartPlus } from "react-icons/tb";
 import { LuBox } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import { RiCoupon3Line } from "react-icons/ri";
+import { MdOutlineCreditCard } from "react-icons/md";
 
 import { Button } from "../Button";
 
@@ -85,7 +86,18 @@ export function NavMenu({ ...rest }) {
   }
 
   function handleNavigateProfile() {
-    navigate("/profile");
+    if(!userData) {
+      if(window.innerWidth >= 1000) {
+        document.querySelector(".modal-login").show();
+        openMenuDesktop();
+      } else {
+        navigate("/login");
+      }
+      
+      return;
+    }
+
+    navigate("/profile?me");
   }
 
   function handleNavigateCupons() {
@@ -93,6 +105,44 @@ export function NavMenu({ ...rest }) {
       navigate("/profile?cupons");
     } else {
       navigate("/cupons");
+    }
+  }
+
+  function handleNavigateOrders() {
+    if(!userData) {
+      if(window.innerWidth >= 1000) {
+        document.querySelector(".modal-login").show();
+        openMenuDesktop();
+      } else {
+        navigate("/login");
+      }
+      
+      return;
+    }
+
+    if(window.innerWidth >= 1000) {
+      navigate("/profile?pedidos");
+    } else {
+      navigate("/orders");
+    }
+  }
+
+  function handleNavigateCards() {
+    if(!userData) {
+      if(window.innerWidth >= 1000) {
+        document.querySelector(".modal-login").show();
+        openMenuDesktop();
+      } else {
+        navigate("/login");
+      }
+      
+      return;
+    }
+
+    if(window.innerWidth >= 1000) {
+      navigate("/profile?cards");
+    } else {
+      navigate("/mycards");
     }
   }
 
@@ -111,9 +161,11 @@ export function NavMenu({ ...rest }) {
       <Button icon={ <RiHomeLine /> } title="Início" onClick={ navigateHome } />
       <Button icon={ <IoMdContact /> } title="Minha Conta" onClick={ handleNavigateProfile } />
 
+      { !isAdmin && <Button icon={ <MdOutlineCreditCard /> } title="Meus Cartões" onClick={ handleNavigateCards } /> }
+
       { !isAdmin && <Button icon={ <FiHeart /> } title="Favoritos" className="buttonsOnlyMobile" onClick={ navigateFavorites } /> }
 
-      <Button icon={ <LuBox /> } title="Meus pedidos" onClick={ handleNavigateProfile } />
+      { !isAdmin && <Button icon={ <LuBox /> } title="Meus pedidos" onClick={ handleNavigateOrders } /> }
 
       { isAdmin && <Button icon={ <TbShoppingCartPlus /> } title="Novo produto" onClick={ navigateNew } /> }
 

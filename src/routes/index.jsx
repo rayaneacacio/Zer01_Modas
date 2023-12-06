@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useAuth } from "../hooks/auth";
 
@@ -14,6 +14,9 @@ import { Payment } from "../pages/Payment";
 import NotFound404 from "../pages/404";
 import { Profile } from "../pages/Profile";
 import { EditCupons } from "../pages/EditCupons";
+import { AllOrders } from "../pages/AllOrders";
+import { ViewOrder } from "../pages/ViewOrder";
+import { Cards } from "../pages/Cards";
 
 export function Zer01ModasRoutes() {
   const { isAdmin } = useAuth();
@@ -27,7 +30,10 @@ export function Zer01ModasRoutes() {
         <Route path="/outfit" element={ <Outfit /> } />
         <Route path="/favorites" element={ <Favorites /> } />
         <Route path="/profile" element={ <Profile /> } />
-
+        <Route path="/viewOrder" element={ <ViewOrder /> } />
+        <Route path="/orders" element={ <AllOrders /> } />
+        <Route path="/mycards" element={ <Cards /> } />
+        
         {
           isAdmin &&
           <Route path="/cupons" element={ <EditCupons /> } />
@@ -44,8 +50,7 @@ export function Zer01ModasRoutes() {
         <Route path="/shopping-cart" element={ <ShoppingCart /> } />
         <Route path="/payment" element={ <Payment /> } />
 
-        {/* <Route path="*" element={<Navigate to="/404" />} />
-        <Route path="/404" element={ <NotFound404 /> } /> */}
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
     </BrowserRouter>
   )
