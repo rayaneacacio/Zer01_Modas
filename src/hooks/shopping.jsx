@@ -1,11 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 import { api } from "../services/api";
+import { useAuth } from "./auth";
 import { useProducts } from "./products";
 
 export const ShoppingContext = createContext({});
 
 function ShoppingProvider({ children }) {
+  const { SignOut } = useAuth();
+  
   const [ cartBuy, setCartBuy ] = useState({ products: [], length: 0, price: "R$ 00,00" }); //produtos no carrinho de compras;
   const [ chosenProductsInCart, setChosenProductsInCart ] = useState([]); //produtos do carrinho selecionado pelos user;
   const [ allCupons, setAllCupons ] = useState([]); //todos os cupons disponiveis;
@@ -83,6 +86,12 @@ function ShoppingProvider({ children }) {
 
     } catch(error) {
       console.log(error);
+
+      if(error.response.data.message == "JWT Token inválido") {
+        await SignOut();
+        return;
+      }
+
       alert("erro ao buscar produtos no carrinho rota /index");
     }
   }

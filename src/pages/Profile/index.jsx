@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { createErrorMessage, removeErrorMessage } from "../../scripts/messages-inputs";
+import { createNotification } from "../../scripts/notifications";
 
 import { TbBoxSeam } from "react-icons/tb";
-import { IoPersonOutline } from "react-icons/io5";
 import { IoMailOutline } from "react-icons/io5";
 import { MdOutlineCreditCard } from "react-icons/md";
 import { RiCoupon3Line } from "react-icons/ri";
@@ -12,22 +13,29 @@ import { RiCoupon3Line } from "react-icons/ri";
 import { SecondHeader } from "../../components/SecondHeader";
 import { Nav } from "../../components/Nav";
 import { Button } from "../../components/Button";
+import { Orders } from "../../components/Orders";
 import { Cupons } from "../../components/Cupons";
 import { Footer } from "../../components/Footer";
 
 import { Container, Main } from "./style";
+import { InputBox } from "../../components/InputBox";
+import { MyCards } from "../../components/MyCards";
 
 export function Profile() {
-  const { isAdmin } = useAuth();
+  const { isAdmin, userData, updateUser } = useAuth();
   const route = useLocation();
+
+  const [ email, setEmail ] = useState("");
+  const [ oldPassword, setOldPassword ] = useState("");
+  const [ newPassword, setNewPassword ] = useState("");
 
   function allDivsDisplayNone() {
     Array.from(document.querySelectorAll(".mainChild")).map(div => div.style.display = "none");
   }
 
-  function handleLastRequests() {
+  function handleNavigateOrders() {
     allDivsDisplayNone();
-    document.querySelector(".divLastRequests").style.display = "block";
+    document.querySelector(".divOrders").style.display = "block";
   }
 
   function handleNavigateCoupons() {
@@ -35,18 +43,71 @@ export function Profile() {
     document.querySelector(".divCoupons").style.display = "block";
   }
 
-  useEffect(() => {
+  function handleNavigateProfile() {
     allDivsDisplayNone();
-    document.querySelector(".divLastRequests").style.display = "block";
-  }, []);
+    document.querySelector(".divProfile").style.display = "flex";
+  }
+
+  function handleNavigateCards() {
+    allDivsDisplayNone();
+    document.querySelector(".divCards").style.display = "flex";
+  }
+
+  async function handleUpdateUser() {
+    if(oldPassword == "") {
+      const inputOldPassword = document.querySelectorAll(".divInput")[1];
+
+      createErrorMessage(inputOldPassword, "por favor digite a senha");
+
+      inputOldPassword.style.border = "none";
+      inputOldPassword.querySelector("input").style.borderBottom = "1px solid red";
+      document.querySelector(".divMessage").style.bottom = "-2.5rem";
+
+    } else {
+      try {
+        await updateUser({ email, password: newPassword, oldPassword });
+        createNotification("atualizado com sucesso :)");
+
+      } catch(error) {
+        createNotification(error.response.data.message);
+      }
+    }
+    
+  }
 
   useEffect(() => {
-    if(route.search == "") {
-      handleLastRequests();
+    const inputOldPassword = document.querySelectorAll(".divInput")[1];
+    if(inputOldPassword) {
+      removeErrorMessage(inputOldPassword);
+      inputOldPassword.style.border = "none";
+      inputOldPassword.querySelector("input").style.borderBottom = "1px solid #B1AAAA";
+    }
+    
+  }, [ oldPassword ]);
+
+  useEffect(() => {
+    if(userData) {
+      document.querySelectorAll(".divInput input")[0].value = userData.user.email;
+      setEmail(userData.user.email);
+    }
+
+  }, [ userData ]);
+
+  useEffect(() => {
+    if(route.search == "?me") {
+      handleNavigateProfile();
+    }
+
+    if(route.search == "?pedidos") {
+      handleNavigateOrders();
     }
 
     if(route.search == "?cupons") {
       handleNavigateCoupons();
+    }
+
+    if(route.search == "?cards") {
+      handleNavigateCards();
     }
 
   }, [ route ]);
@@ -61,62 +122,27 @@ export function Profile() {
         <div>
           <div className="divMenu">
             <h2> Meu Cadastro </h2>
-            <Button icon={ <TbBoxSeam size={ 20 } /> } title="PEDIDOS" onClick={ handleLastRequests } />
-            <Button icon={ <IoPersonOutline size={ 20 } /> } title="DADOS PESSOAIS" />
-            <Button icon={ <IoMailOutline size={ 20 } /> } title="E-MAIL E SENHA" />
-            <Button icon={ <MdOutlineCreditCard size={ 20 } /> } title="CARTOES" />
+            <Button icon={ <TbBoxSeam size={ 20 } /> } title="PEDIDOS" onClick={ handleNavigateOrders } />
+            <Button icon={ <IoMailOutline size={ 20 } /> } title="E-MAIL E SENHA" onClick={ handleNavigateProfile } />
+            <Button icon={ <MdOutlineCreditCard size={ 20 } /> } title="CARTOES" onClick={ handleNavigateCards } />
             { isAdmin && <Button icon={ <RiCoupon3Line size={ 20 } /> } title="CUPONS" onClick={ handleNavigateCoupons } /> }
           </div>
 
-          <div className="mainChild divLastRequests">
-            <h2> Pedidos </h2>
-
-            <div className="table">
-              <div>
-                <div> ID </div>
-                <div> DATA </div>
-                <div> PAGAMENTO </div>
-                <div> VALOR TOTAL </div>
-                <div> STATUS </div>
-                <div></div>
-              </div>
-              
-              <div>
-                <div> 02 </div>
-                <div> 17/11/2023 </div>
-                <div> PIX </div>
-                <div> R$ 40,00 </div>
-                <div> Entregue </div>
-                <div>
-                  <Button title="ABRIR PEDIDO" />
-                </div>
-              </div>
-
-              <div>
-                <div> 02 </div>
-                <div> 17/11/2023 </div>
-                <div> PIX </div>
-                <div> R$ 40,00 </div>
-                <div> Entregue </div>
-                <div>
-                  <Button title="ABRIR PEDIDO" />
-                </div>
-              </div>
-
-              <div>
-                <div> 02 </div>
-                <div> 17/11/2023 </div>
-                <div> PIX </div>
-                <div> R$ 40,00 </div>
-                <div> Entregue </div>
-                <div>
-                  <Button title="ABRIR PEDIDO" />
-                </div>
-              </div>
+          <div className="mainChild divProfile">
+            <h2> E-mail e Senha </h2>
+            <div>
+              <InputBox className="divInput" title="E-mail" onChange={e => setEmail(e.target.value)} />
+              <InputBox className="divInput" type="password" title="Senha" onChange={e => setOldPassword(e.target.value)} />
+              <InputBox className="divInput" type="password" title="Nova Senha" onChange={e => setNewPassword(e.target.value)} />
             </div>
+            <Button title="SALVAR" onClick={ handleUpdateUser } />
           </div>
 
-          <Cupons className="mainChild divCoupons" style={{display: "none"}} />
+          <Orders className="mainChild divOrders" />
+
+          <MyCards className="mainChild divCards" />
+
+          <Cupons className="mainChild divCoupons" />
 
         </div>
         

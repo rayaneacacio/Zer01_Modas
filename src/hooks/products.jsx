@@ -1,10 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { api } from "../services/api";
+import { useAuth } from "./auth";
 
 export const ProductsContext = createContext({});
 
 function ProductsProvider({ children }) {
+  const { SignOut } = useAuth();
+  
   const [ allProducts, setAllProducts ] = useState([]); //todos os produtos encontrados;
   const [ lastViewedProduct, setLastViewedProduct ] = useState({}); //ultimo produto visualizado;
   const [ favorites, setFavorites ] = useState([]); //produtos favoritos;
@@ -256,6 +259,12 @@ function ProductsProvider({ children }) {
     } catch(error) {
       if(error) {
         console.log(error, error.response.data.message);
+
+        if(error.response.data.message == "JWT Token inválido") {
+          await SignOut();
+          return;
+        }
+
         alert("erro ao lista favoritos");
       }
     }

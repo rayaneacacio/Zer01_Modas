@@ -45,6 +45,8 @@ export const Main = styled.main`
   width: 100%;
   height: calc(100% - 15rem);
   margin-top: 15rem;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     font-size: 2rem;
@@ -69,8 +71,54 @@ export const Main = styled.main`
     }
   }
 
-  .divMenu, .divLastRequests, .divCoupons {
+  .divMenu, .mainChild {
     margin: 2rem;
+    
+    > div {
+      transform: translateX(-2rem);
+      animation: toRight 0.3s forwards;
+    }
+    
+  }
+
+  .divMenu, .divOrders, .divCoupons, .divCards {
+    display: none;
+  }
+
+  .divProfile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .divProfile > div {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  .divProfile button {
+    background: ${({ theme }) => theme.COLORS.PURPLE};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    width: 87%;
+    padding: 1rem;
+    margin: 5rem 3rem;
+    transform: translateX(-2rem);
+    animation: toRight 0.3s forwards;
+  }
+
+  .divInput {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
+      border-radius: 8px;
+    }
   }
 
   @media(min-width: 1000px) {
@@ -82,62 +130,51 @@ export const Main = styled.main`
     display: flex;
     flex-direction: column;
 
-  > div {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-
-    > div {
-      width: 50%;
+    .divMenu, .divOrders, .divCoupons {
+      display: flex;
     }
-  }
-
-  .divMenu {
-    width: 15%;
-    border-bottom: none;
-    border-right: 2px solid ${({ theme }) => theme.COLORS.GRAY_200};
-    gap: 2rem;
-
-    > h2 {
-      display: block;
-      margin: 0;
-    }
-
-    > button:first-of-type {
-      margin-top: 2rem;
-    }
-  }
-
-  .table {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
 
     > div {
       display: flex;
-      align-items: center;
+      justify-content: center;
+      gap: 2rem;
 
       > div {
-        background-color: ${({ theme }) => theme.COLORS.GRAY_200};
-        text-align: center;
-        width: 20%;
-        padding: 1rem 0;
-      }
-
-      > :last-child {
-        background: none;
+        width: 50%;
       }
     }
 
-    > :first-child > div {
-      background: none;
+    .divMenu {
+      width: 15%;
+      border-bottom: none;
+      border-right: 2px solid ${({ theme }) => theme.COLORS.GRAY_200};
+      gap: 2rem;
+
+      > h2 {
+        display: block;
+        margin: 0;
+      }
+
+      > button:first-of-type {
+        margin-top: 2rem;
+      }
     }
 
-    button {
+    .divProfile > div {
+      gap: 7rem;
+    }
+
+    .divProfile button {
       background: ${({ theme }) => theme.COLORS.PURPLE};
       color: ${({ theme }) => theme.COLORS.WHITE};
-      margin-left: 2rem;
+      width: 25%;
+      align-self: center;
     }
-  }
+
+    .divInput {
+      input {
+        width: 60%;
+      }
+    }
   }
 `;

@@ -35,6 +35,10 @@ function AuthProvider({ children }) {
     localStorage.removeItem("@zer01modas:isAdmin");
   }
 
+  async function updateUser({ oldPassword, email, password }) {
+    await api.patch("/users/", { oldPassword, email, password });
+  }
+
   useEffect(() => {
     const userLocalStorage = JSON.parse(localStorage.getItem("@zer01modas:userData"));
     const isAdminLocalStorage = JSON.parse(localStorage.getItem("@zer01modas:isAdmin"));
@@ -51,7 +55,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ userData, isAdmin, SignUp, SignIn, SignOut }}>
+    <AuthContext.Provider value={{ userData, isAdmin, SignUp, SignIn, SignOut, updateUser }}>
       { children }
     </AuthContext.Provider>
   )
