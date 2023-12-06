@@ -86,8 +86,8 @@ export const Container = styled.div`
     .section_extra {
       display: grid;
       grid-template-areas:
-        "title_section title_section title_section title_section"
-        "card1 card2 card3 card4";
+        "title_section title_section title_section"
+        "card1 card2 card3";
       align-items: start;
       row-gap: 5rem;
 
@@ -154,14 +154,10 @@ export const Aside = styled.aside`
   padding: 1.5rem;
   margin: 2rem;
 
-  display: grid;
-  grid-template-areas:
-      "title title none"
-      "subtitle subtitle none"
-      "input input input"
-      "none_ button1 button2";
-  row-gap: 0.7rem;
-  column-gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
   > span {
     font-size: 1.3rem;
@@ -176,28 +172,8 @@ export const Aside = styled.aside`
     }
   }
 
-  > p {
-    grid-area: subtitle;
-  }
-
-  .aside-input {
-    grid-area: input;
-  }
-
-  .aside-firstButton {
-    grid-area: button1;
-  }
-
-  .aside-lastButton {
-    grid-area: button2;
-  }
-
   @media(min-width: 1000px) {
     width: 111rem;
-    grid-template-areas:
-      "title input button1 button2"
-      "subtitle input button1 button2";
-    grid-template-columns: 1fr 1fr;
 
     > span {
       font-size: 2rem;
@@ -205,10 +181,6 @@ export const Aside = styled.aside`
 
     > p {
       font-size: 1.6rem;
-    }
-
-    .aside-input, .aside-firstButton, .aside-lastButton {
-      margin: 0.6rem 0;
     }
   }
 `;

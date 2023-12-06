@@ -33,12 +33,12 @@ export function Home() {
 
         <div className="section_promotion">
           <Section title="PROMOÇÕES" />
-          <PromotionalCard img_png={ imgModaFeminina } title="FEMININA" promotion="3%" />
-          <PromotionalCard img_png={ imgModaMasculina } title="MASCULINA" promotion="50%" />
-          <PromotionalCard img_png={ imgModaInfantil } title="INFANTIL" promotion="50%" />
+          <PromotionalCard img_png={ imgModaFeminina } promotion="30%" />
+          <PromotionalCard img_png={ imgModaMasculina } promotion="50%" />
+          <PromotionalCard img_png={ imgModaInfantil } promotion="50%" />
         </div>
 
-        <div className="section_novelty"> 
+        <div className="section_novelty" style={{ display:"none" }}> 
           <Section title="NOVIDADES" />
           <NoveltyCard className="main-card" $main_card />
           <NoveltyCard className="card2" gif={ gifModaÍntima } title="Moda Íntima" subtitle="ATÉ R$19,00" />
@@ -49,10 +49,9 @@ export function Home() {
 
         <div className="section_extra">
           <Section title="CONFIRA TAMBÉM" />
-          <ExtraCard className="card1" image={ imgRelogios } title="Relógios" />
-          <ExtraCard className="card2" image={ imgRelogios } title="Fones de ouvido" />
-          <ExtraCard className="card3" image={ imgRelogios } title="Smartwatch" />
-          <ExtraCard className="card4" image={ imgRelogios } title="Acessorios de celular" />
+          <ExtraCard className="card2" image={ imgRelogios } title="Casa" />
+          <ExtraCard className="card3" image={ imgRelogios } title="Esporte" />
+          <ExtraCard className="card4" image={ imgRelogios } title="Acessorios" />
         </div>
 
         <Aside>
@@ -62,11 +61,6 @@ export function Home() {
           </span>
 
           <p> Válido para compras acima de R$230. </p>
-
-          <InputBox className="aside-input" placeholder="Digite seu email aqui" />
-
-          <Button className="aside-firstButton" title="HOMEM" />
-          <Button className="aside-lastButton" title="MULHER" />
         </Aside>
 
         <Footer />
