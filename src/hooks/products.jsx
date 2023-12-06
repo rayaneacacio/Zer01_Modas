@@ -40,7 +40,10 @@ function ProductsProvider({ children }) {
 
       for(let product of response.data) {
         const imgs = await api.get(`/products_images/index?product_id=${ product.id }`);
-        product.img = imgs.data[0].image;
+
+        if(imgs.data.length > 0) {
+          product.img = imgs.data[0].image;
+        }
 
         array.push(product);
       };
@@ -48,7 +51,7 @@ function ProductsProvider({ children }) {
       setAllProducts(array);
       
     } catch(error) {
-      console.log("Ocorreu um erro");
+      console.log(error);
     }
     
   }
