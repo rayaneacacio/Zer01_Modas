@@ -16,6 +16,8 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
 
   > :first-child {
