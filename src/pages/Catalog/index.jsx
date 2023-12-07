@@ -60,7 +60,7 @@ export function Catalog() {
             flexWrap: "wrap", 
             gap: (window.innerWidth >= 1000 ? "3rem" : "1rem"), 
             padding: "2rem", 
-            width: (window.innerWidth >= 1000 && "52%") }}>
+            width: (window.innerWidth >= 1000 && "53%") }}>
             {
               Array.from({ length: 20 }, (_, index) => (
                 <div key={ index } className="divLoading" style={{ width: "17rem", height: "18rem" }}></div>
