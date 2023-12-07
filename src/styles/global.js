@@ -92,11 +92,16 @@ export default createGlobalStyle`
   }
 
   .divLoading {
+    background: linear-gradient(to right, ${({ theme }) => theme.COLORS.WHITE}, rgb(15 32 40 / 0.44), #f6f6f6 );
+    background-size: 400% 400%;
+    animation: loading 2s ease infinite;
+    cursor: progress;
+  }
+
+  .divLoadingSpin {
     background: linear-gradient(to right, ${({ theme }) => theme.COLORS.WHITE}, rgb(15 32 40 / 0.44), ${({ theme }) => theme.COLORS.GRAY_700} );
     background-size: 400% 400%;
-
     animation: spinLoading 2s ease infinite;
-    
     cursor: progress;
   }
 

@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { useProducts } from "../../hooks/products";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Container } from "./style";
 
 export function Nav() {
-  const { findProductsByCategory, findPromotions } = useProducts();
-
   const [ sliderPerView, setSliderPerview ] = useState(3.2);
   const [ mainSlide, setMainSlide ] = useState(-1);
   const [ mainButton, setMainButton ] = useState("");
@@ -43,17 +39,7 @@ export function Nav() {
     setMainSlide(index);
     setMainButton(button);
 
-    await fetchData(title);
-
-    navigate(`/catalog?section=${ title.toLowerCase() }`);
-  }
-
-  async function fetchData(title) {
-    if(title != "PROMOÇÕES") {
-      await findProductsByCategory(title);
-    } else {
-      await findPromotions();
-    }
+    navigate(`/catalog?${ title.toLowerCase() }`);
   }
 
   useEffect(() => {
@@ -108,12 +94,6 @@ export function Nav() {
       sessionStorage.setItem("@zer01modas:mainslide", -1);
       setMainSlide(-1);
     }
-
-    sections.map(async(section) => {
-      if(decodeURIComponent(url.search) == `?section=${ section.toLocaleLowerCase() }`) {
-        await fetchData(section);
-      }
-    });
 
   }, [ url ]);
 

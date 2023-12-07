@@ -335,7 +335,7 @@ export const Main = styled.main`
       position: relative;
 
       > :first-child {
-        margin-top: 2rem;
+        margin-top: 3rem;
       }
 
       > div {

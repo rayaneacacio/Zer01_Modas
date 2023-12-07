@@ -174,7 +174,7 @@ export function EditCatalog({ ...rest }) {
           <option value="INFANTIL">Infantil</option>
           <option value="CASA">Casa</option>
           <option value="ESPORTE">Esporte</option>
-          <option value="ACESSÓRIOS">Acessórios</option>
+          <option value="ACESSORIOS">Acessórios</option>
         </select>
       </label>
 

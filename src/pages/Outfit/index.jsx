@@ -230,7 +230,7 @@ export function Outfit() {
             justifyContent: "center",
             gridArea: "swiper"
             }}>
-            <div className="divLoading" style={{ 
+            <div className="divLoadingSpin" style={{ 
               width: "7rem", 
               height: "7rem", 
               borderRadius: "9999px", 
