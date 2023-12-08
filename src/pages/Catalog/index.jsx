@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useProducts } from "../../hooks/products";
@@ -12,7 +13,7 @@ import { ShowOutfit } from "../../components/ShowOutfit";
 import { Footer } from "../../components/Footer";
 
 import { Container, Main } from "./style";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function Catalog() {
   const { allProducts, findProductsByCategory, findPromotions, loadingProducts, setLoadingProducts } = useProducts();
@@ -58,12 +59,12 @@ export function Catalog() {
             cursor: "progress", 
             display: "flex", 
             flexWrap: "wrap", 
-            gap: (window.innerWidth >= 1000 ? "3rem" : "1rem"), 
+            gap: (window.innerWidth >= 1000 ? "3rem" : "4rem"), 
             padding: "2rem", 
             width: (window.innerWidth >= 1000 && "103rem") }}>
             {
               Array.from({ length: 20 }, (_, index) => (
-                <div key={ index } className="divLoading" style={{ width: "17rem", height: "18rem" }}></div>
+                <div key={ index } className="divLoading" style={{ width: (window.innerWidth >= 1000 ? "17rem" : "15rem" ), height: (window.innerWidth >= 1000 ? "18rem" : "16rem" ) }}></div>
               ))
             }
           </div>

@@ -95,16 +95,10 @@ export function Payment() {
   }, [ cep ]);
 
   useEffect(() => {
-    const controller = new AbortController();
-
     if(userData) {
       (async() => {
-        await findAllAddresses({ signal: controller.signal });
+        await findAllAddresses();
       })();
-    }
-
-    return () => {
-      controller.abort();
     }
 
   }, [ userData ]);

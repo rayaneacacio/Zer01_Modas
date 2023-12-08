@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -24,7 +25,6 @@ import { Login } from "../Login";
 import { ShowOutfit } from "../ShowOutfit";
 
 import { Container } from "./style";
-import axios from "axios";
 
 export function Header() {
   const { openMenuDesktop, closenMenuDesktop } = useMenu();
@@ -86,9 +86,20 @@ export function Header() {
     handleCloseMenuMOBILE();
   }
 
+  function fetchDataDesktop(key) {
+    if(key == "Enter") {
+      navigate("/catalog");
+    }
+  }
+
+  function focusInputDesktop() {
+    document.addEventListener("keydown", event => fetchDataDesktop(event.key));
+  }
+
   useEffect(() => {
     const source = axios.CancelToken.source();
     const boxResponseSearch = document.querySelector(".responseSearch");
+    const inputSearchDesktop = document.querySelector(".inputSearchDesktop input");
 
     (async() => {
       // pesquisar produtos;
@@ -106,24 +117,11 @@ export function Header() {
 
     } else {
       //desktop;
-      const inputSearchDesktop = document.querySelector(".inputSearchDesktop input");
-
-      function fetchDataDesktop(key) {
-        if(key == "Enter") {
-          navigate("/catalog");
-        }
-      }
-
-      inputSearchDesktop.addEventListener('focus', () => {
-        document.addEventListener("keydown", event => fetchDataDesktop(event.key));
-
-        return () => {
-          document.removeEventListener("keydown", event => fetchDataDesktop(event.key));
-        }
-      });
+      inputSearchDesktop.addEventListener('focus', focusInputDesktop);
     }
 
     return () => {
+      inputSearchDesktop.removeEventListener("focus", focusInputDesktop);
       source.cancel();
     }
 
@@ -164,11 +162,11 @@ export function Header() {
                   cursor: "progress", 
                   display: "flex", 
                   flexWrap: "wrap", 
-                  gap: "1rem", 
+                  gap: "2rem", 
                   padding: "2rem" }}>
                 {
                   Array.from({ length: 10 }, (_, index) => (
-                    <div key={ index } className="divLoading" style={{ width: "12rem", height: "13rem" }}></div>
+                    <div key={ index } className="divLoading" style={{ width: "10rem", height: "11rem" }}></div>
                   ))
                 }
                 </div>

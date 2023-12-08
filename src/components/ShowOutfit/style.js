@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.BLACK};
-  width: ${({ $promotion }) => $promotion ? "18rem" : "17rem"};
+  width: ${({ $promotion }) => $promotion ? "16rem" : "15rem"};
   position: relative;
 
   > button {
@@ -13,8 +13,8 @@ export const Container = styled.button`
   }
 
   > img {
-    width: ${({ $promotion }) => $promotion ? "18rem" : "17rem"};
-    height: ${({ $promotion }) => $promotion ? "20rem" : "18rem"};
+    width: ${({ $promotion }) => $promotion ? "16rem" : "15rem"};
+    height: ${({ $promotion }) => $promotion ? "18rem" : "16rem"};
     object-fit: cover;
   }
 
