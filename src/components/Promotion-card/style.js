@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const Container = styled.button`
   position: relative;
   > img {
-    width: 13rem;
+    width: 14rem;
     height: 20rem;
   }
 
   > div {
     color: ${({ theme }) => theme.COLORS.WHITE};
-    width: 13rem;
+    width: 14rem;
     height: 100%;
     position: absolute;
     bottom: 0;
