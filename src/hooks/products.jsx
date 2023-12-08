@@ -11,6 +11,7 @@ function ProductsProvider({ children }) {
   const [ allProducts, setAllProducts ] = useState([]); //todos os produtos encontrados;
   const [ lastViewedProduct, setLastViewedProduct ] = useState({}); //ultimo produto visualizado;
   const [ favorites, setFavorites ] = useState([]); //produtos favoritos;
+  const [ loadingProducts, setLoadingProducts ] = useState(false);
 
   async function createProduct({ name, category, price, promotion, description }) {
     try {
@@ -56,8 +57,9 @@ function ProductsProvider({ children }) {
     
   }
 
-  async function searchProducts({ name, id }) {
-    //retorna uma lista de produtos;
+  async function searchProducts({ name, id, cancelToken }) {
+    try {
+      //retorna uma lista de produtos;
       let response = null;
       let products = [];
 
@@ -65,25 +67,31 @@ function ProductsProvider({ children }) {
         return [];
       }
 
+      setAllProducts([]);
+      setLoadingProducts(true);
+
       if(isNaN(id)) {
-        response = await api.post("/products/show", { name });
+        response = await api.post("/products/show", { name }, { cancelToken });
       } else {
-        response = await api.post("/products/show", { id });
+        response = await api.post("/products/show", { id }, { cancelToken });
       }
 
       if(response.data.length > 0) {
         for(let product of response.data) {
-          if(product) {
           const imgs = await api.get(`/products_images/index?product_id=${ product.id }`);
           product.img = imgs.data[0].image;
 
           products.push(product);
-          }
         };
       }
 
       setAllProducts(products);
+      setLoadingProducts(false);
       return products;
+
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   async function findProduct({ name, id }) {
@@ -282,7 +290,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites }}>
+    <ProductsContext.Provider value={{ allProducts, setAllProducts, lastViewedProduct, createProduct, findProductsByCategory, findProduct, deleteProducts, setLastViewedProductStorage, updateProduct, searchProducts,findPromotions, favorites, setFavorites, insertFavorite, findIfIsFavorite, removeFavorite, findAllFavorites, loadingProducts, setLoadingProducts }}>
       { children }
     </ProductsContext.Provider>
   )

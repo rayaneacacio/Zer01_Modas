@@ -8,13 +8,12 @@ export const ShoppingContext = createContext({});
 
 function ShoppingProvider({ children }) {
   const { SignOut } = useAuth();
+  const { findProduct } = useProducts();
   
   const [ cartBuy, setCartBuy ] = useState({ products: [], length: 0, price: "R$ 00,00" }); //produtos no carrinho de compras;
   const [ chosenProductsInCart, setChosenProductsInCart ] = useState([]); //produtos do carrinho selecionado pelos user;
   const [ allCupons, setAllCupons ] = useState([]); //todos os cupons disponiveis;
   const [ buyPrice, setBuyPrice ] = useState(cartBuy.price); //preco final do pedido;
-  
-  const { findProduct } = useProducts();
 
   async function addShoppingCart(product_id, size, color) {
     //adiciona o produto no carrinho de compras;

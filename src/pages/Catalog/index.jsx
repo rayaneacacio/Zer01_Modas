@@ -15,9 +15,7 @@ import { Container, Main } from "./style";
 import { useEffect, useState } from "react";
 
 export function Catalog() {
-  const { allProducts, findProductsByCategory, findPromotions } = useProducts();
-
-  const [ loading, setLoading ] = useState(true);
+  const { allProducts, findProductsByCategory, findPromotions, loadingProducts, setLoadingProducts } = useProducts();
 
   const navigate = useNavigate();
   const url = useLocation();
@@ -28,19 +26,21 @@ export function Catalog() {
   }
 
   useEffect(() => {
-    setLoading(true);
+    if(url.search != "") {
+      setLoadingProducts(true);
 
-    (async() => {
-      const section = url.search.replace("?", "");
+      (async() => {
+        const section = url.search.replace("?", "");
 
-      if(section == "promo%C3%A7%C3%B5es") {
-        await findPromotions();
-      } else {
-        await findProductsByCategory(section.toUpperCase());
-      }
-      
-      setLoading(false);
-    })();
+        if(section == "promo%C3%A7%C3%B5es") {
+          await findPromotions();
+        } else {
+          await findProductsByCategory(section.toUpperCase());
+        }
+
+        setLoadingProducts(false);
+      })();
+    }
 
   }, [ url ]);
 
@@ -53,14 +53,14 @@ export function Catalog() {
         <BoxCupom />
 
         {
-          loading &&
+          loadingProducts &&
           <div style={{ 
             cursor: "progress", 
             display: "flex", 
             flexWrap: "wrap", 
             gap: (window.innerWidth >= 1000 ? "3rem" : "1rem"), 
             padding: "2rem", 
-            width: (window.innerWidth >= 1000 && "55%") }}>
+            width: (window.innerWidth >= 1000 && "103rem") }}>
             {
               Array.from({ length: 20 }, (_, index) => (
                 <div key={ index } className="divLoading" style={{ width: "17rem", height: "18rem" }}></div>
@@ -70,14 +70,14 @@ export function Catalog() {
         }
 
         {
-          !loading && allProducts.length == 0 ?
+          !loadingProducts && allProducts.length == 0 ?
           <div className="div_img">
             <img src={ img_produto_nao_encontrado } alt="" />
           </div>
         :
           <div className="DivCatalog">
             {
-              !loading && allProducts.length > 0 &&
+              !loadingProducts && allProducts.length > 0 &&
               allProducts.map((product, index) => (
                 <ShowOutfit key={ index } image={ `${ api.defaults.baseURL }/files/${ product.img }` } title={ product.name } price={ product.price } onClick={() => handleNavigateOutfit(product.name) } />
               )).reverse()

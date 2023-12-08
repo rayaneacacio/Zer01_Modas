@@ -5,7 +5,9 @@ import gifModaÍntima from "../../assets/gif-moda-intima-secao-novidades.gif";
 import gifCamisetas from "../../assets/gif-camisetas-secao-novidades.gif";
 import gifTenis from "../../assets/gif-tenis-secao-novidades.gif";
 import gifJeans from "../../assets/gif-jeans-secao-novidades.gif";
-import imgRelogios from "../../assets/relogios-secao-confira-tambem.jpg";
+import img_acessorios from "../../assets/acessorio-secao-confira-tambem.png";
+import img_casa from "../../assets/casa-secao-confira-tambem.png";
+import img_esporte from "../../assets/esporte-secao-confira-tambem.png";
 
 import { Header } from "../../components/Header";
 import { Nav } from "../../components/Nav";
@@ -49,9 +51,9 @@ export function Home() {
 
         <div className="section_extra">
           <Section title="CONFIRA TAMBÉM" />
-          <ExtraCard className="card2" image={ imgRelogios } title="Casa" />
-          <ExtraCard className="card3" image={ imgRelogios } title="Esporte" />
-          <ExtraCard className="card4" image={ imgRelogios } title="Acessorios" />
+          <ExtraCard className="card2" image={ img_casa } title="Casa" />
+          <ExtraCard className="card3" image={ img_esporte } title="Esporte" />
+          <ExtraCard className="card4" image={ img_acessorios } title="Acessorios" />
         </div>
 
         <Aside>

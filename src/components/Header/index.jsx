@@ -24,15 +24,15 @@ import { Login } from "../Login";
 import { ShowOutfit } from "../ShowOutfit";
 
 import { Container } from "./style";
+import axios from "axios";
 
 export function Header() {
   const { openMenuDesktop, closenMenuDesktop } = useMenu();
   const { userData, isAdmin } = useAuth();
-  const { searchProducts, findAllFavorites, favorites } = useProducts();
+  const { searchProducts, findAllFavorites, favorites, allProducts, setAllProducts, loadingProducts } = useProducts();
   const { cartBuy, findAllProductsShoppingCart } = useShopping();
 
   const [ search, setSearch ] = useState("");
-  const [ products, setProducts ] = useState([]);
 
   const navigate = useNavigate();
   const route = useLocation();
@@ -45,7 +45,7 @@ export function Header() {
     document.querySelector(".menuMobile").style.display = "none";
     document.querySelector(".responseSearch").style.display = "none";
     document.querySelector(".inputSearch input").value ="";
-    setProducts([]);
+    setAllProducts([]);
   }
 
   function handleOpenMenuDESKTOP() {
@@ -87,16 +87,16 @@ export function Header() {
   }
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
     const boxResponseSearch = document.querySelector(".responseSearch");
 
     (async() => {
-      //pesquisar produtos;
+      // pesquisar produtos;
       const id = Number(search);
-      const response = await searchProducts({ name: search, id });
-      setProducts(response);
+      await searchProducts({ name: search, id, cancelToken: source.token });
     })();
     
-    //adicionar imagem de erro caso se n encontrar produtos da pesquisa;
+    // adicionar imagem de erro caso se n encontrar produtos da pesquisa;
     if(window.innerWidth < 1000) { //mobile;
       if(search == "") {
         boxResponseSearch.style.display = "none";
@@ -104,7 +104,7 @@ export function Header() {
         boxResponseSearch.style.display = "flex";
       }
 
-    } else if(search != "") {
+    } else {
       //desktop;
       const inputSearchDesktop = document.querySelector(".inputSearchDesktop input");
 
@@ -121,7 +121,10 @@ export function Header() {
           document.removeEventListener("keydown", event => fetchDataDesktop(event.key));
         }
       });
+    }
 
+    return () => {
+      source.cancel();
     }
 
   }, [ search ]);
@@ -155,16 +158,31 @@ export function Header() {
           <div>
             <InputBox className="input inputSearch" placeholder="O que vai querer hoje?" icon={ iconSearch } onChange={e => setSearch(e.target.value) } />
             <div className="responseSearch">
+              { 
+                loadingProducts &&
+                <div style={{ 
+                  cursor: "progress", 
+                  display: "flex", 
+                  flexWrap: "wrap", 
+                  gap: "1rem", 
+                  padding: "2rem" }}>
+                {
+                  Array.from({ length: 10 }, (_, index) => (
+                    <div key={ index } className="divLoading" style={{ width: "12rem", height: "13rem" }}></div>
+                  ))
+                }
+                </div>
+              }
               {
-                products.length > 0 ?
+                !loadingProducts && allProducts.length > 0 ?
                 <div className="div_products">
                   {
-                    products.map((product, index) => (
+                    allProducts.map((product, index) => (
                       <ShowOutfit key={ index } image={ `${ api.defaults.baseURL }/files/${ product.img }` } title={ product.name } price={ product.price } onClick={() => handleNavigateOutfit(product.name) } />
                     ))
                   }
                 </div>
-                :
+                : !loadingProducts &&
                 <div>
                   <img src={ img_produto_nao_encontrado_mobile } alt="" />
                 </div>
