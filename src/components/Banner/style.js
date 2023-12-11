@@ -6,8 +6,7 @@ export const Container = styled.div`
     img {
       width: 100%;
       height: 150%;
-      padding: 0 3rem;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -37,8 +36,12 @@ export const Container = styled.div`
 
   @media(min-width: 1000px) {
     .carrossel-imgs {
-      width: 98rem;
+      width: 92rem;
       height: 25rem;
+
+      img {
+        object-fit: cover;
+      }
     }
 
     .swiper-pagination-bullet {

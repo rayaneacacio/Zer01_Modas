@@ -132,8 +132,8 @@ export function Profile() {
             <h2> E-mail e Senha </h2>
             <div>
               <InputBox className="divInput" title="E-mail" onChange={e => setEmail(e.target.value)} />
-              <InputBox className="divInput" type="password" title="Senha" onChange={e => setOldPassword(e.target.value)} />
-              <InputBox className="divInput" type="password" title="Nova Senha" onChange={e => setNewPassword(e.target.value)} />
+              <InputBox className="divInput" type="password" title="Senha" placeholder="Digite sua senha atual" onChange={e => setOldPassword(e.target.value)} />
+              <InputBox className="divInput" type="password" title="Nova Senha" placeholder="Digite uma nova senha" onChange={e => setNewPassword(e.target.value)} />
             </div>
             <Button title="SALVAR" onClick={ handleUpdateUser } />
           </div>

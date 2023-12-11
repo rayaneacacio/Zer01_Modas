@@ -17,7 +17,8 @@ export const Container = styled.div`
         "card1 card2"
         "card3 none";
     justify-content: center;
-    gap: 0.5rem 3.5rem;
+    gap: 0.5rem 2rem;
+    padding: 0 3rem;
 
     section {
       grid-area: title_section;
