@@ -57,11 +57,12 @@ export function Catalog() {
           loadingProducts &&
           <div style={{ 
             cursor: "progress", 
-            display: "grid",
+            display: (window.innerWidth >= 1000 ? "flex" : "grid"),
             gridTemplateColumns: "1fr 1fr",
-            gap: "2rem",
-            columnGap: "0",
-            padding: "1rem",
+            gap: (window.innerWidth >= 1000 ? "3rem" : "2rem"),
+            columnGap: (window.innerWidth >= 1000 ? "3rem" : "0"),
+            flexWrap: "wrap",
+            padding: (window.innerWidth >= 1000 ? "2rem" : "1rem"),
             width: (window.innerWidth >= 1000 && "103rem") }}>
             {
               Array.from({ length: 20 }, (_, index) => (
