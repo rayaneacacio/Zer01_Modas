@@ -28,38 +28,13 @@ Além disso, o administrador da loja (user adm) tem a capacidade de editar o cat
 </div>
 
 <div>
-  lista os produtos favoritados pelo usuário.
-  //gif favorites
-</div>
-
-<div>
-  lista os produtos favoritados pelo usuário.
-  //gif favorites
-</div>
-
-<div>
-  página do carrinho de compras.
+  páginas do carrinho de compras e de pagamento.
   //gif shopping cart
 </div>
 
 <div>
-  página de pagamento.
-  //gif payment
-</div>
-
-<div>
-  contém os dados do usuário: pedidos e informações da conta e de cartões.
-  //gif profile
-</div>
-
-<div>
-  página de criação de produtos, disponível apenas para administradores.
+  páginas de administração: criação e edição de produtos e de cupons de desconto.
   //gif new product
-</div>
-
-<div>
-  página de edição de produtos, disponível apenas para administradores.
-  //gif edit product
 </div>
 
 ##
