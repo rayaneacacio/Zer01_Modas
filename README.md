@@ -47,7 +47,8 @@ Além disso, o administrador da loja (user adm) tem a capacidade de editar o cat
 <br>
 
 <div align="center" >
-  <p>páginas de administração: criação e edição de produtos e de cupons de desconto.</p>
+  <p>páginas de administração: criação e edição de produtos e de cupons de desconto. Experimente o site como administrador: </p>
+  <p>email: mavis@gmail.com; senha: 1234</p>
   <img height="400px" src=".github/adm_pages.gif" />
 </div>
 
