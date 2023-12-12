@@ -76,7 +76,7 @@ export function Profile() {
   }
 
   useEffect(() => {
-    const inputOldPassword = document.querySelectorAll(".divInput")[1];
+    const inputOldPassword = document.querySelectorAll(".divInputProfile")[1];
     if(inputOldPassword) {
       removeErrorMessage(inputOldPassword);
       inputOldPassword.style.border = "none";
@@ -87,7 +87,7 @@ export function Profile() {
 
   useEffect(() => {
     if(userData) {
-      document.querySelectorAll(".divInput input")[0].value = userData.user.email;
+      document.querySelector(".divInputProfile input").value = userData.user.email;
       setEmail(userData.user.email);
     }
 
@@ -131,9 +131,9 @@ export function Profile() {
           <div className="mainChild divProfile">
             <h2> E-mail e Senha </h2>
             <div>
-              <InputBox className="divInput" title="E-mail" onChange={e => setEmail(e.target.value)} />
-              <InputBox className="divInput" type="password" title="Senha" placeholder="Digite sua senha atual" onChange={e => setOldPassword(e.target.value)} />
-              <InputBox className="divInput" type="password" title="Nova Senha" placeholder="Digite uma nova senha" onChange={e => setNewPassword(e.target.value)} />
+              <InputBox className="divInputProfile" title="E-mail" onChange={e => setEmail(e.target.value)} />
+              <InputBox className="divInputProfile" type="password" title="Senha" placeholder="Digite sua senha atual" onChange={e => setOldPassword(e.target.value)} />
+              <InputBox className="divInputProfile" type="password" title="Nova Senha" placeholder="Digite uma nova senha" onChange={e => setNewPassword(e.target.value)} />
             </div>
             <Button title="SALVAR" onClick={ handleUpdateUser } />
           </div>
