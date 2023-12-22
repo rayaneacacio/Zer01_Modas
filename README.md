@@ -8,34 +8,49 @@ Este é um site de vendas responsivo desenvolvido com React Js e Styled Componen
 Além disso, o administrador da loja (user adm) tem a capacidade de editar o catálogo, adicionando, editando ou removendo itens da loja. O administrador também pode adicionar promoções e novos cupons de desconto para os usuários.
 </p>
 
-> Acesso [Zer01Modas](https://zer01modas.netlify.app)
+> Acesso: [Zer01Modas](https://zer01modas.netlify.app)
 
-<h2> ! Funcionalidades</h2>
+> Api: [api_zer01modas](https://github.com/rayaneacacio/api-zer01modas)
+
+<h2> ! Navegação.</h2>
 
 <div align="center" >
-  <p>HOME: primeira página do site e serve como um ponto central para a navegação.</p>
-  <img height="400px" src=".github/1.1.gif" />
+  <p>primeira página do site:</p>
+  <img height="400px" src=".github/home.gif" />
 </div>
 
+<br>
+<br>
 
-<div>
-  catálogo de produtos.
-  //gif catalog
+<div align="center" >
+  <p>página de catálogo de produtos:</p>
+  <img height="400px" src=".github/catalog.gif" />
 </div>
 
-<div>
-  contém todas as informações de um produto.
-  //gif outfit
+<br>
+<br>
+
+<div align="center" >
+  <p>página que contém todas as informações de um produto:</p>
+  <img height="400px" src=".github/outfit.gif" />
 </div>
 
-<div>
-  páginas do carrinho de compras e de pagamento.
-  //gif shopping cart
+<br>
+<br>
+
+<div align="center" >
+  <p>páginas do carrinho de compras e de pagamento:</p>
+  <img height="400px" src=".github/shopping_cart.gif" />
 </div>
 
-<div>
-  páginas de administração: criação e edição de produtos e de cupons de desconto.
-  //gif new product
+<br>
+<br>
+
+<div align="center" >
+  <p>(páginas de administração) criação e edição de produtos e de cupons de desconto:</p>
+  <p>Experimente o site como administrador, as mudanças não serão permanentes.</p>
+  <p>email: mavis@gmail.com; senha: 1234</p>
+  <img height="400px" src=".github/adm_pages.gif" />
 </div>
 
 ##
