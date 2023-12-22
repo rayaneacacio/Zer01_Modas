@@ -1,7 +1,8 @@
 <p align="center">
-  <img height="80px" src="https://github.com/rayaneacacio/Zer01_Modas/assets/104095370/c3f7aebe-818e-4dac-bd1a-8959c6197a04" />
+  <img height="80px" src="https://github.com/rayaneacacio/Zer01_Modas/assets/104095370/c3f7aebe-818e-4dac-bd1a-8959c6197a04" />  
 </p>
 <p align="justify">
+
 Este é um site de vendas responsivo desenvolvido com React Js e Styled Components para uma loja fictícia. A aplicação apresenta um catálogo de roupas onde os usuários podem visualizar as peças, verificar os tamanhos e cores disponíveis, adicionar itens ao carrinho, favoritar peças de roupas e pesquisar o que desejam.
 </p>
 <p align="justify">
@@ -11,6 +12,14 @@ Além disso, o administrador da loja (user adm) tem a capacidade de editar o cat
 > Acesso: [Zer01Modas](https://zer01modas.netlify.app)
 
 > Api: [api_zer01modas](https://github.com/rayaneacacio/api-zer01modas)
+
+<h2> ! Video Institucional </h2>
+
+<div align="center" >
+
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/52H0zsvk57Y?si=IT4uRmKBsR1DJ8vA)
+  
+</div>
 
 <h2> ! Navegação.</h2>
 
